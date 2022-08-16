@@ -82,30 +82,29 @@ function cardsInDeck(deck) {
       count++;
     }
   }
-  return `Count is good, 52 in the deck`;
+  return `------Count is good, 52 in the deck-------`;
 }
 
 
 
+//deck shuffler
+function shuffleDeck(deck) {
+ // randomizedDeck = [];
+  for (var i = 0; i < 52; i++) {
+    var tempCard = deck[i];
+    var randomIndex = Math.floor(Math.random() * 52);
+    deck[i] = deck[randomIndex];
+    deck[randomIndex] = tempCard;
+  }
+}
 
-// function shuffleDeck(deck) {
-//   randomizedDeck = [];
-//   for (var i = 0; i < 52; i++) {
-//     var tempCard = deck[i];
-//     var randomIndex = Math.floor(Math.random() * 52);
-//     deck[i] = deck[randomIndex];
-//     deck[randomIndex] = tempCard;
-//   }
-// }
-
-//create deck to shuffle
+// create deck to shuffle
 var testDeck = createDeck();
-
-console.log(createDeck());
-console.log(cardsInDeck(deck));
-console.log(suits);
 console.log(testDeck);
+console.log(shuffleDeck(testDeck));
+//check for dupes
 console.log(testDeck);
+console.log(cardsInDeck(testDeck));
 
 // 3 card flop array
 function seeFlop(deck) {
@@ -172,8 +171,17 @@ console.log(seePlayerHoleCards(testDeck));
 // split board into separate cards with separate suits
 
 console.log(testBoardFlop);
+console.log(testHandPlayerOne);
 console.log(testBoardFlop[0][0], testBoardFlop[0][1]);
 
+// sort cards by rankings
+function boardHandRankings(){
+  return testBoardFlop[0][0]
+}
+console.log(boardHandRankings()); 
+// sort cards by suits
+
+// combine and check for truths
 
 
 
