@@ -3,33 +3,33 @@
 //New create unshuffled deck function below (function createDeck())
 var deck = [];
 var board = [];
-var handOne = [];
-var handTwo = [];
-var handThree = [];
-var handFour = [];
-var handFive = [];
-var handSix = [];
-var handSeven = [];
-var handEight = [];
-var handNine = [];
+var handPlayerOne = [];
+var handPlayerTwo = [];
+var handPlayerThree = [];
+var handPlayerFour = [];
+var handPlayerFive = [];
+var handPlayerSix = [];
+var handPlayerSeven = [];
+var handPlayerEight = [];
+var handPlayerNine = [];
 // test input for board and hand
 var testBoardFlop = [];
 var testBoardTurn = [];
 var testBoardRiver = [];
-var testHandOne = [];
-var testHandTwo = [];
-var testHandThree = [];
-var testHandFour = [];
-var testHandFive = [];
-var testHandSix = [];
-var testHandSeven = [];
-var testHandEight = [];
-var testHandNine = [];
+var testHandPlayerOne = [];
+var testHandPlayerTwo = [];
+var testHandPlayerThree = [];
+var testHandPlayerFour = [];
+var testHandPlayerFive = [];
+var testHandPlayerSix = [];
+var testHandPlayerSeven = [];
+var testHandPlayerEight = [];
+var testHandPlayerNine = [];
 // assign number values to face cards
-var a = 14;
-var k = 13;
-var q = 12;
-var j = 11;
+var A = 14;
+var K = 13;
+var Q = 12;
+var J = 11;
 // assign letters to suits
 var c = 'clubs';
 var d = 'diamond';
@@ -85,15 +85,18 @@ function cardsInDeck(deck) {
   return `Count is good, 52 in the deck`;
 }
 
-function shuffleDeck(deck) {
-  randomizedDeck = [];
-  for (var i = 0; i < 52; i++) {
-    var tempCard = deck[i];
-    var randomIndex = Math.floor(Math.random() * 52);
-    deck[i] = deck[randomIndex];
-    deck[randomIndex] = tempCard;
-  }
-}
+
+
+
+// function shuffleDeck(deck) {
+//   randomizedDeck = [];
+//   for (var i = 0; i < 52; i++) {
+//     var tempCard = deck[i];
+//     var randomIndex = Math.floor(Math.random() * 52);
+//     deck[i] = deck[randomIndex];
+//     deck[randomIndex] = tempCard;
+//   }
+// }
 
 //create deck to shuffle
 var testDeck = createDeck();
@@ -102,19 +105,84 @@ console.log(createDeck());
 console.log(cardsInDeck(deck));
 console.log(suits);
 console.log(testDeck);
-shuffleDeck(testDeck);
 console.log(testDeck);
 
+// 3 card flop array
 function seeFlop(deck) {
-  var testBoardFlop = [];
-  for (let i = 0; i < 3; i++) {
+  // var testBoardFlop = [];
+  // we start at index 1, and end on 4 becuase we need to burn first card
+  for (let i = 1; i < 4; i++) {
     console.log(deck[i]);
     testBoardFlop.push(deck[i]);
   }
   return testBoardFlop
 }
 
+// test 3 card flop array
 console.log(seeFlop(testDeck)); 
+
+
+
+
+// 3 card flop array + new turn card
+function seeTurn(deck) {
+  for (let i = 5; i < 6; i++) {
+    console.log(deck[i]);
+    testBoardTurn.push(deck[i]);
+  }
+  return testBoardFlop.concat(testBoardTurn);
+}
+
+// test 3 card flop array + new turn card
+console.log(seeTurn(testDeck)); 
+
+
+// 3 card flop array, turn card + new river card
+function seeRiver(deck) {
+  for (let i = 7; i < 8; i++) {
+    console.log(deck[i]);
+    testBoardRiver.push(deck[i]);
+  }
+  return testBoardFlop.concat(testBoardTurn.concat(testBoardRiver));
+}
+
+// test 3 card flop array, turn card + new river card
+console.log(seeRiver(testDeck)); 
+
+
+
+
+// player one cards - 2 card array
+function seePlayerHoleCards(deck) {
+  for (let i = 8; i <= 9; i++) {
+    console.log(deck[i]);
+    testHandPlayerOne.push(deck[i]);
+  }
+  return testHandPlayerOne;
+}
+
+// player one cards - 2 card array
+console.log(seePlayerHoleCards(testDeck)); 
+
+//
+// main goal - split up arrays to interpret hand strength based on hand and board
+
+
+// split board into separate cards with separate suits
+// split board into separate cards with separate suits
+
+console.log(testBoardFlop);
+console.log(testBoardFlop[0][0], testBoardFlop[0][1]);
+
+
+
+
+
+
+console.log('^^^here^^^');
+
+
+
 
 
 
@@ -122,6 +190,11 @@ console.log(seeFlop(testDeck));
 // console.log(board[0][1], board[1][1], board[2][1]);
 // card ranking from board - 14, 12, 10
 // console.log(board[0][0], board[1][0], board[2][0]);
+
+
+
+
+
 
 // init as second card w/o suit
 // let cardSecond = [hand[(1, 1)]];
@@ -143,7 +216,6 @@ function isPair(currentBoard, currentHand) {
 }
 
 // isPair(board, hand);
-console.log('^^^here^^^');
 
 function isTwoPair(board, hand) {}
 function isThreeOfKind(board, hand) {}
@@ -157,8 +229,8 @@ function outsWithoutSuits(board, hand) {}
 
 console.log(
   [
-    [a, d],
-    [q, d],
+    [A, d],
+    [Q, d],
     [10, h],
   ],
   [2, 7]
