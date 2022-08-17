@@ -85,11 +85,9 @@ function cardsInDeck(deck) {
   return `------Count is good, 52 in the deck-------`;
 }
 
-
-
 //deck shuffler
 function shuffleDeck(deck) {
- // randomizedDeck = [];
+  // randomizedDeck = [];
   for (var i = 0; i < 52; i++) {
     var tempCard = deck[i];
     var randomIndex = Math.floor(Math.random() * 52);
@@ -108,20 +106,17 @@ console.log(cardsInDeck(testDeck));
 
 // 3 card flop array
 function seeFlop(deck) {
-  // var testBoardFlop = [];
+  //var testBoardFlop = [];
   // we start at index 1, and end on 4 becuase we need to burn first card
   for (let i = 1; i < 4; i++) {
     console.log(deck[i]);
     testBoardFlop.push(deck[i]);
   }
-  return testBoardFlop
+  return testBoardFlop;
 }
 
 // test 3 card flop array
-console.log(seeFlop(testDeck)); 
-
-
-
+console.log(seeFlop(testDeck));
 
 // 3 card flop array + new turn card
 function seeTurn(deck) {
@@ -133,8 +128,7 @@ function seeTurn(deck) {
 }
 
 // test 3 card flop array + new turn card
-console.log(seeTurn(testDeck)); 
-
+console.log(seeTurn(testDeck));
 
 // 3 card flop array, turn card + new river card
 function seeRiver(deck) {
@@ -146,10 +140,7 @@ function seeRiver(deck) {
 }
 
 // test 3 card flop array, turn card + new river card
-console.log(seeRiver(testDeck)); 
-
-
-
+console.log(seeRiver(testDeck));
 
 // player one cards - 2 card array
 function seePlayerHoleCards(deck) {
@@ -161,48 +152,57 @@ function seePlayerHoleCards(deck) {
 }
 
 // player one cards - 2 card array
-console.log(seePlayerHoleCards(testDeck)); 
+console.log(seePlayerHoleCards(testDeck));
 
-//
-// main goal - split up arrays to interpret hand strength based on hand and board
-
-
-// split board into separate cards with separate suits
-// split board into separate cards with separate suits
-
-console.log(testBoardFlop);
-console.log(testHandPlayerOne);
 console.log(testBoardFlop[0][0], testBoardFlop[0][1]);
 
-// sort cards by rankings
-function boardHandRankings(){
-  return testBoardFlop[0][0]
-}
-console.log(boardHandRankings()); 
-// sort cards by suits
+// main goal - split up arrays to interpret hand strength based on hand and board
+// combine hand and board into array with rankings of all cards
+// combine hand and board into array with suits of all cards
 
+// logs flop to console
+console.log(
+  `The flop is ${testBoardFlop[0]} ${testBoardFlop[1]} ${testBoardFlop[2]}`
+);
+// logs players hand to console
+console.log(`Players hand is ${testHandPlayerOne[0]} ${testHandPlayerOne[1]}`);
+console.log(testBoardFlop[0][0], testBoardFlop[0][1]);
+console.log('****');
+console.log(testBoardFlop);
+console.log(testHandPlayerOne);
+// sort cards by rankings
+function boardHandRanks(testBoardFlop, testHand) {
+  let boardHand = [];
+  for (let i = 0; i < 3; i++) {
+    //boardHand.push(testBoardFlop[i][0]);
+    boardHand.push(testBoardFlop[i][0]);
+  }
+  for (let i = 0; i < testHand.length; i++) {
+    boardHand.push(testHand[i][0]);
+  }
+  console.log(boardHand);
+  return typeof boardHand;
+  // return `Board/Hand ranks are ${boardHand}` + typeof(boardHand)
+  // return boardHand
+}
+console.log(typeof Object === typeof Array);
+console.log('^^^here^^^^');
+
+// test sort cards by rankings
+console.log(boardHandRanks(testBoardFlop, testHandPlayerOne));
+// sort cards by suits
+function boardHandSuits() {
+  return testBoardFlop[0][0];
+}
+console.log(boardHandSuits());
 // combine and check for truths
 
-
-
-
-
 console.log('^^^here^^^');
-
-
-
-
-
 
 //suits from board - diamond diamond heart
 // console.log(board[0][1], board[1][1], board[2][1]);
 // card ranking from board - 14, 12, 10
 // console.log(board[0][0], board[1][0], board[2][0]);
-
-
-
-
-
 
 // init as second card w/o suit
 // let cardSecond = [hand[(1, 1)]];
@@ -243,3 +243,24 @@ console.log(
   ],
   [2, 7]
 );
+
+let obj = {
+  flop: [['1h', 10, 5]],
+  hand: ['2h', '1D'],
+};
+
+function flop(obj) {
+  for (key in obj) {
+    console.log(obj[key]);
+  }
+}
+
+flop(obj);
+console.log(`first^^`);
+
+console.log(flop());
+console.log(`second^^`);
+
+
+
+console.log('^^^here^^^');
