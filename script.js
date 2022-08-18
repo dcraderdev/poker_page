@@ -1,17 +1,11 @@
 // Poker Page!!! All things poker coding and algos
 
 //New create unshuffled deck function below (function createDeck())
+var hashDeck = {};
 var deck = [];
-// var board = [];
 var board = {};
-var handPlayerOne = {
-  card1: [],
-  card2: [],
-};
-var handPlayerTwo = {
-  card1: [],
-  card2: [],
-};
+var handPlayerOne = {};
+var handPlayerTwo = {};
 var handPlayerThree = {};
 var handPlayerFour = {};
 var handPlayerFive = {};
@@ -19,9 +13,11 @@ var handPlayerSix = {};
 var handPlayerSeven = {};
 var handPlayerEight = {};
 var handPlayerNine = {};
-// var board = {};
-// test input for board and hand
-// var testBoard = {};
+var PlayerCardAndBoard = {};
+var boardFlop = {};
+var boardFlop2 = {};
+var boardTurn = {};
+var boardRiver = {};
 
 var testBoard = {
   card1: ['4H'],
@@ -30,11 +26,6 @@ var testBoard = {
   card4: ['7S'],
   card5: ['3H'],
 };
-var cardAndBoard = {};
-var testBoardFlop = {};
-var testBoardFlop2 = [];
-var testBoardTurn = [];
-var testBoardRiver = [];
 var testHandPlayerOne = [];
 var testHandPlayerTwo = [];
 var testHandPlayerThree = [];
@@ -74,7 +65,7 @@ var rankings = [
 ];
 
 // create deck function
-console.log(`               =-=-=-=-=-=-=-deck creation-=-=-=-=-=-=-`);
+console.log(`=-=-=-=-=-=-=-deck creation-=-=-=-=-=-=-`);
 function createDeck() {
   // iterates through rankings and suits pairing them up in order and placing in global array
   var deck = [];
@@ -87,6 +78,43 @@ function createDeck() {
 }
 
 //  Out puts: ['2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', '10S', 'JS', 'QS', 'KS', 'AS', '2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', '10C', 'JC', 'QC', 'KC', 'AC', '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', '10H', 'JH', 'QH', 'KH', 'AH', '2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', '10D', 'JD', 'QD', 'KD', 'AD']
+
+
+
+
+console.log(`=-=-=-=-=-=-=-deck creation-=-=-=-=-=-=-`);
+// function createHashDeck() {
+//   // iterates through rankings and suits pairing them up in order and placing in global array
+//   var hashDeck = {};
+//   for (var suitCounter = 0; suitCounter < 4; suitCounter++) {
+//     hashDeck.suit = `${suits[suitCounter]}`
+//     for (var rankingCounter = 0; rankingCounter < 13; rankingCounter++) {
+//       // console.loghas((rankings[rankingCounter] + suits[suitCounter]));
+//     }
+//   }
+//   return deck;
+// }
+
+
+// suits, rankings
+
+
+// checks for length of card in array so we can separate into hash.
+function faceCardCheck(card) {
+  if (card.length > 2) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+
+
+
+
+
+
 
 // counts cards in deck, checks for duplicates
 // if deck before or after this index include this card do not add to count
@@ -121,20 +149,131 @@ var testDeck = createDeck();
 console.log(testDeck);
 console.log(shuffleDeck(testDeck));
 //check for dupes
-console.log(`               =-=-=-=-=-=-=-deck suffled-=-=-=-=-=-=-`);
+console.log(`=-=-=-=-=-=-=-deck suffled-=-=-=-=-=-=-`);
 
 console.log(testDeck);
 console.log(cardsInDeck(testDeck));
 
+
+
+
+
+console.log(`-=-=-=-=--=--=put shuffled cards into hash-=-=-=-=-=-=`);
+
+
+// function faceCardCheck(card) {
+//   if (card.length > 2) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+console.log(testDeck);
+// returns info at any index position in deck
+function rankOfCardInDeck (deck, position) {
+  let card = deck[position-1];
+  let rank = ''
+  // let rank = card.charAt(0,3)
+  // let rank = card[0];
+  if (faceCardCheck(card)) {
+    rank = card.slice(0,2)
+   } else { 
+    rank = card.slice(0,1);
+}
+return rank
+}
+
+console.log(rankOfCardInDeck(testDeck, 1));
+
+
+function suitOfCardInDeck (deck, position) {
+  let card = deck[position-1];
+  let suit = card.slice(-1);
+return suit
+}
+
+
+console.log(suitOfCardInDeck(testDeck, 1));
+
+
+console.log(`-=-=-=-=-=-=- working here-=-=-=-=-=-=-=-`); 
+// pulls info from cardIndeck and stores info in card
+function createHashDeck(deck) {
+  for (i = 1; i <= 52; i++){
+    hashDeck[`card${i}`] = {};
+    hashDeck[`card${i}`]['rank'] = rankOfCardInDeck(deck, i)
+    hashDeck[`card${i}`]['suit'] = suitOfCardInDeck(deck, i)
+}
+}
+console.log(createHashDeck(testDeck));
+console.log(hashDeck);
+
+
+    // hashDeck[`card${i}`].rank = 2
+    // hashDeck[`card${i}`].suit = 'H'
+    // suitOfCardInDeck
+    // rankOfCardInDeck
+    // hashDeck[`card${i}`]['rank'] = 2
+    // hashDeck[`card${i}`]['suit'] = H
+    // hashDeck[`card${i}`].rank = 2
+// hashDeck[`card${i}`] = cardInDeck(deck[i]) ;
+// }
+// return hashDeck;
+// deck created - array of strings  
+// deck shuffled - array of strings
+
+
+
+
+
+// each string sorted into hands and board by rank and suit
+function cardsForTwoPLayers(deck) {
+  // if index in deck is > 2 then put this : or put that
+for(let i = 0; i < 4; i++) { 
+  if (faceCardCheck(deck[i]))  {
+  handPlayerOne[`card${i}`].rank = deck[i].slice(0,2);
+
+  // handPlayerOne.card1.rank = deck[i].slice(0,2);
+  // handPlayerOne.card1.suit = deck[i].slice(0,-1);
+
+} else {
+  // handPlayerOne[`card${numberOfCards}`]
+  handPlayerOne[`card${i}`].rank = deck[i].slice(0,1);
+  // handPlayerOne.card1.suit = deck[i].slice(0,-1);
+
+}}
+
+}
+
+
+function cardsForTwoPLayers(deck) {
+  for(let i = 0; i < 4; i++) { }
+}
+
+
+
+// console.log(handPlayerOne.card1[rank]='h');
+
+
+// if str length = 3; push first 2 char to rank
+// else just push first
+// push last ele to suit 
+
+
+
+
+
+
 // // 3 card flop array
 // function seeFlop(deck) {
-//   //var testBoardFlop = [];
+//   //var boardFlop = [];
 //   // we start at index 1, and end on 4 becuase we need to burn first card
 //   for (let i = 1; i < 4; i++) {
 //     console.log(`Dealer turns over ${deck[i]}`);
-//     testBoardFlop2.push(deck[i]);
+//     boardFlop2.push(deck[i]);
 //   }
-//   return testBoardFlop2;
+//   return boardFlop2;
 // }
 
 // push flop into board hash
@@ -146,10 +285,10 @@ console.log(cardsInDeck(testDeck));
 //     i++;
 //     cardNumber++;
 //   }
-//   return testBoardFlop;
+//   return boardFlop;
 // }
 
-console.log(`               =-=-=-=-=-=-=-deal cards 2 players-=-=-=-=-=-=-`);
+console.log(`=-=-=-=-=-=-=-deal cards 2 players-=-=-=-=-=-=-`);
 
 // function cardsForTwoPLayers(deck) {
 //   //cards to each player
@@ -157,7 +296,7 @@ console.log(`               =-=-=-=-=-=-=-deal cards 2 players-=-=-=-=-=-=-`);
 //   let i = 0;
 //   // for (let i = 1; i < 4; i++)
 //   while (i < 2) {
-//     if (i === 0) {    
+//     if (i === 0) {
 //       for (let y = 0; y < 1; y++) {
 //       handPlayerOne[`card${numberOfCards}`] = deck[y];
 //       handPlayerTwo[`card${numberOfCards}`] = deck[y+1];
@@ -175,81 +314,78 @@ console.log(`               =-=-=-=-=-=-=-deal cards 2 players-=-=-=-=-=-=-`);
 //   }
 // }
 
-function cardsForTwoPLayers(deck) {
-  handPlayerOne[`card1`] = deck[0];
-  handPlayerTwo[`card1`] = deck[1];
-  handPlayerOne[`card2`] = deck[2];
-  handPlayerTwo[`card2`] = deck[3];
-}
+// assign both players cards in correct order
+// function cardsForTwoPLayers(deck) {
+//   handPlayerOne[`card1`] = deck[0];
+//   handPlayerTwo[`card1`] = deck[1];
+//   handPlayerOne[`card2`] = deck[2];
+//   handPlayerTwo[`card2`] = deck[3];
+// }
 
-handPlayerOne['card1'] = testDeck[1];
-handPlayerTwo['card1'] = testDeck;
-cardsForTwoPLayers(testDeck);
+// cardsForTwoPLayers(testDeck);
+
+// handPlayerOne['card1'] = testDeck[1];
+// handPlayerTwo['card1'] = testDeck;
 console.log(handPlayerOne);
 console.log(handPlayerTwo);
 
 //cards for flop
-for (let i = 6; i < 8; i++)
-  //card for turn
-  for (let i = 9; i < 10; i++)
-    //card for river
-    for (let i = 11; i < 12; i++)
-      //   {
-      //   board[`card${(i)}`] = deck[i]
-      //   testBoardFlop[`card${(i)}`] = deck[i]
-      //   }
-      //   return testBoardFlop
-      // }
+// for (let i = 6; i < 8; i++)
+//   //card for turn
+//   for (let i = 9; i < 10; i++)
+//     //card for river
+//     for (let i = 11; i < 12; i++)
+//       //   {
+//       //   board[`card${(i)}`] = deck[i]
+//       //   boardFlop[`card${(i)}`] = deck[i]
+//       //   }
+//       //   return boardFlop
+//       // }
 
-      console.log(`             =-=-==-=-=-the flop 2 players-=-=-=-==-`);
+console.log(`=-=-==-=-=-the flop 2 players-=-=-=-==-`);
 
 // push flop cards into board hash
 function logFlop2Players(deck) {
   for (let i = 5; i < 8; i++) {
-    board[`card${i-4}`] = deck[i];
-    testBoardFlop[`card${i-4}`] = deck[i];
+    board[`card${i - 4}`] = deck[i];
+    boardFlop[`card${i - 4}`] = deck[i];
   }
-  return testBoardFlop;
+  return boardFlop;
 }
 
-logFlop2Players(testDeck);
-console.log(testBoardFlop);
-console.log(board);
+// logFlop2Players(testDeck);
+// console.log(boardFlop);
+// console.log(board);
 
-console.log(`               =-=-=-=-=-=-=-the turn 2 players -=-=-=-=-=-=-`);
+console.log(`=-=-=-=-=-=-=-the turn 2 players -=-=-=-=-=-=-`);
 
 // push turn card into board hash
 // function logTurn2Players(deck) {
 //   for (let i = 9; i < 10; i++) {
 //     board[`card${i-5}`] = deck[i];
-//     testBoardFlop[`card${i-4}`] = deck[i];
+//     boardFlop[`card${i-4}`] = deck[i];
 //   }
-//   return testBoardFlop;
+//   return boardFlop;
 // }
-
 
 function logTurn2Players(deck) {
-  // testBoardTurn[`card4`] = deck[9];
-  board[`card4`] = deck[9];
-  return board['card4']
+  return (board[`card4`] = deck[9]);
 }
 
-console.log(logTurn2Players(testDeck));
-logTurn2Players(testDeck)
-console.log(board);
+// console.log(logTurn2Players(testDeck));
+// logTurn2Players(testDeck)
+// console.log(board);
 
-
-console.log(`               =-=-=-=-=-=-=-the river 2 players -=-=-=-=-=-=-`);
+console.log(`=-=-=-=-=-=-=-the river 2 players -=-=-=-=-=-=-`);
 
 // push turn card into board hash
 // function logTurn2Players(deck) {
 //   for (let i = 9; i < 10; i++) {
 //     board[`card${i-5}`] = deck[i];
-//     testBoardFlop[`card${i-4}`] = deck[i];
+//     boardFlop[`card${i-4}`] = deck[i];
 //   }
-//   return testBoardFlop;
+//   return boardFlop;
 // }
-
 
 // function logRiver2Players(deck) {
 //   // testBoardTurn[`card4`] = deck[9];
@@ -258,30 +394,102 @@ console.log(`               =-=-=-=-=-=-=-the river 2 players -=-=-=-=-=-=-`);
 // }
 
 function logRiver2Players(deck) {
-  // testBoardTurn[`card4`] = deck[9];
-  return board[`card5`] = deck[11];
+  return (board[`card5`] = deck[11]);
 }
 
-console.log(logTurn2Players(testDeck));
-logTurn2Players(testDeck)
-console.log(board);
+// console.log(logRiver2Players(testDeck));
+// logRiver2Players(testDeck)
+// console.log(board);
 
-
-console.log(`               =-=-=--=-=-All 5 board cards 2 players -=-=-=-`);
-
+console.log(`=-=-=--=-=-All 5 board cards 2 players -=-=-=-`);
 
 function allFiveBoardCards2Players(deck) {
   logFlop2Players(deck);
   logTurn2Players(deck);
   logRiver2Players(deck);
-  return board
+  return board;
 }
 
 console.log(allFiveBoardCards2Players(testDeck));
 
+console.log('-=-=-=-=-=-=-=-= faceCardCheck -=-=-=-=-=-=-=-=');
+//
 
 
+// Check for face card by checking length of string
+function faceCardCheck(card) {
+  if (card.length > 2) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
+// after the flop; separate cards in hand and board into two arrays - suits and ranks
+
+// console.log(faceCardCheck('10s')); // true
+// console.log(faceCardCheck('1s')); // false
+
+console.log(Object.keys(handPlayerOne).length);
+console.log(handPlayerOne);
+
+// function totalSuits(handPlayerOne, board) {
+//   let totalSuits = [];
+//    for (let i = 0; i < Object.keys(handPlayerOne).length; i++)
+//   {if (faceCardCheck(handPlayerOne)) {
+//     // totalSuits.push(handPlayerOne[i].slice(0,2))
+//     tempCard = handPlayerOne[i].slice(0,2)
+//     totalSuits.push(tempCard)
+//     // totalSuits.push(handPlayerOne[`card${(i)}`].slice(0,2))
+//   } else {
+//     tempCard = handPlayerOne[`card${i}`].slice(0,1)
+//     totalSuits.push(tempCard)
+//     // totalSuits.push(handPlayerOne[i].slice(0,1))
+//     // totalSuits.push(handPlayerOne[`card${(i)}`].slice(0,1))
+
+//   }}
+
+//   return totalSuits
+// }
+
+console.log(`-=-=-=--=--=-total suits function -=-=--=--=-=-`);
+
+// function totalSuits(handPlayerOne, board) {
+//   let totalSuits = [];
+//   for (let i = 0; i < Object.keys(handPlayerOne).length; i++) {
+//     console.log(handPlayerOne[`card1`]);
+//     totalSuits.push(handPlayerOne[i]);
+//   }
+//   return totalSuits;
+// }
+
+// // console.log(handPlayerOne[1]);
+// console.log(handPlayerOne);
+
+// push turn card into board hash
+// function logTurn2Players(deck) {
+//   for (let i = 9; i < 10; i++) {
+//     board[`card${i-5}`] = deck[i];
+//     boardFlop[`card${i-4}`] = deck[i];
+//   }
+//   return boardFlop;
+// }
+
+// console.log(totalSuits(handPlayerOne['card1'], board));
+
+// console.log(handPlayerOne);
+// console.log(handPlayerOne.length);
+
+// // board[`card${(i)}`] = deck[i]
+// // console.log(handPlayerOne['card1']);
+// // [`card${i-4}`]
+// // // boardFlop[`card${i-4}`]
+// // console.log(handPlayerOne[`card${i-4}`]);
+// // console.log(handPlayerOne['card1']);
+
+// // console.log(handPlayerOne['card1'].slice());
+
+// console.log(board);
 
 // function test() {
 //   var sub_array = [];
@@ -299,9 +507,6 @@ console.log(allFiveBoardCards2Players(testDeck));
 // console.log(animal.slice(-1));  // w
 // console.log(animal.slice(0, -1));  // co
 
-
-
-
 console.log('-=-=-=-=-=-=-=-= break 1.50000 -=-=-=-=-=-=-=-=');
 
 // var testBoard = {
@@ -312,28 +517,29 @@ console.log('-=-=-=-=-=-=-=-= break 1.50000 -=-=-=-=-=-=-=-=');
 //   card5: ['3H'],
 // };
 
-let testboardAndHand = testBoard['card1'][0][0];
-console.log(testboardAndHand);
+// let testboardAndHand = testBoard['card1'][0][0];
+// console.log(testboardAndHand);
 
-console.log(testBoard['card1']);
-console.log(testBoard['card1']);
-let user = {
-  1: 'hi',
-  2: 'hello',
-  3: 'goodbye',
-};
-for (const key in user) {
-  if (user.hasOwnProperty(key)) {
-    console.log(`${key}: ${user[key]}`);
-  }
-}
+// console.log(testBoard['card1']);
+// console.log(testBoard['card1']);
+// let user = {
+//   1: 'hi',
+//   2: 'hello',
+//   3: 'goodbye',
+//   4: ""
+// };
+// for (const key in user) {
+//   if (user.hasOwnProperty(key)) {
+//     console.log(`${key}: ${user[key]}`);
+//   }
+// }
 
-// convert object to key's array
-// const keys = Object.keys(courses);
+// // convert object to key's array
+// // const keys = Object.keys(courses);
 
-let keys = Object.keys(user);
-console.log(user);
-console.log('here');
+// let keys = Object.keys(user);
+// console.log(user);
+// console.log('here');
 
 // var board = {
 //   card1: [],
@@ -361,7 +567,7 @@ console.log('here');
 //     console.log(deck[i]);
 //     testBoardTurn.push(deck[i]);
 //   }
-//   return testBoardFlop.concat(testBoardTurn);
+//   return boardFlop.concat(testBoardTurn);
 // }
 
 // test 3 card flop array + new turn card
@@ -373,7 +579,7 @@ console.log('here');
 //     console.log(deck[i]);
 //     testBoardRiver.push(deck[i]);
 //   }
-//   return testBoardFlop.concat(testBoardTurn.concat(testBoardRiver));
+//   return boardFlop.concat(testBoardTurn.concat(testBoardRiver));
 // }
 
 // // test 3 card flop array, turn card + new river card
@@ -391,7 +597,7 @@ console.log('here');
 // // player one cards - 2 card array
 // console.log(seePlayerHoleCards(testDeck));
 
-// console.log(testBoardFlop[0][0][0], testBoardFlop[0][1]);
+// console.log(boardFlop[0][0][0], boardFlop[0][1]);
 
 console.log('-=-=-=-=-=-=-=-= break 1 -=-=-=-=-=-=-=-=');
 
@@ -403,19 +609,19 @@ console.log('-=-=-=-=-=-=-=-= break 1 -=-=-=-=-=-=-=-=');
 
 // logs flop to console
 // console.log(
-//   `The flop is ${testBoardFlop[0]} ${testBoardFlop[1]} ${testBoardFlop[2]}`
+//   `The flop is ${boardFlop[0]} ${boardFlop[1]} ${boardFlop[2]}`
 // );
 // // logs players hand to console
 // console.log(`Players hand is ${testHandPlayerOne[0]} ${testHandPlayerOne[1]}`);
-// console.log(testBoardFlop[0][0], testBoardFlop[0][1]);
-// console.log(testBoardFlop, '-----');
+// console.log(boardFlop[0][0], boardFlop[0][1]);
+// console.log(boardFlop, '-----');
 // console.log(testHandPlayerOne);
 // // sort cards by rankings
-// function boardHandRanks(testBoardFlop, testHand) {
+// function boardHandRanks(boardFlop, testHand) {
 //   let boardHand = [];
 //   for (let i = 0; i < 3; i++) {
-//     //boardHand.push(testBoardFlop[i][0]);
-//     boardHand.push(testBoardFlop[i][0]);
+//     //boardHand.push(boardFlop[i][0]);
+//     boardHand.push(boardFlop[i][0]);
 //   }
 //   for (let i = 0; i < testHand.length; i++) {
 //     boardHand.push(testHand[i][0]);
@@ -429,10 +635,10 @@ console.log('-=-=-=-=-=-=-=-= break 1 -=-=-=-=-=-=-=-=');
 // test typeOf on boardHandRanks
 // console.log(typeof Object === typeof Array);
 
-// console.log(boardHandRanks(testBoardFlop, testHandPlayerOne));
+// console.log(boardHandRanks(boardFlop, testHandPlayerOne));
 // // sort cards by suits
 // function boardHandSuits() {
-//   return testBoardFlop[0][0];
+//   return boardFlop[0][0];
 // }
 // console.log(boardHandSuits());
 // // combine and check for truths
@@ -479,15 +685,13 @@ console.log(
 
 // test hash inside of hash
 
-// flop and player hand hash
-let boardAndHand = {
-  testArray: [
-    ['9C', '8S', '10H'],
-    ['JS', 'AH'],
-  ],
-  testBoardFlop: [testBoardFlop],
-  testHandPlayerOne: [testHandPlayerOne],
-};
+// // flop and player hand hash
+// let boardAndHand = {
+//   testArray: [
+//     ['9C', '8S', '10H'],
+//     ['JS', 'AH'],
+//   ],
+// };
 
 // console.log(boardAndHand['testArray'][0][2][0]); // 1
 // console.log(boardAndHand['testArray'][0][2][1]); // 0                 .length -1
@@ -497,7 +701,10 @@ let boardAndHand = {
 // console.log(boardAndHand['testArray'][0][2][2]); // H
 
 // console.log(boardAndHand['testArray'][0][0][0]); // 9
-// console.log(boardAndHand['testArray'][0][0][0], boardAndHand['testArray'][0][0][1]); // 9 C
+// console.log(
+//   boardAndHand['testArray'][0][0][0],
+//   boardAndHand['testArray'][0][0][1]
+// ); // 9 C
 
 // console.log(boardAndHand['testArray'][0][1][0]); // 8
 // console.log(boardAndHand['testArray'][0][1][0]); // S
@@ -509,9 +716,9 @@ let boardAndHand = {
 // console.log(boardAndHand['testArray'][1][1][1]); // H
 
 // console.log(boardAndHand);
-// console.log(boardAndHand['testBoardFlop'][0][0][0]);
-// console.log(boardAndHand['testBoardFlop'][0][1][0]);
-// console.log(boardAndHand['testBoardFlop'][0][1][1]);
+// // console.log(boardAndHand['boardFlop'][0][0][0]);
+// // console.log(boardAndHand['boardFlop'][0][1][0]);
+// // console.log(boardAndHand['boardFlop'][0][1][1]);
 
 const book = {};
 console.log('book');
@@ -547,9 +754,9 @@ let bigObj = {
   obj,
 };
 
-console.log(obj['flop'][0]);
-console.log(bigObj[obj[flop]]);
-console.log(bigObj);
+// console.log(obj['flop'][0]);
+// console.log(bigObj[obj[flop]]);
+// console.log(bigObj);
 
 console.log('-=-=-=-=-=-=-=-=- break 3 -=-=-=-=-=-=-=-=');
 
@@ -561,3 +768,58 @@ function flop(obj) {
 
 flop(obj);
 console.log(flop(flop));
+
+// we can declare a variable object
+
+const hashBoardArray = [['10H'], ['10S'], ['10D'], ['7S'], ['3H']];
+
+const hashBoard = {
+  card1: ['4H'],
+  card2: ['AS'],
+  card3: ['5S'],
+  card4: ['7S'],
+  card5: ['3H'],
+};
+
+const hashBoard2 = {
+  card1: { rank: J, suit: 'D' },
+  card2: { rank: 7, suit: 'H' },
+  card3: { rank: 3, suit: 'H' },
+  card4: { rank: 9, suit: 'H' },
+  card5: { rank: 6, suit: 'H' },
+};
+
+// console.log(hashBoardArray);
+// console.log(hashBoard);
+
+// doesnt work, need to take in hash length value differently
+function hashLoop(hash) {
+  for (let i = 0; i < hash.length; i++) console.log(hash[i]);
+}
+
+
+// if we want to access inner object (object within object) we can use a dot
+console.log(hashBoard2.card1.rank);
+// prints 11 because we have assigned J to 11 above
+console.log(hashBoard2.card1);
+// {rank: 11, suit: 'D'}
+console.log(hashBoard2);
+// card1: {rank: 11, suit: 'D'}
+// card2: {rank: 7, suit: 'H'}
+// card3: {rank: 3, suit: 'H'}
+// card4: {rank: 9, suit: 'H'}
+// card5: {rank: 6, suit: 'H'}
+
+
+
+
+// const target = { a: 1, b: 2 };
+// const source = { b: 4, c: 5 };
+
+// const returnedTarget = Object.assign(target, source);
+
+// console.log(target);
+// // expected output: Object { a: 1, b: 4, c: 5 }
+
+// console.log(returnedTarget);
+// // expected output: Object { a: 1, b: 4, c: 5 }
