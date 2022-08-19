@@ -975,6 +975,8 @@ function shuffleDeck(deck) {
   }
 }
 
+// clean up
+
 console.log(`=-=-=-=-=-=-=-deck suffled-=-=-=-=-=-=-`);
 // create deck to shuffle
 // create deck makes us an un ordered deck
@@ -1150,7 +1152,7 @@ console.log(check());
 
 
 
-function rankToValue() {
+function rankToValuesArray() {
   if 
 
 }
@@ -1158,17 +1160,17 @@ function rankToValue() {
 
 
 
-function countInArray(array, what) {
+function countInArray(array, x) {
     var count = 0;
     for (var i = 0; i < array.length; i++) {
-        if (array[i] === what) {
+        if (array[i] === x) {
             count++;
         }
     }
     return count;
 }
 
-countInArray(list, 2); // returns 2
+countInArray(list, check(boardAndHand)); // returns 2
 countInArray(list, 1); // returns 3
 
 

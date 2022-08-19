@@ -269,43 +269,60 @@ console.log(boardAndHand);
 // }
 
 
-var list = [2, 1, 4, 2, 1, 1, 4, 5];  
-
-
-function check(x) {
-  for (let i = 1; i < 15; i++){
-  return i
-  }
-}
-
-console.log('here');
-console.log(check());
+let list = [10, 10, 2, 2, 2, 3, 3, 4, 4, 4, 5];  
 
 
 
-
-
-
-function rankToValue() {
-  if 
-
-}
-
-
-
-
-function countInArray(array, what) {
-    var count = 0;
-    for (var i = 0; i < array.length; i++) {
-        if (array[i] === what) {
-            count++;
-        }
+function pairCheck(list, what) {
+    let count = 0;
+  for (let i = 0; i < 15; i++) {
+      if (list[i] === what) {
+          count++;
+      }
+    } if (count > 1){
+     return true;
+    } else {
+      return false
     }
-    return count;
 }
 
-countInArray(list, 2); // returns 2
-countInArray(list, 1); // returns 3
+console.log(list);
+console.log(pairCheck(list, 2)); // returns 3 true
+console.log(pairCheck(list, 1)); // returns 0 false
+console.log(pairCheck(list, 10)); // returns 2 true
+
+
+// function passPairCheck (list) {
+//   let pairsArray = [];
+//   let y = 0
+//   while (y < list.length) {
+//     pairCheck(list, y); 
+//     y++;
+//   } if (pairCheck === true) 
+//       pairsArray.push(`list${[y]}`);
+  
+//   return pairsArray
+// };
+
+// console.log(passPairCheck(list));
+
+
+function passPairCheck2 (list) {
+  let x = 2;
+  let pairArray = []
+  for (let i = x; i < 15; i++)
+    ((pairCheck(list, x) === true) ? pairArray.push(i) : false);
+    return pairArray
+}
+
+console.log(passPairCheck2(list));
+
+
+// function check 
+
+
+// console.log(flopCheck(list, check()))
+
 
 
 
@@ -314,7 +331,6 @@ countInArray(list, 1); // returns 3
 
 function isTwoPair(board, hand) {}
 
-console.log(handPlayerOne.card1[1]);
 console.log();
 
 
