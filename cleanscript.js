@@ -22,6 +22,10 @@ let boardFlop2 = {};
 let boardTurn = {};
 let boardRiver = {};
 
+
+
+
+
 let testBoard = {
   card1: ['4H'],
   card2: ['AS'],
@@ -39,24 +43,24 @@ let testHandPlayerSeven = [];
 let testHandPlayerEight = [];
 let testHandPlayerNine = [];
 // assign number values to face cards
-let A = 14;
-let K = 13;
-let Q = 12;
-let J = 11;
+// let J = '14';
+// let Q = '13';
+// let K = '12';
+// let A = '11';
 
-// let '14' = 'A';
-// let '13' = 'K';
-// let '12' = 'Q';
-// let '11' = 'J';
+// // let '14' = 'A';
+// // let '13' = 'K';
+// // let '12' = 'Q';
+// // let '11' = 'J';
 
-
-// assign letters to suits
-let c = 'clubs';
-let d = 'diamond';
-let h = 'heart';
-let s = 'spade';
+// // assign letters to suits
+// let C = 'clubs';
+// let D = 'diamond';
+// let H = 'heart';
+// let S = 'spade';
 // array containing all suits to create deck with
 let suits = ['S', 'C', 'H', 'D'];
+
 // arrar containging card # rankings to create deck with
 let rankings = [
   '2',
@@ -68,10 +72,10 @@ let rankings = [
   '8',
   '9',
   '10',
-  'J',
-  'Q',
-  'K',
-  'A',
+  '11',
+  '12',
+  '13',
+  '14',
 ];
 
 // create deck function
@@ -175,7 +179,6 @@ console.log(handPlayerOne);
 console.log(`hand player two`);
 console.log(handPlayerTwo);
 
-
 // push flop cards into board hash
 function logFlop2Players(deck) {
   burnCards.card1 = deck.card5;
@@ -194,14 +197,11 @@ console.log(burnCards);
 console.log(`The Flop`);
 console.log(boardFlop);
 
-
-
 // push turn cards into turn hash
 function logTurn2Players(deck) {
   burnCards.card2 = deck.card9;
   boardTurn.card1 = deck.card10;
   board.card4 = deck.card10;
-
 }
 console.log(`=-=-==-=-=-the turn 2 players-=-=-=-==-`);
 logTurn2Players(hashDeck);
@@ -211,18 +211,11 @@ console.log(burnCards);
 console.log(`The Turn`);
 console.log(boardTurn);
 
-
-
-
-
-
-
 // push turn cards into turn hash
 function logRiver2Players(deck) {
   burnCards.card3 = deck.card11;
   boardRiver.card1 = deck.card12;
   board.card5 = deck.card12;
-
 }
 console.log(`=-=-==-=-=-the River 2 players-=-=-=-==-`);
 logRiver2Players(hashDeck);
@@ -232,26 +225,22 @@ console.log(burnCards);
 console.log(`The River`);
 console.log(boardRiver);
 
-
-
 // array of object values from board and player1 hand
 
 function boardHandFlop(handPlayerOne, board) {
-boardAndHand = [handPlayerOne.card1.rank, handPlayerOne.card2.rank, board.card1.rank, board.card2.rank, board.card3.rank];
-return boardAndHand
+  boardAndHand = [
+    handPlayerOne.card1.rank,
+    handPlayerOne.card2.rank,
+    board.card1.rank,
+    board.card2.rank,
+    board.card3.rank,
+  ];
+  return boardAndHand;
 }
 
 console.log(`=-=-=--=-=-5 board cards & player1 cards ranks -=-=-=-`);
 boardHandFlop(handPlayerOne, board);
 console.log(boardAndHand);
-
-
-
-
-
-
-
-
 
 // // sexy way to increment thru player hand and board cards and push to array
 // function boardHandFlop (handPlayerOne, board) {
@@ -259,7 +248,7 @@ console.log(boardAndHand);
 //   for (let i = 1;  i <= 2; i++){
 //     for (const [key, value] of Object.entries(`handPlayerOne.card${[i]}.rank`)){
 //     boardAndHand.push(`${value}`);
-//   } 
+//   }
 // } for (let i = 1; i <= 3; i++){
 //   for (const [key, value] of Object.entries(`board.card${[i]}.rank`)){
 //     boardAndHand.push(`${value}`);
@@ -268,98 +257,185 @@ console.log(boardAndHand);
 //   return boardAndHand;
 // }
 
+let list = [10, 10, 2, 2, 10, 14, 14, 3, 3, 3, 3];
+let pairCombinations = [];
+let tripCombinations = [];
+let quadCombinations = [];
+let pairArray = [];
+let tripArray = [];
+let quadArray = [];
+// straightArr is auto filled with a function below
+let straightArr = [['13','2','3','4','5']];
 
-let list = [10, 10, 2, 2, 2, 3, 3, 4, 4, 4, 5];  
 
-
-
+// check for two of same card
 function pairCheck(list, what) {
-    let count = 0;
-  for (let i = 0; i < 15; i++) {
-      if (list[i] === what) {
-          count++;
-      }
-    } if (count > 1){
-     return true;
-    } else {
-      return false
+  let count = 0;
+  for (let i = 0; i < list.length; i++) {
+    if (list[i] === what) {
+      count++;
     }
+  }
+  if (count === 2) {
+    return true;
+  } else {
+    return false;
+  }
 }
-
-console.log(list);
-console.log(pairCheck(list, 2)); // returns 3 true
-console.log(pairCheck(list, 1)); // returns 0 false
-console.log(pairCheck(list, 10)); // returns 2 true
-
-
-// function passPairCheck (list) {
-//   let pairsArray = [];
-//   let y = 0
-//   while (y < list.length) {
-//     pairCheck(list, y); 
-//     y++;
-//   } if (pairCheck === true) 
-//       pairsArray.push(`list${[y]}`);
-  
-//   return pairsArray
-// };
-
-// console.log(passPairCheck(list));
-
-
-function passPairCheck2 (list) {
+// iterates through all ranks to use in pairCheck
+function passPairCheck(list) {
   let x = 2;
-  let pairArray = []
-  for (let i = x; i < 15; i++)
-    ((pairCheck(list, x) === true) ? pairArray.push(i) : false);
-    return pairArray
+  for (let i = x; i <= 14; i++) {
+    if (pairCheck(list, x)) {
+      pairCombinations.push(x);
+      pairArray.push(x);
+      console.log(`yes pair of ${[x]}s`);
+    }
+    x++;
+  }
+  return pairCombinations;
 }
 
-console.log(passPairCheck2(list));
+console.log(passPairCheck(list));
+
+// check for triple of same card
+function tripCheck(list, what) {
+  let count = 0;
+  for (let i = 0; i < list.length; i++) {
+    if (list[i] === what) {
+      count++;
+    }
+  }
+  if (count === 3) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// if triple of same card, returns card
+function passTripCheck(list) {
+  let x = 2;
+  for (let i = x; i <= 14; i++) {
+    if (tripCheck(list, x)) {
+      tripCombinations.push(x);
+      tripArray.push(x);
+      console.log(`yes trips of ${[x]}s`);
+    }
+    x++;
+  }
+  return tripCombinations;
+}
+
+console.log(passTripCheck(list));
+
+// check for quad of same card
+function quadCheck(list, what) {
+  let count = 0;
+  for (let i = 0; i < list.length; i++) {
+    if (list[i] === what) {
+      count++;
+    }
+  }
+  if (count === 4) {
+    return true;
+  } else {
+    return false;
+  }
+}1
+
+// if quad of same card, returns card
+function passQuadCheck(list) {
+  let x = 2;
+  for (let i = x; i <= 14; i++) {
+    if (quadCheck(list, x)) {
+      quadCombinations.push(x);
+      quadArray.push(x);
+      console.log(`yes quads of ${[x]}s`);
+    }
+    x++;
+  }
+  return quadCombinations;
+}
+
+console.log(passQuadCheck(list));
+
+console.log(pairArray);
+console.log(tripArray);
+console.log(quadArray);
+
+// sort array by number
+function compareNumbers(a, b) {
+  return a - b;
+}
 
 
-// function check 
+
+// sort array by number
+function orderedList(list) {
+  let orderedList = list.sort(compareNumbers);
+  return orderedList;
+}
+
+console.log(orderedList(list));
 
 
-// console.log(flopCheck(list, check()))
+// creates arr of straight arrays to check orderArr against
+function createStraights() {
+  for (let cardCounter = 2; cardCounter <= 10; cardCounter++) {
+      straightArr.push([`${cardCounter}`, `${cardCounter+1}`, `${cardCounter+2}`, `${cardCounter+3}`, `${cardCounter+4}`])
+}
+  return straightArr
+}
+console.log(`=-=-==-=-=-create straights array-=-=-=-==-`);
+createStraights();
+
+
+let list2 = ['2', '3', '4', '5', '6'];
+console.log(straightArr);
+
+
+function exists(straightArr, search) {
+console.log(straightArr);
+console.log(search);
+  if (straightArr.some(search2 => search2.includes(search))) {
+    return `true ${search}, ${straightArr}`
+    } else {
+    return false
+  }
+}
+
+
+console.log(exists(straightArr, list2));
+
+
+console.log(exists(list2, straightArr));
+
+
+
+// function isStraight(orderedList) {
+//    if (straightArr.some(row => row.includes(orderedList)) {
+//     console.log(`is straight`);
+//    } else {
+//     console.log("nope");
+//    }
+// }
+
+// console.log(exists(list2,straightArr));
+// console.log(exists(straightArr,list2));
 
 
 
 
 
-// check hand strength
 
 function isTwoPair(board, hand) {}
-
-console.log();
-
-
-
 function isThreeOfKind(board, hand) {}
-function isStraight(board, hand) {}
+// function isStraight(board, hand) {}
 function isFullHouse(board, hand) {}
 function isFourOfKind(board, hand) {}
 function isStraightFlush(board, hand) {}
 function isRoyalFlush(board, hand) {}
 
 function outsWithoutSuits(board, hand) {}
-
-
-function countInArray(array, what) {
-  return array.filter(item => item == what).length;
-}
-
-
-// let list = boardAndHand;  
-
-// function countInArray(boardAndHand, rank) {
-//     let count = 0;
-//     for (let i = 0; i < boardAndHand.length; i++) {
-//         if (boardAndHand[i] === rank) {
-//             count++;
-//         }
-//     }
-//     return count;
-// }
-
 
