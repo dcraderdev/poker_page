@@ -43,6 +43,13 @@ let A = 14;
 let K = 13;
 let Q = 12;
 let J = 11;
+
+// let '14' = 'A';
+// let '13' = 'K';
+// let '12' = 'Q';
+// let '11' = 'J';
+
+
 // assign letters to suits
 let c = 'clubs';
 let d = 'diamond';
@@ -227,26 +234,19 @@ console.log(boardRiver);
 
 
 
-console.log(`=-=-=--=-=-All 5 board cards 2 players -=-=-=-`);
+// array of object values from board and player1 hand
 
-console.log(handPlayerOne, handPlayerTwo, board);
-
-
-// check hand strength
-
-function isTwoPair(board, hand) {}
-
-console.log(handPlayerOne.card1[1]);
-console.log();
-
-
-// array of objects
-
-function boardHandFlop() {
-let boardAndHand = {handPlayerOne.card1.rank, handPlayerOne.card2.rank, board.card1.rank, board.card2.rank, board.card3.rank}
+function boardHandFlop(handPlayerOne, board) {
+boardAndHand = [handPlayerOne.card1.rank, handPlayerOne.card2.rank, board.card1.rank, board.card2.rank, board.card3.rank];
+return boardAndHand
 }
 
-console.log(boardHandFlop);
+console.log(`=-=-=--=-=-5 board cards & player1 cards ranks -=-=-=-`);
+boardHandFlop(handPlayerOne, board);
+console.log(boardAndHand);
+
+
+
 
 
 
@@ -269,10 +269,53 @@ console.log(boardHandFlop);
 // }
 
 
+var list = [2, 1, 4, 2, 1, 1, 4, 5];  
+
+
+function check(x) {
+  for (let i = 1; i < 15; i++){
+  return i
+  }
+}
+
+console.log('here');
+console.log(check());
 
 
 
 
+
+
+function rankToValue() {
+  if 
+
+}
+
+
+
+
+function countInArray(array, what) {
+    var count = 0;
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === what) {
+            count++;
+        }
+    }
+    return count;
+}
+
+countInArray(list, 2); // returns 2
+countInArray(list, 1); // returns 3
+
+
+
+
+// check hand strength
+
+function isTwoPair(board, hand) {}
+
+console.log(handPlayerOne.card1[1]);
+console.log();
 
 
 
@@ -304,14 +347,3 @@ function countInArray(array, what) {
 // }
 
 
-
-
-
-// function checkAllCards(boardAndHand) {
-
-
-// };
-
-
-// countInArray(list, 2); // returns 2
-// countInArray(list, 1); // returns 3
