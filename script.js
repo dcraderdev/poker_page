@@ -1,54 +1,55 @@
 // Poker Page!!! All things poker coding and algos
 
 //New create unshuffled deck function below (function createDeck())
-var hashDeck = {};
-var deck = [];
-var board = {};
-var handPlayerOne = {};
-var handPlayerTwo = {};
-var handPlayerThree = {};
-var handPlayerFour = {};
-var handPlayerFive = {};
-var handPlayerSix = {};
-var handPlayerSeven = {};
-var handPlayerEight = {};
-var handPlayerNine = {};
-var PlayerCardAndBoard = {};
-var boardFlop = {};
-var boardFlop2 = {};
-var boardTurn = {};
-var boardRiver = {};
+let hashDeck = {};
+let deck = [];
+let board = {};
+let burnCards = {};
+let handPlayerOne = {};
+let handPlayerTwo = {};
+let handPlayerThree = {};
+let handPlayerFour = {};
+let handPlayerFive = {};
+let handPlayerSix = {};
+let handPlayerSeven = {};
+let handPlayerEight = {};
+let handPlayerNine = {};
+let PlayerCardAndBoard = {};
+let boardFlop = {};
+let boardFlop2 = {};
+let boardTurn = {};
+let boardRiver = {};
 
-var testBoard = {
+let testBoard = {
   card1: ['4H'],
   card2: ['AS'],
   card3: ['5S'],
   card4: ['7S'],
   card5: ['3H'],
 };
-var testHandPlayerOne = [];
-var testHandPlayerTwo = [];
-var testHandPlayerThree = [];
-var testHandPlayerFour = [];
-var testHandPlayerFive = [];
-var testHandPlayerSix = [];
-var testHandPlayerSeven = [];
-var testHandPlayerEight = [];
-var testHandPlayerNine = [];
+let testHandPlayerOne = [];
+let testHandPlayerTwo = [];
+let testHandPlayerThree = [];
+let testHandPlayerFour = [];
+let testHandPlayerFive = [];
+let testHandPlayerSix = [];
+let testHandPlayerSeven = [];
+let testHandPlayerEight = [];
+let testHandPlayerNine = [];
 // assign number values to face cards
-var A = 14;
-var K = 13;
-var Q = 12;
-var J = 11;
+let A = 14;
+let K = 13;
+let Q = 12;
+let J = 11;
 // assign letters to suits
-var c = 'clubs';
-var d = 'diamond';
-var h = 'heart';
-var s = 'spade';
+let c = 'clubs';
+let d = 'diamond';
+let h = 'heart';
+let s = 'spade';
 // array containing all suits to create deck with
-var suits = ['S', 'C', 'H', 'D'];
+let suits = ['S', 'C', 'H', 'D'];
 // arrar containging card # rankings to create deck with
-var rankings = [
+let rankings = [
   '2',
   '3',
   '4',
@@ -76,11 +77,9 @@ function createDeck() {
   }
   return deck;
 }
-
+// invokes deck
+createDeck()
 //  Out puts: ['2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', '10S', 'JS', 'QS', 'KS', 'AS', '2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', '10C', 'JC', 'QC', 'KC', 'AC', '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', '10H', 'JH', 'QH', 'KH', 'AH', '2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', '10D', 'JD', 'QD', 'KD', 'AD']
-
-
-
 
 console.log(`=-=-=-=-=-=-=-deck creation-=-=-=-=-=-=-`);
 // function createHashDeck() {
@@ -95,9 +94,7 @@ console.log(`=-=-=-=-=-=-=-deck creation-=-=-=-=-=-=-`);
 //   return deck;
 // }
 
-
 // suits, rankings
-
 
 // checks for length of card in array so we can separate into hash.
 function faceCardCheck(card) {
@@ -107,14 +104,6 @@ function faceCardCheck(card) {
     return false;
   }
 }
-
-
-
-
-
-
-
-
 
 // counts cards in deck, checks for duplicates
 // if deck before or after this index include this card do not add to count
@@ -145,8 +134,8 @@ function shuffleDeck(deck) {
 }
 
 // create deck to shuffle
-var testDeck = createDeck();
-console.log(testDeck);
+let testDeck = createDeck();
+
 console.log(shuffleDeck(testDeck));
 //check for dupes
 console.log(`=-=-=-=-=-=-=-deck suffled-=-=-=-=-=-=-`);
@@ -154,12 +143,7 @@ console.log(`=-=-=-=-=-=-=-deck suffled-=-=-=-=-=-=-`);
 console.log(testDeck);
 console.log(cardsInDeck(testDeck));
 
-
-
-
-
 console.log(`-=-=-=-=--=--=put shuffled cards into hash-=-=-=-=-=-=`);
-
 
 // function faceCardCheck(card) {
 //   if (card.length > 2) {
@@ -171,99 +155,151 @@ console.log(`-=-=-=-=--=--=put shuffled cards into hash-=-=-=-=-=-=`);
 
 console.log(testDeck);
 // returns info at any index position in deck
-function rankOfCardInDeck (deck, position) {
-  let card = deck[position-1];
-  let rank = ''
+function rankOfCardInDeck(deck, position) {
+  let card = deck[position - 1];
+  let rank = '';
   // let rank = card.charAt(0,3)
   // let rank = card[0];
   if (faceCardCheck(card)) {
-    rank = card.slice(0,2)
-   } else { 
-    rank = card.slice(0,1);
+    rank = card.slice(0, 2);
+  } else {
+    rank = card.slice(0, 1);
+  }
+  return rank;
 }
-return rank
-}
 
-console.log(rankOfCardInDeck(testDeck, 1));
+// console.log(rankOfCardInDeck(testDeck, 1));
 
-
-function suitOfCardInDeck (deck, position) {
-  let card = deck[position-1];
+function suitOfCardInDeck(deck, position) {
+  let card = deck[position - 1];
   let suit = card.slice(-1);
-return suit
+  return suit;
 }
 
+// console.log(suitOfCardInDeck(testDeck, 1));
 
-console.log(suitOfCardInDeck(testDeck, 1));
+console.log(`-=-=-=-=-=-=- createHashDeck-=-=-=-=-=-=-=-`);
 
-
-console.log(`-=-=-=-=-=-=- working here-=-=-=-=-=-=-=-`); 
 // pulls info from cardIndeck and stores info in card
 function createHashDeck(deck) {
-  for (i = 1; i <= 52; i++){
+  for (i = 1; i <= 52; i++) {
     hashDeck[`card${i}`] = {};
-    hashDeck[`card${i}`]['rank'] = rankOfCardInDeck(deck, i)
-    hashDeck[`card${i}`]['suit'] = suitOfCardInDeck(deck, i)
+    hashDeck[`card${i}`]['rank'] = rankOfCardInDeck(deck, i);
+    hashDeck[`card${i}`]['suit'] = suitOfCardInDeck(deck, i);
+  }
 }
-}
-console.log(createHashDeck(testDeck));
+
+createHashDeck(testDeck);
 console.log(hashDeck);
 
-
-    // hashDeck[`card${i}`].rank = 2
-    // hashDeck[`card${i}`].suit = 'H'
-    // suitOfCardInDeck
-    // rankOfCardInDeck
-    // hashDeck[`card${i}`]['rank'] = 2
-    // hashDeck[`card${i}`]['suit'] = H
-    // hashDeck[`card${i}`].rank = 2
+// hashDeck[`card${i}`].rank = 2
+// hashDeck[`card${i}`].suit = 'H'
+// suitOfCardInDeck
+// rankOfCardInDeck
+// hashDeck[`card${i}`]['rank'] = 2
+// hashDeck[`card${i}`]['suit'] = H
+// hashDeck[`card${i}`].rank = 2
 // hashDeck[`card${i}`] = cardInDeck(deck[i]) ;
 // }
-// return hashDeck;
-// deck created - array of strings  
+// deck created - array of strings
 // deck shuffled - array of strings
 
-
-
-
-
 // each string sorted into hands and board by rank and suit
-function cardsForTwoPLayers(deck) {
-  // if index in deck is > 2 then put this : or put that
-for(let i = 0; i < 4; i++) { 
-  if (faceCardCheck(deck[i]))  {
-  handPlayerOne[`card${i}`].rank = deck[i].slice(0,2);
+// function cardsForTwoPLayers(deck) {
+//   // if index in deck is > 2 then put this : or put that
+//   for (let i = 0; i < 4; i++) {
+//     if (faceCardCheck(deck[i])) {
+//       handPlayerOne[`card${i}`].rank = deck[i].slice(0, 2);
 
-  // handPlayerOne.card1.rank = deck[i].slice(0,2);
-  // handPlayerOne.card1.suit = deck[i].slice(0,-1);
+//       // handPlayerOne.card1.rank = deck[i].slice(0,2);
+//       // handPlayerOne.card1.suit = deck[i].slice(0,-1);
+//     } else {
+//       // handPlayerOne[`card${numberOfCards}`]
+//       handPlayerOne[`card${i}`].rank = deck[i].slice(0, 1);
+//       // handPlayerOne.card1.suit = deck[i].slice(0,-1);
+//     }
+//   }
+// }
 
-} else {
-  // handPlayerOne[`card${numberOfCards}`]
-  handPlayerOne[`card${i}`].rank = deck[i].slice(0,1);
-  // handPlayerOne.card1.suit = deck[i].slice(0,-1);
 
-}}
+
+// cards in form of a Hash
+function cardsForTwoPLayersHash(deck) {
+  //puts empty hash named card1 inside handPlayerOne 
+  console.log(deck);
+  handPlayerOne.card1 = deck.card1
+  handPlayerTwo.card1 = deck.card2
+  handPlayerOne.card2 = deck.card3
+  handPlayerTwo.card2 = deck.card4
 
 }
+// invoke cardsForTwoPlayers
+cardsForTwoPLayersHash(hashDeck)
+
+// test check players hands
+console.log(`hand player one`);
+console.log(handPlayerOne);
+console.log(`hand player two`);
+console.log(handPlayerTwo);
 
 
-function cardsForTwoPLayers(deck) {
-  for(let i = 0; i < 4; i++) { }
+console.log(`=-=-==-=-=-the flop 2 players-=-=-=-==-`);
+
+// push flop cards into board hash
+function logFlop2Players(deck) {
+  burnCards.card1 = deck.card5
+  boardFlop.card1 = deck.card6
+  boardFlop.card2 = deck.card7
+  boardFlop.card3 = deck.card8
 }
+
+logFlop2Players(hashDeck);
+
+console.log(burnCards);
+console.log(boardFlop);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const o1 = { a: 1, b: 1, c: 1 };
+// const o2 = { b: 3, c: 2 };
+// const o3 = { c: 3 };
+
+// const obj = Object.assign({}, hashDeck.card1);
+// const obj2 = Object.assign({}, hashDeck.card2);
+
+// const obj3 = Object.assign({}, hashDeck.card3);
+
+
+
+
+// console.log(obj);
+// console.log(obj2);
+// console.log(obj3);
+
+
+
+
+
+
 
 
 
 // console.log(handPlayerOne.card1[rank]='h');
 
-
 // if str length = 3; push first 2 char to rank
 // else just push first
-// push last ele to suit 
-
-
-
-
-
+// push last ele to suit
 
 // // 3 card flop array
 // function seeFlop(deck) {
@@ -289,6 +325,8 @@ function cardsForTwoPLayers(deck) {
 // }
 
 console.log(`=-=-=-=-=-=-=-deal cards 2 players-=-=-=-=-=-=-`);
+
+
 
 // function cardsForTwoPLayers(deck) {
 //   //cards to each player
@@ -414,7 +452,6 @@ console.log(allFiveBoardCards2Players(testDeck));
 
 console.log('-=-=-=-=-=-=-=-= faceCardCheck -=-=-=-=-=-=-=-=');
 //
-
 
 // Check for face card by checking length of string
 function faceCardCheck(card) {
@@ -720,39 +757,39 @@ console.log(
 // // console.log(boardAndHand['boardFlop'][0][1][0]);
 // // console.log(boardAndHand['boardFlop'][0][1][1]);
 
-const book = {};
-console.log('book');
-console.log(book);
+// const book = {};
+// console.log('book');
+// console.log(book);
 
-// objectName.keyName = value
+// // objectName.keyName = value
 
-book.author = 'Jane Smith';
-book.pages = 42;
+// book.author = 'Jane Smith';
+// book.pages = 42;
 
-console.log(book);
+// console.log(book);
 
-// console.log(book[0][0]);
-console.log(book[1]);
-console.log('-=-=-=-=-=-=here-=-=-=-=');
+// // console.log(book[0][0]);
+// console.log(book[1]);
+// console.log('-=-=-=-=-=-=here-=-=-=-=');
 
-// obj hash
-let obj = {
-  flop: [['1h', 10, 5]],
-  hand: ['2h', '1D'],
-};
+// // obj hash
+// let obj = {
+//   flop: [['1h', 10, 5]],
+//   hand: ['2h', '1D'],
+// };
 
-// anotherObj hash
-let anotherObj = {
-  flopper: [['1h', '10h', '5h']],
-  hander: ['3h', 'Jh'],
-};
-// console.log(anotherObj);
+// // anotherObj hash
+// let anotherObj = {
+//   flopper: [['1h', '10h', '5h']],
+//   hander: ['3h', 'Jh'],
+// };
+// // console.log(anotherObj);
 
-// bigObj hash
-let bigObj = {
-  anotherObj,
-  obj,
-};
+// // bigObj hash
+// let bigObj = {
+//   anotherObj,
+//   obj,
+// };
 
 // console.log(obj['flop'][0]);
 // console.log(bigObj[obj[flop]]);
@@ -760,14 +797,14 @@ let bigObj = {
 
 console.log('-=-=-=-=-=-=-=-=- break 3 -=-=-=-=-=-=-=-=');
 
-function flop(obj) {
-  for (key in obj) {
-    console.log(obj[key]);
-  }
-}
+// function flop(obj) {
+//   for (key in obj) {
+//     console.log(obj[key]);
+//   }
+// }
 
-flop(obj);
-console.log(flop(flop));
+// flop(obj);
+// console.log(flop(flop));
 
 // we can declare a variable object
 
@@ -797,7 +834,6 @@ function hashLoop(hash) {
   for (let i = 0; i < hash.length; i++) console.log(hash[i]);
 }
 
-
 // if we want to access inner object (object within object) we can use a dot
 console.log(hashBoard2.card1.rank);
 // prints 11 because we have assigned J to 11 above
@@ -809,9 +845,6 @@ console.log(hashBoard2);
 // card3: {rank: 3, suit: 'H'}
 // card4: {rank: 9, suit: 'H'}
 // card5: {rank: 6, suit: 'H'}
-
-
-
 
 // const target = { a: 1, b: 2 };
 // const source = { b: 4, c: 5 };
