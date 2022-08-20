@@ -22,10 +22,6 @@ let boardFlop2 = {};
 let boardTurn = {};
 let boardRiver = {};
 
-
-
-
-
 let testBoard = {
   card1: ['4H'],
   card2: ['AS'],
@@ -265,8 +261,7 @@ let pairArray = [];
 let tripArray = [];
 let quadArray = [];
 // straightArr is auto filled with a function below
-let straightArr = [['13','2','3','4','5']];
-
+let straightArr = [['13', '2', '3', '4', '5']];
 
 // check for two of same card
 function pairCheck(list, what) {
@@ -342,7 +337,8 @@ function quadCheck(list, what) {
   } else {
     return false;
   }
-}1
+}
+1;
 
 // if quad of same card, returns card
 function passQuadCheck(list) {
@@ -369,8 +365,6 @@ function compareNumbers(a, b) {
   return a - b;
 }
 
-
-
 // sort array by number
 function orderedList(list) {
   let orderedList = list.sort(compareNumbers);
@@ -379,53 +373,224 @@ function orderedList(list) {
 
 console.log(orderedList(list));
 
-
 // creates arr of straight arrays to check orderArr against
 function createStraights() {
   for (let cardCounter = 2; cardCounter <= 10; cardCounter++) {
-      straightArr.push([`${cardCounter}`, `${cardCounter+1}`, `${cardCounter+2}`, `${cardCounter+3}`, `${cardCounter+4}`])
-}
-  return straightArr
+    straightArr.push([
+      `${cardCounter}`,
+      `${cardCounter + 1}`,
+      `${cardCounter + 2}`,
+      `${cardCounter + 3}`,
+      `${cardCounter + 4}`,
+    ]);
+  }
+  return straightArr;
 }
 console.log(`=-=-==-=-=-create straights array-=-=-=-==-`);
 createStraights();
 
 
+
+
+// function exists(straightArr, search) {
+//   let searchArr = search.map(x => x)
+
+//   for ( let i = 0; i < straightArr.length; i++){
+//     // console.log(straightArr[i]);
+//     // console.log(search);
+//     if (straightArr[i] === search) {
+//       console.log(straightArr[i]);
+//     } else {
+//       console.log(straightArr[i]);
+//     }
+//   }
+//   return 'not found'
+// };
+
+
+
+
+
 let list2 = ['2', '3', '4', '5', '6'];
-console.log(straightArr);
+let list1 = ['2,3,4,5,6']
+let array2D = [
+  ['1','2','3','4','5'],
+  ['2','3','4','5','6']
+];
 
 
-function exists(straightArr, search) {
-console.log(straightArr);
-console.log(search);
-  if (straightArr.some(search2 => search2.includes(search))) {
-    return `true ${search}, ${straightArr}`
-    } else {
-    return false
+
+
+function exists(array2D, list2){
+  for(var i = 0; i<array2D.length; i++){
+      let checker = false
+      for(var j = 0; j < list2[i].length; j++){
+          if(list2[i][j] === list2[j]){
+              checker = true
+          } else {
+              checker = false
+              break;
+          }
+      }
+      if (checker){
+          return array2D[4]
+      }
   }
+  return false
 }
 
 
+// function exists(array2D, list2){
+//   for(var i = 0; i<array2D.length; i++){
+//       let checker = false
+//       for(var j = 0; j<list2[i].length; j++){
+//           if(list2[i][j] === list2[j]){
+//               checker = true
+//           } else {
+//               checker = false
+//               break;
+//           }
+//       }
+//       if (checker){
+//           return true
+//       }
+//   }
+//   return false
+// }
+
+
+
+
+
+
+
+console.log(exists(array2D, list2));
 console.log(exists(straightArr, list2));
 
 
-console.log(exists(list2, straightArr));
 
 
 
-// function isStraight(orderedList) {
-//    if (straightArr.some(row => row.includes(orderedList)) {
-//     console.log(`is straight`);
-//    } else {
-//     console.log("nope");
-//    }
+
+
+
+
+// console.log(straightArr);
+// console.log(array2D);
+
+// function exists(straightArr, search) {
+// let i = 0;
+// while(i<straightArr.length) {
+//   let compare = straightArr[i]
+//   console.log(straightArr[i], search);
+//   if (compare === search || straightArr[i] === search) {
+//     return "straight"
+//   }
+//   if (compare === search || straightArr[i] === search) {
+//     return "straight"
+//   }
+//   i++;
+// }
+// return "no straight"
 // }
 
-// console.log(exists(list2,straightArr));
-// console.log(exists(straightArr,list2));
 
 
 
+// console.log(exists(array2D, list2));
+// console.log(exists(straightArr, list2));
+// console.log(exists(straightArr, list1));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function exists(straightArr, search) {
+//   let i = 0;
+//   while (i<straightArr.length) {
+
+//     console.log(straightArr[4], search[4]);
+
+//     // if (straightArr.includes(search)) {
+//     // if (search.includes(straightArr[i])) {
+//     if (straightArr[i] ===(search[i]) && straightArr[4] === search[4]) {
+//     if (straightArr[i].includes(search[i]) && straightArr[4].includes (search[4]))
+
+
+
+//       return "STRAIGHT";
+//     }
+//     i++;
+//   }
+//   return "no straight";
+//   }
+
+
+
+// console.log(exists(array2D, list2));
+// console.log(exists(straightArr, list2));
+// console.log(exists(straightArr, list1));
+
+
+
+
+
+
+
+
+
+// function exists(straightArr, search) {
+//   let searchArr = search.map(x => x)
+//   let i = 0;
+
+
+//   while (i < straightArr.length){
+//     let arrIndex = straightArr[i]
+//     console.log(straightArr[i]);
+//     console.log(searchArr);
+//     console.log(search);
+//     console.log('---break---');
+//     if (arrIndex === searchArr) {
+//       return `-------theres a straight!----------`;
+//     }
+
+//     i++
+//   }
+//   return '------------not found------------'
+// };
+
+// exists(straightArr, list2);
+// exists(straightArr, list1);
+
+
+
+// function exists(straightArr, search) {
+//   straightArr.map(function(x) {
+//     console.log(`${x} is x`);
+//     console.log(`${search} is search`);
+//     if (x === search) {
+//       // return `true, ${x} includes ${search}`
+//       console.log(`true, ${x} includes ${search}`);
+//     }
+//   })
+//   console.log('nothing found');
+// };
+
+
+// console.log(exists(straightArr, list1));
+// exists(straightArr, list2)
+// exists(straightArr, list1)
 
 
 
@@ -440,5 +605,77 @@ function isRoyalFlush(board, hand) {}
 function outsWithoutSuits(board, hand) {}
 
 
+// let modifiedArr = arr.map(function(element){
+//   return element *3;
+// });
+
+
+function countVowels(word) {
+  let vowels = 'aeiou';
+  let count = 0;
+
+ word.split('').map(function(x) {
+    if (vowels.includes(x)){
+      count++;
+    }
+ })
+
+  return count
+};
+
+
+
+
+
+
+
+// function stringChanger(word, operation) {
+//   if (operation === 'capitalize') {}
+//   if (operation === 'uppercase') {}
+//   if (operation === 'double') {}
+//   if (operation === 'reverse') {}
+//   if (operation === 'unknown') {}
+// }
+
+// console.log();
+
+// function stringChanger(word, operation) {
+//    if (operation === 'capitalize') {
+//       return word[0].toUpperCase()+word.slice(1);
+//    }
+//    if (operation === 'uppercase') {
+//     return word.toUpperCase();
+//    }
+//    if (operation === 'double') {
+//     return word+word;
+//    }
+//    if (operation === 'reverse') {
+//     return word.split('').reverse().join('');
+//    }
+//    if (operation === 'unknown') {
+//     return word;
+//    }
+// }
+
+// console.log(stringChanger("foo", "capitalize"));
+// console.log(stringChanger("foo", "uppercase"));
+// console.log(stringChanger("foo", "double"));
+// console.log(stringChanger("foo", "reverse"));
+// console.log(stringChanger("foo", "unknown"));
+
+
+
+
+// // TESTS
+// // DO NOT MODIFY ANYTHING BELOW THIS LINE
+
+// let score = 0;
+
+// if (stringChanger("foo", "capitalize") === "Foo") score++;
+// if (stringChanger("foo", "uppercase") === "FOO") score++;
+// if (stringChanger("foo", "double") === "foofoo") score++;
+// if (stringChanger("foo", "reverse") === "oof") score++;
+
+// if (stringChanger("foo", "unknown") === "foo") score++;
 
 
