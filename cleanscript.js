@@ -16,9 +16,7 @@ let handPlayerSix = {};
 let handPlayerSeven = {};
 let handPlayerEight = {};
 let handPlayerNine = {};
-let playerCardAndBoard = {};
 let boardFlop = {};
-let boardFlop2 = {};
 let boardTurn = {};
 let boardRiver = {};
 
@@ -29,31 +27,7 @@ let testBoard = {
   card4: ['7S'],
   card5: ['3H'],
 };
-let testHandPlayerOne = [];
-let testHandPlayerTwo = [];
-let testHandPlayerThree = [];
-let testHandPlayerFour = [];
-let testHandPlayerFive = [];
-let testHandPlayerSix = [];
-let testHandPlayerSeven = [];
-let testHandPlayerEight = [];
-let testHandPlayerNine = [];
-// assign number values to face cards
-// let J = '14';
-// let Q = '13';
-// let K = '12';
-// let A = '11';
 
-// // let '14' = 'A';
-// // let '13' = 'K';
-// // let '12' = 'Q';
-// // let '11' = 'J';
-
-// // assign letters to suits
-// let C = 'clubs';
-// let D = 'diamond';
-// let H = 'heart';
-// let S = 'spade';
 // array containing all suits to create deck with
 let suits = ['S', 'C', 'H', 'D'];
 
@@ -86,7 +60,7 @@ function createDeck() {
   return deck;
 }
 
-console.log(`=-=-=-=-=-=-=-deck creation-=-=-=-=-=-=-`);
+console.log(`=-=-=--=-createDeck-=-=-=-=-`);
 // invokes deck
 createDeck();
 //  Out puts: ['2S', '3S', '4S', '5S', '6S', '7S', '8S', '9S', '10S', 'JS', 'QS', 'KS', 'AS', '2C', '3C', '4C', '5C', '6C', '7C', '8C', '9C', '10C', 'JC', 'QC', 'KC', 'AC', '2H', '3H', '4H', '5H', '6H', '7H', '8H', '9H', '10H', 'JH', 'QH', 'KH', 'AH', '2D', '3D', '4D', '5D', '6D', '7D', '8D', '9D', '10D', 'JD', 'QD', 'KD', 'AD']
@@ -111,7 +85,7 @@ function shuffleDeck(deck) {
   }
 }
 
-console.log(`=-=-=-=-=-=-=-deck suffled-=-=-=-=-=-=-`);
+console.log(`=-=-=-=-=-shuffleDeck-=-=-==-=-`);
 // create deck to shuffle
 // create deck makes us an un ordered deck
 let testDeck = createDeck();
@@ -119,7 +93,7 @@ shuffleDeck(testDeck);
 // test check for suffled deck
 // console.log(testDeck);
 
-console.log(`-=-=-=---=organize shuffled for hash-=-=-==-=`);
+// organize shuffled deck for hash
 
 // returns rank of card at given index
 function rankOfCardInDeck(deck, position) {
@@ -151,7 +125,7 @@ function createHashDeck(deck) {
   }
 }
 
-console.log(`-=-=-=-=-=-=- createHashDeck-=-=-=-=-=-=-=-`);
+console.log(`-=-=-=-=-createHashDeck-=-=-=-==-`);
 createHashDeck(testDeck);
 console.log(hashDeck);
 
@@ -165,7 +139,7 @@ function cardsForTwoPLayersHash(deck) {
   handPlayerTwo.card2 = deck.card4;
 }
 
-console.log(`=-=-==-=-=-deal cards for 2 players-=-=-=-==-`);
+console.log(`=-=--=-cardsForTwoPLayersHash-=-==-`);
 // invoke cardsForTwoPlayers
 cardsForTwoPLayersHash(hashDeck);
 
@@ -185,7 +159,7 @@ function logFlop2Players(deck) {
   board.card2 = deck.card7;
   board.card3 = deck.card8;
 }
-console.log(`=-=-==-=-=-the flop 2 players-=-=-=-==-`);
+console.log(`=-=-==-=-logFlop2Players-=-=-==-`);
 logFlop2Players(hashDeck);
 
 console.log(`Burn Cards`);
@@ -199,7 +173,7 @@ function logTurn2Players(deck) {
   boardTurn.card1 = deck.card10;
   board.card4 = deck.card10;
 }
-console.log(`=-=-==-=-=-the turn 2 players-=-=-=-==-`);
+console.log(`=-=-=-=-logTurn2Players-=-=-==-`);
 logTurn2Players(hashDeck);
 
 console.log(`Burn Card`);
@@ -213,7 +187,7 @@ function logRiver2Players(deck) {
   boardRiver.card1 = deck.card12;
   board.card5 = deck.card12;
 }
-console.log(`=-=-==-=-=-the River 2 players-=-=-=-==-`);
+console.log(`=-==-=-logRiver2Players-=-===-`);
 logRiver2Players(hashDeck);
 
 console.log(`Burn Card`);
@@ -234,11 +208,11 @@ function boardHandFlop(handPlayerOne, board) {
   return boardAndHand;
 }
 
-console.log(`=-=-=--=-=-5 board cards & player1 cards ranks -=-=-=-`);
+console.log(`=-=-=--=-=- boardAndHand -=-=-=-`);
 boardHandFlop(handPlayerOne, board);
 console.log(boardAndHand);
 
-// // sexy way to increment thru player hand and board cards and push to array
+// // sexy way to increment thru player hand and board cards and push to 
 // function boardHandFlop (handPlayerOne, board) {
 //   boardAndHand = [];
 //   for (let i = 1;  i <= 2; i++){
@@ -260,7 +234,7 @@ let quadCombinations = [];
 let pairArray = [];
 let tripArray = [];
 let quadArray = [];
-// straightArr is auto filled with a function below
+// rest of straightArr is auto filled with createStraights function below
 let straightArr = [['13', '2', '3', '4', '5']];
 
 // check for two of same card
@@ -366,12 +340,32 @@ function compareNumbers(a, b) {
 }
 
 // sort array by number
+// moves aces to back
 function orderedList(list) {
   let orderedList = list.sort(compareNumbers);
+  
+  if (orderedList[orderedList.length - 1] === '13') {
+    orderedList[orderedList.length - 1].unshift
+    orderedList[orderedList.length - 1].pop
+  }
+  if (orderedList[orderedList.length - 1] === '13') {
+    orderedList[orderedList.length - 1].unshift
+    orderedList[orderedList.length - 1].pop
+  }
+  if (orderedList[orderedList.length - 1] === '13') {
+    orderedList[orderedList.length - 1].unshift
+    orderedList[orderedList.length - 1].pop
+  }
+  if (orderedList[orderedList.length - 1] === '13') {
+    orderedList[orderedList.length - 1].unshift
+    orderedList[orderedList.length - 1].pop
+  }
   return orderedList;
 }
 
-console.log(orderedList(list));
+console.log(`=-=-=-=-sort the boardAndHand-=-=-=-`);
+orderedList(boardAndHand);
+console.log(orderedList(['13', '12', '13', '12', '5']));
 
 // creates arr of straight arrays to check orderArr against
 function createStraights() {
@@ -386,38 +380,8 @@ function createStraights() {
   }
   return straightArr;
 }
-console.log(`=-=-==-=-=-create straights array-=-=-=-==-`);
+console.log(`=-=-=-=-create straights array-=-=-==-`);
 createStraights();
-
-
-
-
-// function exists(straightArr, search) {
-//   let searchArr = search.map(x => x)
-
-//   for ( let i = 0; i < straightArr.length; i++){
-//     // console.log(straightArr[i]);
-//     // console.log(search);
-//     if (straightArr[i] === search) {
-//       console.log(straightArr[i]);
-//     } else {
-//       console.log(straightArr[i]);
-//     }
-//   }
-//   return 'not found'
-// };
-
-
-
-
-
-let list2 = ['2', '3', '4', '5', '6'];
-let list1 = ['2,3,4,5,6']
-let array2D = [
-  ['1','2','3','4','5'],
-  ['2','3','4','5','6']
-];
-
 
 
 
@@ -440,157 +404,16 @@ function exists(array2D, list2){
 }
 
 
-// function exists(array2D, list2){
-//   for(var i = 0; i<array2D.length; i++){
-//       let checker = false
-//       for(var j = 0; j<list2[i].length; j++){
-//           if(list2[i][j] === list2[j]){
-//               checker = true
-//           } else {
-//               checker = false
-//               break;
-//           }
-//       }
-//       if (checker){
-//           return true
-//       }
-//   }
-//   return false
-// }
+
+
+console.log(exists(straightArr, boardAndHand));
+// console.log(exists(straightArr, ['13', '2', '3', '4', '5']));
 
 
 
 
 
 
-
-console.log(exists(array2D, list2));
-console.log(exists(straightArr, list2));
-
-
-
-
-
-
-
-
-
-// console.log(straightArr);
-// console.log(array2D);
-
-// function exists(straightArr, search) {
-// let i = 0;
-// while(i<straightArr.length) {
-//   let compare = straightArr[i]
-//   console.log(straightArr[i], search);
-//   if (compare === search || straightArr[i] === search) {
-//     return "straight"
-//   }
-//   if (compare === search || straightArr[i] === search) {
-//     return "straight"
-//   }
-//   i++;
-// }
-// return "no straight"
-// }
-
-
-
-
-// console.log(exists(array2D, list2));
-// console.log(exists(straightArr, list2));
-// console.log(exists(straightArr, list1));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function exists(straightArr, search) {
-//   let i = 0;
-//   while (i<straightArr.length) {
-
-//     console.log(straightArr[4], search[4]);
-
-//     // if (straightArr.includes(search)) {
-//     // if (search.includes(straightArr[i])) {
-//     if (straightArr[i] ===(search[i]) && straightArr[4] === search[4]) {
-//     if (straightArr[i].includes(search[i]) && straightArr[4].includes (search[4]))
-
-
-
-//       return "STRAIGHT";
-//     }
-//     i++;
-//   }
-//   return "no straight";
-//   }
-
-
-
-// console.log(exists(array2D, list2));
-// console.log(exists(straightArr, list2));
-// console.log(exists(straightArr, list1));
-
-
-
-
-
-
-
-
-
-// function exists(straightArr, search) {
-//   let searchArr = search.map(x => x)
-//   let i = 0;
-
-
-//   while (i < straightArr.length){
-//     let arrIndex = straightArr[i]
-//     console.log(straightArr[i]);
-//     console.log(searchArr);
-//     console.log(search);
-//     console.log('---break---');
-//     if (arrIndex === searchArr) {
-//       return `-------theres a straight!----------`;
-//     }
-
-//     i++
-//   }
-//   return '------------not found------------'
-// };
-
-// exists(straightArr, list2);
-// exists(straightArr, list1);
-
-
-
-// function exists(straightArr, search) {
-//   straightArr.map(function(x) {
-//     console.log(`${x} is x`);
-//     console.log(`${search} is search`);
-//     if (x === search) {
-//       // return `true, ${x} includes ${search}`
-//       console.log(`true, ${x} includes ${search}`);
-//     }
-//   })
-//   console.log('nothing found');
-// };
-
-
-// console.log(exists(straightArr, list1));
-// exists(straightArr, list2)
-// exists(straightArr, list1)
 
 
 
