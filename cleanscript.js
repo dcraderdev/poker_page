@@ -212,7 +212,7 @@ console.log(`=-=-=--=-=- boardAndHand -=-=-=-`);
 boardHandFlop(handPlayerOne, board);
 console.log(boardAndHand);
 
-// // sexy way to increment thru player hand and board cards and push to 
+// // sexy way to increment thru player hand and board cards and push to
 // function boardHandFlop (handPlayerOne, board) {
 //   boardAndHand = [];
 //   for (let i = 1;  i <= 2; i++){
@@ -235,7 +235,7 @@ let pairArray = [];
 let tripArray = [];
 let quadArray = [];
 // rest of straightArr is auto filled with createStraights function below
-let straightArr = [['13', '2', '3', '4', '5']];
+let straightArr = [['14', '2', '3', '4', '5']];
 
 // check for two of same card
 function pairCheck(list, what) {
@@ -343,29 +343,29 @@ function compareNumbers(a, b) {
 // moves aces to back
 function orderedList(list) {
   let orderedList = list.sort(compareNumbers);
-  
-  if (orderedList[orderedList.length - 1] === '13') {
-    orderedList[orderedList.length - 1].unshift
-    orderedList[orderedList.length - 1].pop
+
+  if (orderedList[orderedList.length - 1] === '14') {
+    orderedList[orderedList.length - 1].unshift;
+    orderedList[orderedList.length - 1].pop;
   }
-  if (orderedList[orderedList.length - 1] === '13') {
-    orderedList[orderedList.length - 1].unshift
-    orderedList[orderedList.length - 1].pop
+  if (orderedList[orderedList.length - 1] === '14') {
+    orderedList[orderedList.length - 1].unshift;
+    orderedList[orderedList.length - 1].pop;
   }
-  if (orderedList[orderedList.length - 1] === '13') {
-    orderedList[orderedList.length - 1].unshift
-    orderedList[orderedList.length - 1].pop
+  if (orderedList[orderedList.length - 1] === '14') {
+    orderedList[orderedList.length - 1].unshift;
+    orderedList[orderedList.length - 1].pop;
   }
-  if (orderedList[orderedList.length - 1] === '13') {
-    orderedList[orderedList.length - 1].unshift
-    orderedList[orderedList.length - 1].pop
+  if (orderedList[orderedList.length - 1] === '14') {
+    orderedList[orderedList.length - 1].unshift;
+    orderedList[orderedList.length - 1].pop;
   }
   return orderedList;
 }
 
 console.log(`=-=-=-=-sort the boardAndHand-=-=-=-`);
 orderedList(boardAndHand);
-console.log(orderedList(['13', '12', '13', '12', '5']));
+console.log(orderedList(['14', '12', '13', '12', '5']));
 
 // creates arr of straight arrays to check orderArr against
 function createStraights() {
@@ -382,40 +382,64 @@ function createStraights() {
 }
 console.log(`=-=-=-=-create straights array-=-=-==-`);
 createStraights();
+console.log(straightArr);
 
-
-
-function exists(array2D, list2){
-  for(var i = 0; i<array2D.length; i++){
-      let checker = false
-      for(var j = 0; j < list2[i].length; j++){
-          if(list2[i][j] === list2[j]){
-              checker = true
-          } else {
-              checker = false
-              break;
-          }
+function passStraightCheck(array2D, list2) {
+  for (var i = 0; i < array2D.length; i++) {
+    let checker = false;
+    for (var j = 0; j < list2[i].length; j++) {
+      if (list2[i][j] === list2[j]) {
+        checker = true;
+      } else {
+        checker = false;
+        break; // i think break stops loop if returns false, maybe take this out when we try and test 7 card arrays
       }
-      if (checker){
-          return array2D[4]
-      }
+    }
+    if (checker) {
+      return true; // return `${list2[list2.length-1]}`
+    }
   }
-  return false
+  return false;
 }
 
+// console.log(passStraightCheck(straightArr, boardAndHand));
+// console.log(passStraightCheck(straightArr, ['2','3','4','5','6']));
+// console.log(passStraightCheck(straightArr, ['3','4','5','6','7']));
+// // console.log(passStraightCheck(straightArr, ['10','11','12','13','14']));
 
-
-
-console.log(exists(straightArr, boardAndHand));
 // console.log(exists(straightArr, ['13', '2', '3', '4', '5']));
+let testStraight = ['2', '3', '4', '5', '14'];
+let testStraight2 = ['10', '11', '12', '13', '14'];
 
+console.log(testStraight);
 
+function pass5HighStraightCheck(array2D, list2) {
+  if (
+    list2[0] === '2' &&
+    list2[1] === '3' &&
+    list2[2] === '4' &&
+    list2[3] === '5' &&
+    list2[4] === '14'
+  ) {
+    return 5;
+  }
+}
 
+console.log(pass5HighStraightCheck(straightArr, testStraight));
 
+function passAceHighStraightCheck(array2D, list2) {
+  if (
+    list2[0] === '10' &&
+    list2[1] === '11' &&
+    list2[2] === '12' &&
+    list2[3] === '13' &&
+    list2[4] === '14'
+  ) {
+    return 14;
+  }
+}
 
-
-
-
+console.log(passAceHighStraightCheck(straightArr, testStraight2));
 
 function isTwoPair(board, hand) {}
 function isThreeOfKind(board, hand) {}
@@ -427,30 +451,22 @@ function isRoyalFlush(board, hand) {}
 
 function outsWithoutSuits(board, hand) {}
 
-
 // let modifiedArr = arr.map(function(element){
 //   return element *3;
 // });
-
 
 function countVowels(word) {
   let vowels = 'aeiou';
   let count = 0;
 
- word.split('').map(function(x) {
-    if (vowels.includes(x)){
+  word.split('').map(function (x) {
+    if (vowels.includes(x)) {
       count++;
     }
- })
+  });
 
-  return count
-};
-
-
-
-
-
-
+  return count;
+}
 
 // function stringChanger(word, operation) {
 //   if (operation === 'capitalize') {}
@@ -486,9 +502,6 @@ function countVowels(word) {
 // console.log(stringChanger("foo", "reverse"));
 // console.log(stringChanger("foo", "unknown"));
 
-
-
-
 // // TESTS
 // // DO NOT MODIFY ANYTHING BELOW THIS LINE
 
@@ -500,5 +513,3 @@ function countVowels(word) {
 // if (stringChanger("foo", "reverse") === "oof") score++;
 
 // if (stringChanger("foo", "unknown") === "foo") score++;
-
-
