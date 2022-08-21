@@ -226,56 +226,39 @@ boardHandFlop(handPlayerOne, board);
 //   return boardAndHand;
 // }
 
-
-function numberList2 (list) {
-  let numberList = list.forEach(str => {
+function numberList2(list) {
+  let numberList = list.forEach((str) => {
     return Number(str);
-  })
-};
+  });
+}
 
-
-function numberList3 (list) {
+function numberList3(list) {
   let numberList = [];
-  for (i = 0; i < list.length; i++){
+  for (i = 0; i < list.length; i++) {
     numberList.shift(list[i]);
   }
-  return numberList
-};
-
-
-
-
-
-
+  return numberList;
+}
 
 let list = ['10', '10', '2', '2', '10', '14', '14', '3', '3', '3', '3'];
 
 console.log(list[0]);
-console.log(typeof(list[0]));
+console.log(typeof list[0]);
 
-
-function numberList (list) {
-  let numberList = "";
+function numberList(list) {
+  let numberList = '';
 
   numberList = list.join(',');
-  return numberList
-};
-
+  return numberList;
+}
 
 console.log(numberList(list));
 
-
 console.log(list[0]);
-console.log(typeof(list[0]));
+console.log(typeof list[0]);
 console.log(list);
 
-
-
-
-
-
 console.log(boardAndHand);
-
 
 let pairCombinations = [];
 let tripCombinations = [];
@@ -284,7 +267,25 @@ let pairArray = [];
 let tripArray = [];
 let quadArray = [];
 // rest of straightArr is auto filled with createStraights function below
-let straightArr = [['14', '2', '3', '4', '5']];
+let straightArr = [['14', '2', '3', '4', '5', '6', '7']];
+
+// creates arr of straight arrays to check orderArr against
+function createStraights() {
+  for (let cardCounter = 2; cardCounter <= 10; cardCounter++) {
+    straightArr.push([
+      `${cardCounter}`,
+      `${cardCounter + 1}`,
+      `${cardCounter + 2}`,
+      `${cardCounter + 3}`,
+      `${cardCounter + 4}`,
+      `${cardCounter + 5}`,
+      `${cardCounter + 6}`
+    ]);
+  }
+  return straightArr;
+}
+console.log(`=-=-=-=-createStraights-=-=-==-`);
+createStraights();
 
 // check for two of same card
 function pairCheck(list, what) {
@@ -315,8 +316,6 @@ function pairCheck(list, what) {
 //   return pairCombinations;
 // }
 
-
-
 // iterates through all ranks to use in pairCheck
 function passPairCheck(list) {
   let x = 2;
@@ -330,7 +329,6 @@ function passPairCheck(list) {
   }
   return pairCombinations;
 }
-
 
 console.log(`=-=-=-=-passPairCheck-=-=-=-`);
 passPairCheck(boardAndHand);
@@ -398,8 +396,6 @@ function passQuadCheck(list) {
 console.log(`=-=-=-=-passQuadCheck-=-=-=-`);
 passQuadCheck(boardAndHand);
 
-
-
 // sort array by number
 function compareNumbers(a, b) {
   return a - b;
@@ -436,24 +432,6 @@ orderedList(boardAndHand);
 
 console.log(boardAndHand);
 
-
-
-// creates arr of straight arrays to check orderArr against
-function createStraights() {
-  for (let cardCounter = 2; cardCounter <= 10; cardCounter++) {
-    straightArr.push([
-      `${cardCounter}`,
-      `${cardCounter + 1}`,
-      `${cardCounter + 2}`,
-      `${cardCounter + 3}`,
-      `${cardCounter + 4}`,
-    ]);
-  }
-  return straightArr;
-}
-console.log(`=-=-=-=-createStraights-=-=-==-`);
-createStraights();
-
 function passStraightCheck(array2D, list2) {
   for (var i = 0; i < array2D.length; i++) {
     let checker = false;
@@ -466,11 +444,17 @@ function passStraightCheck(array2D, list2) {
       }
     }
     if (checker) {
+      console.log('straight');
       return true; // return `${list2[list2.length-1]}`
     }
   }
   return false;
 }
+console.log(`=-=-=-=-passStraightCheck-=-=-=-`);
+
+console.log(straightArr);
+
+passStraightCheck(straightArr, boardAndHand);
 
 // console.log(passStraightCheck(straightArr, boardAndHand));
 // console.log(passStraightCheck(straightArr, ['2','3','4','5','6']));
@@ -478,7 +462,6 @@ function passStraightCheck(array2D, list2) {
 // // console.log(passStraightCheck(straightArr, ['10','11','12','13','14']));
 
 // console.log(exists(straightArr, ['13', '2', '3', '4', '5']));
-
 
 function pass5HighStraightCheck(array2D, list2) {
   if (
@@ -490,8 +473,9 @@ function pass5HighStraightCheck(array2D, list2) {
   ) {
     return 5;
   }
+  return false;
 }
-
+console.log(pass5HighStraightCheck(straightArr, boardAndHand));
 
 function passAceHighStraightCheck(array2D, list2) {
   if (
@@ -503,8 +487,9 @@ function passAceHighStraightCheck(array2D, list2) {
   ) {
     return 14;
   }
+  return false;
 }
-
+console.log(passAceHighStraightCheck(straightArr, boardAndHand));
 
 function isTwoPair(board, hand) {}
 function isThreeOfKind(board, hand) {}
@@ -579,14 +564,151 @@ function countVowels(word) {
 
 // if (stringChanger("foo", "unknown") === "foo") score++;
 
+function exists(array2D, list2) {
+  let checker = 0;
+  for (var i = 0; i < array2D.length; i++) {
+    for (var j = 0; j < list2.length; j++) {
+      if (array2D[i][j] === list2[j]) {
+        checker++;
+      }
+    }
+  }
+  if (checker === 5) {
+    return `${true}, straight`;
+  }
+  return false;
+}
+
+// testArr1 = ['2', '3', '4', '5', '6']
+// testArr2 = ['3', '4', '5', '6', '7']
+// testArr3 = ['3', '4', '5', '6', '7', '8', '9']
+// testArr4 = ['2', '3', '4', '5', '7']
+
+// function fullBoardStraightCheck (straightArr, boardAndHand) {
+//   for(let i = 0; i < straightArr.length; i++){
+//     let checker = 0
+//     for(var j = 2; j<7; j++){
+//       console.log(straightArr[i]);
+//       console.log(boardAndHand[j]);
+//         if(straightArr[i] === boardAndHand[j]){
+//             checker++
+//         } else {
+//             checker.push(false)
+//         }
+//     }
+//     if (checker.every(check => check === 5)){
+//         return boardAndHand[boardAndHand.length - 1]
+//     }
+//   }
+//     return false
+//   }
+
+//   }
+//   for(let i = 1; i < 6; i++){
+
+//   }
+//   for(let i = 0; i < 5; i++){
+
+//   }
+
+// }
+
+// console.log(fullBoardStraightCheck(testArr3));
+
+// testArr1 = ['2', '3', '4', '5', '6']
+// testArr2 = ['3', '4', '5', '6', '7']
+// testArr3 = ['3', '4', '5', '6', '7', '4', '9']
+// testArr4 = ['2', '3', '4', '5', '7']
+
+// function arrayAlreadyHasArray(arr, testArr){
+//   for(var i = 0; i<arr.length; i++){
+//       let checker = []
+//       for(var j = 0; j<arr[i].length; j++){
+//           if(arr[i][j] === testArr[j]){
+//               checker.push(true)
+//           } else {
+//               checker.push(false)
+//           }
+//       }
+//       if (checker.every(check => check === true)){
+//           return testArr[testArr.length - 1]
+//       }
+//   }
+//   return false
+// }
+
+// console.log(arrayAlreadyHasArray(straightArr, testArr1));    // true
+// console.log(arrayAlreadyHasArray(straightArr, testArr2));   //
+// console.log(arrayAlreadyHasArray(straightArr, testArr3));   //
+// console.log(arrayAlreadyHasArray(straightArr, testArr4));   //
+
+// function arrayAlreadyHasArray(arr, testArr) {
+//   for (var i = 0; i < arr.length; i++) {
+//     let checker = [];
+//     let counter = 0;
+//     for (var j = 0; j < arr[i].length; j++) {
+//       // if 2d array[i][j] = boardandhand[j]
+//       // +counter
+//       // else false
+//       if (arr[i][j] === testArr[j]) {
+//         counter++;
+//         checker.push(true);
+//       } else {
+//         checker.push(false);
+//       }
+//     }
+//     if (counter === 5) {
+//       return testArr[testArr[5]];
+//     } else if (counter === 6) {
+//       return testArr[testArr[5]];
+//     } else if (checker.every((check) => check === true)) {
+//       return testArr[testArr.length - 1];
+//     }
+//   }
+//   return false;
+// }
+testArr1 = ['2', '3', '4', '5', '6'];
+testArr2 = ['3', '4', '5', '6', '7'];
+testArr3 = ['3', '4', '5', '6', '7', '4', '9'];
+testArr4 = ['2', '3', '4', '5', '7'];
+testArr5 = ['3', '4', '5', '6', '7', '8', '2'];
+testArr6 = ['3', '4', '5', '6', '7', '8', '9'];
 
 
-const quantity = "12";
-console.log(typeof(quantity));
 
-console.log(parseInt(quantity, 10));
+function arrayAlreadyHasArray(arr, testArr){
+  for(var i = 0; i<arr.length; i++){
+      let checker = []
+      counter = 0
+      for(var j = 0; j<arr[i].length; j++){
+          if(arr[i][j] === testArr[j]){
+              checker.push(true)
+              counter++
+          } else {
+              checker.push(false)
+          }
+      } if (counter === 5 && ((parseInt(testArr[5]) - parseInt(testArr[4])) !== 1)) {
+        return testArr[4];
+      } else if (counter === 6 && ((parseInt(testArr[6]) - parseInt(testArr[5])) !== 1)) {
+        return testArr[5];
+      }
+      else if (counter === 7 && ((parseInt(testArr[7]) - parseInt(testArr[6])) !== 1)) {
+        return testArr[6];
+      }
+  }
+  return false
+}
 
-console.log(quantity);
-console.log(typeof(quantity));
 
+
+
+
+
+
+console.log(arrayAlreadyHasArray(straightArr, testArr1)); // 6
+console.log(arrayAlreadyHasArray(straightArr, testArr2)); // 7
+console.log(arrayAlreadyHasArray(straightArr, testArr3)); // 7
+console.log(arrayAlreadyHasArray(straightArr, testArr4)); // false
+console.log(arrayAlreadyHasArray(straightArr, testArr5)); // 8
+console.log(arrayAlreadyHasArray(straightArr, testArr6)); // 8
 
