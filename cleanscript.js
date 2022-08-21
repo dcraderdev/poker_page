@@ -210,7 +210,6 @@ function boardHandFlop(handPlayerOne, board) {
 
 console.log(`=-=-=--=-=- boardAndHand -=-=-=-`);
 boardHandFlop(handPlayerOne, board);
-console.log(boardAndHand);
 
 // // sexy way to increment thru player hand and board cards and push to
 // function boardHandFlop (handPlayerOne, board) {
@@ -227,7 +226,57 @@ console.log(boardAndHand);
 //   return boardAndHand;
 // }
 
-let list = [10, 10, 2, 2, 10, 14, 14, 3, 3, 3, 3];
+
+function numberList2 (list) {
+  let numberList = list.forEach(str => {
+    return Number(str);
+  })
+};
+
+
+function numberList3 (list) {
+  let numberList = [];
+  for (i = 0; i < list.length; i++){
+    numberList.shift(list[i]);
+  }
+  return numberList
+};
+
+
+
+
+
+
+
+let list = ['10', '10', '2', '2', '10', '14', '14', '3', '3', '3', '3'];
+
+console.log(list[0]);
+console.log(typeof(list[0]));
+
+
+function numberList (list) {
+  let numberList = "";
+
+  numberList = list.join(',');
+  return numberList
+};
+
+
+console.log(numberList(list));
+
+
+console.log(list[0]);
+console.log(typeof(list[0]));
+console.log(list);
+
+
+
+
+
+
+console.log(boardAndHand);
+
+
 let pairCombinations = [];
 let tripCombinations = [];
 let quadCombinations = [];
@@ -241,7 +290,7 @@ let straightArr = [['14', '2', '3', '4', '5']];
 function pairCheck(list, what) {
   let count = 0;
   for (let i = 0; i < list.length; i++) {
-    if (list[i] === what) {
+    if (parseInt(list[i]) === what) {
       count++;
     }
   }
@@ -251,10 +300,27 @@ function pairCheck(list, what) {
     return false;
   }
 }
+// // iterates through all ranks to use in pairCheck
+// function passPairCheck(list) {
+//   for (let j = 0; j < 15; j++){
+//     let x = `j+${i}`
+//   } for (let i = x; i <= 15; i++) {
+//     if (pairCheck(list, x)) {
+//       pairCombinations.push(x);
+//       pairArray.push(x);
+//       console.log(`yes pair of ${[x]}s`);
+//     }
+//     x++;
+//   }
+//   return pairCombinations;
+// }
+
+
+
 // iterates through all ranks to use in pairCheck
 function passPairCheck(list) {
   let x = 2;
-  for (let i = x; i <= 14; i++) {
+  for (let i = x; i <= 15; i++) {
     if (pairCheck(list, x)) {
       pairCombinations.push(x);
       pairArray.push(x);
@@ -265,13 +331,15 @@ function passPairCheck(list) {
   return pairCombinations;
 }
 
-console.log(passPairCheck(list));
+
+console.log(`=-=-=-=-passPairCheck-=-=-=-`);
+passPairCheck(boardAndHand);
 
 // check for triple of same card
 function tripCheck(list, what) {
   let count = 0;
   for (let i = 0; i < list.length; i++) {
-    if (list[i] === what) {
+    if (parseInt(list[i]) === what) {
       count++;
     }
   }
@@ -285,7 +353,7 @@ function tripCheck(list, what) {
 // if triple of same card, returns card
 function passTripCheck(list) {
   let x = 2;
-  for (let i = x; i <= 14; i++) {
+  for (let i = x; i <= 15; i++) {
     if (tripCheck(list, x)) {
       tripCombinations.push(x);
       tripArray.push(x);
@@ -295,14 +363,14 @@ function passTripCheck(list) {
   }
   return tripCombinations;
 }
-
-console.log(passTripCheck(list));
+console.log(`=-=-=-=-passTripCheck-=-=-=-`);
+passTripCheck(boardAndHand);
 
 // check for quad of same card
 function quadCheck(list, what) {
   let count = 0;
   for (let i = 0; i < list.length; i++) {
-    if (list[i] === what) {
+    if (parseInt(list[i]) === what) {
       count++;
     }
   }
@@ -317,7 +385,7 @@ function quadCheck(list, what) {
 // if quad of same card, returns card
 function passQuadCheck(list) {
   let x = 2;
-  for (let i = x; i <= 14; i++) {
+  for (let i = x; i <= 15; i++) {
     if (quadCheck(list, x)) {
       quadCombinations.push(x);
       quadArray.push(x);
@@ -327,12 +395,10 @@ function passQuadCheck(list) {
   }
   return quadCombinations;
 }
+console.log(`=-=-=-=-passQuadCheck-=-=-=-`);
+passQuadCheck(boardAndHand);
 
-console.log(passQuadCheck(list));
 
-console.log(pairArray);
-console.log(tripArray);
-console.log(quadArray);
 
 // sort array by number
 function compareNumbers(a, b) {
@@ -363,9 +429,14 @@ function orderedList(list) {
   return orderedList;
 }
 
-console.log(`=-=-=-=-sort the boardAndHand-=-=-=-`);
+console.log(boardAndHand);
+
+console.log(`=-=-=-orderedList(boardAndHand)-=-=-`);
 orderedList(boardAndHand);
-console.log(orderedList(['14', '12', '13', '12', '5']));
+
+console.log(boardAndHand);
+
+
 
 // creates arr of straight arrays to check orderArr against
 function createStraights() {
@@ -380,9 +451,8 @@ function createStraights() {
   }
   return straightArr;
 }
-console.log(`=-=-=-=-create straights array-=-=-==-`);
+console.log(`=-=-=-=-createStraights-=-=-==-`);
 createStraights();
-console.log(straightArr);
 
 function passStraightCheck(array2D, list2) {
   for (var i = 0; i < array2D.length; i++) {
@@ -408,10 +478,7 @@ function passStraightCheck(array2D, list2) {
 // // console.log(passStraightCheck(straightArr, ['10','11','12','13','14']));
 
 // console.log(exists(straightArr, ['13', '2', '3', '4', '5']));
-let testStraight = ['2', '3', '4', '5', '14'];
-let testStraight2 = ['10', '11', '12', '13', '14'];
 
-console.log(testStraight);
 
 function pass5HighStraightCheck(array2D, list2) {
   if (
@@ -425,7 +492,6 @@ function pass5HighStraightCheck(array2D, list2) {
   }
 }
 
-console.log(pass5HighStraightCheck(straightArr, testStraight));
 
 function passAceHighStraightCheck(array2D, list2) {
   if (
@@ -439,7 +505,6 @@ function passAceHighStraightCheck(array2D, list2) {
   }
 }
 
-console.log(passAceHighStraightCheck(straightArr, testStraight2));
 
 function isTwoPair(board, hand) {}
 function isThreeOfKind(board, hand) {}
@@ -513,3 +578,15 @@ function countVowels(word) {
 // if (stringChanger("foo", "reverse") === "oof") score++;
 
 // if (stringChanger("foo", "unknown") === "foo") score++;
+
+
+
+const quantity = "12";
+console.log(typeof(quantity));
+
+console.log(parseInt(quantity, 10));
+
+console.log(quantity);
+console.log(typeof(quantity));
+
+
