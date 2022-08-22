@@ -565,6 +565,46 @@ console.log(passStraightCheck(reducedBoardAndHand));
 
 
 
+function pass5HighStraightCheck(boardAndHand) {
+  let lowFive2 = '2,3,4,5,14'
+  let lowFive = ['2','3','4','5','14']
+
+  let count = 0;
+  for(let i =0; i <boardAndHand.length;i++)
+  // if (boardAndHand[i].includes(lowFive)){
+  if (lowFive.includes(boardAndHand[i])){
+
+    // console.log('yes');
+    lowfive = lowFive.filter(num => boardAndHand[i]);
+    count++;
+
+  } if (count === 5) {return true}
+  return false;
+}
+
+
+console.log(pass5HighStraightCheck(['2','3','4','5','14']));
+console.log(pass5HighStraightCheck(['2','3','4','5','6','14']));
+console.log(pass5HighStraightCheck(['2','3','4','5','6']));
+
+
+
+
+
+
+
+// function isTwoPair(board, hand) {}
+// function isThreeOfKind(board, hand) {}
+// // function isStraight(board, hand) {}
+// function isFullHouse(board, hand) {}
+// function isFourOfKind(board, hand) {}
+// function isStraightFlush(board, hand) {}
+// function isRoyalFlush(board, hand) {}
+
+// function outsWithoutSuits(board, hand) {}
+
+
+
 
 // const arr = ['a', 'b', 'c', 'd', 'e'];
 // const iterator = arr.values();
@@ -799,65 +839,7 @@ console.log('^^^^^');
 // console.log(reducedBoardAndHand);
 
 
-// function pass5HighStraightCheck(boardAndHand) {
-//   if (
-//     boardAndHand[0] === '2' &&
-//     boardAndHand[1] === '3' &&
-//     boardAndHand[2] === '4' &&
-//     boardAndHand[3] === '5' &&
-//     boardAndHand[boardAndHand.length-1] === '14'
-//     ||
-//     boardAndHand[1] === '2' &&
-//     boardAndHand[2] === '3' &&
-//     boardAndHand[3] === '4' &&
-//     boardAndHand[4] === '5' &&
-//     boardAndHand[boardAndHand.length-1] === '14'
-//     ||
-//     boardAndHand[2] === '2' &&
-//     boardAndHand[3] === '3' &&
-//     boardAndHand[4] === '4' &&
-//     boardAndHand[5] === '5' &&
-//     boardAndHand[boardAndHand.length-1] === '14'
-//   ) {
-//     return 5;
-//   }
-//   return false;
-// }
 
-// console.log(pass5HighStraightCheck(testArr7));
-// console.log(pass5HighStraightCheck(testArr7));
-// // console.log(pass5HighStraightCheck(lowArr3));
-
-
-// console.log(pass5HighStraightCheck(boardAndHand));
-// console.log(`=-=-=-=-pass5HighStraightCheck-=-=-=-`);
-
-// // needs firstFive, secondFive, and thirdFive passed thru
-// function passAceHighStraightCheck(boardAndHand) {
-//   if (
-//     boardAndHand[0] === '2' &&
-//     boardAndHand[1] === '3' &&
-//     boardAndHand[2] === '4' &&
-//     boardAndHand[3] === '5' &&
-//     boardAndHand[4] === '14'
-//   ) {
-//     return 14;
-//   }
-//   return false;
-// }
-// console.log(`=-=-=-=-passAceHighStraightCheck-=-=-=-`);
-
-// console.log(passAceHighStraightCheck(boardAndHand));
-
-function isTwoPair(board, hand) {}
-function isThreeOfKind(board, hand) {}
-// function isStraight(board, hand) {}
-function isFullHouse(board, hand) {}
-function isFourOfKind(board, hand) {}
-function isStraightFlush(board, hand) {}
-function isRoyalFlush(board, hand) {}
-
-function outsWithoutSuits(board, hand) {}
 
 // let modifiedArr = arr.map(function(element){
 //   return element *3;
