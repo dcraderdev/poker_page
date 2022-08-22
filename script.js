@@ -1213,3 +1213,27 @@ function countInArray(array, what) {
 // }
 
 
+
+
+function arrayAlreadyHasArray(arr, testArr){
+  for(var i = 0; i<arr.length; i++){
+      let checker = []
+      counter = 0
+      for(var j = 0; j<arr[i].length; j++){
+          if(arr[i][j] === testArr[j]){
+              checker.push(true)
+              counter++
+          } else {
+              checker.push(false)
+          }
+      } if (counter >= 5 && ((parseInt(testArr[5]) - parseInt(testArr[4])) !== 1)) {
+        return testArr[4];
+      } else if (counter >= 6 && ((parseInt(testArr[6]) - parseInt(testArr[5])) !== 1)) {
+        return testArr[5];
+      }
+      else if (counter >= 7 && ((parseInt(testArr[7]) - parseInt(testArr[6])) !== 1)) {
+        return testArr[6];
+      }
+  }
+  return false
+}

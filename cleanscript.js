@@ -47,6 +47,44 @@ let rankings = [
   '13',
   '14',
 ];
+// rest of straightArr is auto filled with createStraights function below
+let straightArr = [['14', '2', '3', '4', '5']];
+// creates arr of straight arrays to check orderArr against
+function createStraights() {
+  for (let cardCounter = 2; cardCounter <= 10; cardCounter++) {
+    straightArr.push([
+      `${cardCounter}`,
+      `${cardCounter + 1}`,
+      `${cardCounter + 2}`,
+      `${cardCounter + 3}`,
+      `${cardCounter + 4}`
+    ]);
+  }
+  return straightArr;
+}
+console.log(`=-=-=-=-createStraights-=-=-==-`);
+createStraights();
+console.log(straightArr);
+
+
+let straightHash = {};
+function createStraightHash(straightArr) {
+  for (let i = 0; i < straightArr.length; i++) {
+    // straightHash[`Straight${i+5}`] = {};
+    // straightHash[`${i+5}`] = straightArr[i];
+    straightHash[straightArr[i]] = i+5;
+    // straightHash[`highcard${i+5}`]['highcard'] = straightArr[i];  
+  }
+  return straightHash
+}
+
+
+console.log(`-=-=-=-=-createStraightHash-=-=-=-==-`);
+createStraightHash(straightArr);
+console.log(straightHash);
+
+
+
 
 // create deck function
 function createDeck() {
@@ -125,6 +163,7 @@ function createHashDeck(deck) {
   }
 }
 
+
 console.log(`-=-=-=-=-createHashDeck-=-=-=-==-`);
 createHashDeck(testDeck);
 console.log(hashDeck);
@@ -132,7 +171,6 @@ console.log(hashDeck);
 // cards in form of a Hash
 function cardsForTwoPLayersHash(deck) {
   //puts empty hash named card1 inside handPlayerOne
-  console.log(deck);
   handPlayerOne.card1 = deck.card1;
   handPlayerTwo.card1 = deck.card2;
   handPlayerOne.card2 = deck.card3;
@@ -197,68 +235,24 @@ console.log(boardRiver);
 
 // array of object values from board and player1 hand
 
-function boardHandFlop(handPlayerOne, board) {
+function boardHandFlopTurnRiver(handPlayerOne, board) {
   boardAndHand = [
     handPlayerOne.card1.rank,
     handPlayerOne.card2.rank,
     board.card1.rank,
     board.card2.rank,
     board.card3.rank,
+    board.card4.rank,
+    board.card5.rank,
+
   ];
   return boardAndHand;
 }
 
-console.log(`=-=-=--=-=- boardAndHand -=-=-=-`);
-boardHandFlop(handPlayerOne, board);
+console.log(board);
+console.log(`=-=-=--=-=- boardHandFlopTurnRiver -=-=-=-`);
+boardHandFlopTurnRiver(handPlayerOne, board);
 
-// // sexy way to increment thru player hand and board cards and push to
-// function boardHandFlop (handPlayerOne, board) {
-//   boardAndHand = [];
-//   for (let i = 1;  i <= 2; i++){
-//     for (const [key, value] of Object.entries(`handPlayerOne.card${[i]}.rank`)){
-//     boardAndHand.push(`${value}`);
-//   }
-// } for (let i = 1; i <= 3; i++){
-//   for (const [key, value] of Object.entries(`board.card${[i]}.rank`)){
-//     boardAndHand.push(`${value}`);
-//   }
-// }
-//   return boardAndHand;
-// }
-
-function numberList2(list) {
-  let numberList = list.forEach((str) => {
-    return Number(str);
-  });
-}
-
-function numberList3(list) {
-  let numberList = [];
-  for (i = 0; i < list.length; i++) {
-    numberList.shift(list[i]);
-  }
-  return numberList;
-}
-
-let list = ['10', '10', '2', '2', '10', '14', '14', '3', '3', '3', '3'];
-
-console.log(list[0]);
-console.log(typeof list[0]);
-
-function numberList(list) {
-  let numberList = '';
-
-  numberList = list.join(',');
-  return numberList;
-}
-
-console.log(numberList(list));
-
-console.log(list[0]);
-console.log(typeof list[0]);
-console.log(list);
-
-console.log(boardAndHand);
 
 let pairCombinations = [];
 let tripCombinations = [];
@@ -266,26 +260,80 @@ let quadCombinations = [];
 let pairArray = [];
 let tripArray = [];
 let quadArray = [];
-// rest of straightArr is auto filled with createStraights function below
-let straightArr = [['14', '2', '3', '4', '5', '6', '7']];
 
-// creates arr of straight arrays to check orderArr against
-function createStraights() {
-  for (let cardCounter = 2; cardCounter <= 10; cardCounter++) {
-    straightArr.push([
-      `${cardCounter}`,
-      `${cardCounter + 1}`,
-      `${cardCounter + 2}`,
-      `${cardCounter + 3}`,
-      `${cardCounter + 4}`,
-      `${cardCounter + 5}`,
-      `${cardCounter + 6}`
-    ]);
+
+// sort array by number
+// moves aces to back
+function orderedHand(hand) {
+  let orderedHand = hand.sort(compareNumbers);
+
+  if (orderedHand[orderedHand.length - 1] === '14') {
+    orderedHand[orderedHand.length - 1].unshift;
+    orderedHand[orderedHand.length - 1].pop;
   }
-  return straightArr;
+  if (orderedHand[orderedHand.length - 1] === '14') {
+    orderedHand[orderedHand.length - 1].unshift;
+    orderedHand[orderedHand.length - 1].pop;
+  }
+  if (orderedHand[orderedHand.length - 1] === '14') {
+    orderedHand[orderedHand.length - 1].unshift;
+    orderedHand[orderedHand.length - 1].pop;
+  }
+  if (orderedHand[orderedHand.length - 1] === '14') {
+    orderedHand[orderedHand.length - 1].unshift;
+    orderedHand[orderedHand.length - 1].pop;
+  }
+  return orderedHand;
 }
-console.log(`=-=-=-=-createStraights-=-=-==-`);
-createStraights();
+
+console.log(boardAndHand);
+
+console.log(`=-=-=-orderedHand(boardAndHand)-=-=-`);
+orderedHand(boardAndHand);
+
+console.log(boardAndHand);
+
+
+// check if boardAndHand contains 7 cards
+// if so break into 3 groups and check if either group includes a straight
+
+// check if boardAndHand contains 6 cards
+// if so break into 2 groups and check if either group includes a straight
+
+// check if boardAndHand contains 5 cards
+// if so break into 1 groups and check if either group includes a straight
+
+// let firstFive = [];
+// let secondFive = [];
+// let thirdFive = [];
+
+
+// function sliceUp (boardAndHand) {
+//   if (boardAndHand.length === 7) {
+//     firstFive = [boardAndHand.slice(0,5)];
+//     secondFive = [boardAndHand.slice(1,6)];
+//     thirdFive = [boardAndHand.slice(2,7)];
+//   }
+//   if (boardAndHand.length === 6) {
+//     firstFive = [boardAndHand.slice(0,5)];
+//     secondFive = [boardAndHand.slice(1,6)];
+//   }
+//   if (boardAndHand.length === 5) {
+//     firstFive = [boardAndHand.slice(0,5)];
+//   }
+//   if (boardAndHand.length === 7) {
+//     return firstFive, secondFive, thirdFive
+//   }
+//   if (boardAndHand.length === 6) {
+//     return firstFive, secondFive
+//   }
+//   if (boardAndHand.length === 5) {
+//     return firstFive
+// }
+// }
+
+
+
 
 // check for two of same card
 function pairCheck(list, what) {
@@ -301,20 +349,6 @@ function pairCheck(list, what) {
     return false;
   }
 }
-// // iterates through all ranks to use in pairCheck
-// function passPairCheck(list) {
-//   for (let j = 0; j < 15; j++){
-//     let x = `j+${i}`
-//   } for (let i = x; i <= 15; i++) {
-//     if (pairCheck(list, x)) {
-//       pairCombinations.push(x);
-//       pairArray.push(x);
-//       console.log(`yes pair of ${[x]}s`);
-//     }
-//     x++;
-//   }
-//   return pairCombinations;
-// }
 
 // iterates through all ranks to use in pairCheck
 function passPairCheck(list) {
@@ -401,95 +435,402 @@ function compareNumbers(a, b) {
   return a - b;
 }
 
-// sort array by number
-// moves aces to back
-function orderedList(list) {
-  let orderedList = list.sort(compareNumbers);
 
-  if (orderedList[orderedList.length - 1] === '14') {
-    orderedList[orderedList.length - 1].unshift;
-    orderedList[orderedList.length - 1].pop;
-  }
-  if (orderedList[orderedList.length - 1] === '14') {
-    orderedList[orderedList.length - 1].unshift;
-    orderedList[orderedList.length - 1].pop;
-  }
-  if (orderedList[orderedList.length - 1] === '14') {
-    orderedList[orderedList.length - 1].unshift;
-    orderedList[orderedList.length - 1].pop;
-  }
-  if (orderedList[orderedList.length - 1] === '14') {
-    orderedList[orderedList.length - 1].unshift;
-    orderedList[orderedList.length - 1].pop;
-  }
-  return orderedList;
-}
 
-console.log(boardAndHand);
+let testArr1 = ['2', '3', '4', '5', '6'];
+let testArr2 = ['3', '4', '5', '6', '7'];
+let testArr3 = ['3', '4', '5', '6', '14', '4', '9'];
+let testArr4 = ['2', '3', '4', '5', '7'];
+let testArr5 = ['3', '4', '5', '6', '7', '8', '2'];
+let testArr6 = ['3', '4', '5', '6', '7', '8', '9'];
 
-console.log(`=-=-=-orderedList(boardAndHand)-=-=-`);
-orderedList(boardAndHand);
+let testArr7 = ['2', '2', '3', '3', '4', '5', '6']
+let testArr8 = ['2', '2', '2', '3', '4', '5', '6']
+let testArr9 = ['3', '4', '5', '6', '7', '8', '9']
+let testArr10 = ['4', '5', '6', '7', '8', '9', '10']
+let testArr11 = ['2', '6', '7', '8', '9', '10', '13']
+let testArr12 = ['6', '7', '8', '9', '9', '10', '11']
+let testArr13 = ['7', '8', '9', '10', '11', '12', '13'] //return K high straight
+let testArr14 = ['8', '9', '10', '11', '12', '13', '14'] //return broadway straight
+let testArr15 = ['9', '10', '11', '12', '13', '14'] //return broadway straight
+let testArr16 = ['9', '10', '11', '12', '13', '14'] //return broadway straight
 
-console.log(boardAndHand);
+let reducedBoardAndHand = [];
 
-function passStraightCheck(array2D, list2) {
-  for (var i = 0; i < array2D.length; i++) {
-    let checker = false;
-    for (var j = 0; j < list2[i].length; j++) {
-      if (list2[i][j] === list2[j]) {
-        checker = true;
-      } else {
-        checker = false;
-        break; // i think break stops loop if returns false, maybe take this out when we try and test 7 card arrays
-      }
+// creates new boardandHand (reducedBoardAndHand) that does not contain duplicates
+function shrinkBoardAndHand (boardAndHand) {
+  for(let i = 0; i < boardAndHand.length; i++) {
+    if (i === 0) {
+      reducedBoardAndHand.push(boardAndHand[i]);
+      // console.log(boardAndHand[i]);
+      } else if (!(reducedBoardAndHand.includes(boardAndHand[i]))) {
+      reducedBoardAndHand.push(boardAndHand[i]);
+    } 
     }
-    if (checker) {
-      console.log('straight');
-      return true; // return `${list2[list2.length-1]}`
-    }
-  }
-  return false;
+  
 }
-console.log(`=-=-=-=-passStraightCheck-=-=-=-`);
 
-console.log(straightArr);
+console.log(reducedBoardAndHand);
+console.log(boardAndHand);
+shrinkBoardAndHand(boardAndHand)
+console.log(reducedBoardAndHand);
 
-passStraightCheck(straightArr, boardAndHand);
 
-// console.log(passStraightCheck(straightArr, boardAndHand));
-// console.log(passStraightCheck(straightArr, ['2','3','4','5','6']));
-// console.log(passStraightCheck(straightArr, ['3','4','5','6','7']));
-// // console.log(passStraightCheck(straightArr, ['10','11','12','13','14']));
 
-// console.log(exists(straightArr, ['13', '2', '3', '4', '5']));
 
-function pass5HighStraightCheck(array2D, list2) {
-  if (
-    list2[0] === '2' &&
-    list2[1] === '3' &&
-    list2[2] === '4' &&
-    list2[3] === '5' &&
-    list2[4] === '14'
-  ) {
-    return 5;
+
+
+// check if boardAndHand contains 7 cards
+// if so break into 3 groups and check if either group includes a straight
+
+// check if boardAndHand contains 6 cards
+// if so break into 2 groups and check if either group includes a straight
+
+// check if boardAndHand contains 5 cards
+// if so break into 1 groups and check if either group includes a straight
+
+let firstFive = [];
+let secondFive = [];
+let thirdFive = [];
+
+
+
+
+function sliceUp (boardAndHand) {
+  // if 7 long, make 3 slices
+  if (boardAndHand.length === 7) {
+    firstFive = [boardAndHand.slice(0,5)];
+    secondFive = [boardAndHand.slice(1,6)];
+    thirdFive = [boardAndHand.slice(2,7)];
   }
-  return false;
-}
-console.log(pass5HighStraightCheck(straightArr, boardAndHand));
-
-function passAceHighStraightCheck(array2D, list2) {
-  if (
-    list2[0] === '10' &&
-    list2[1] === '11' &&
-    list2[2] === '12' &&
-    list2[3] === '13' &&
-    list2[4] === '14'
-  ) {
-    return 14;
+  // if 6 long, make 2 slices
+  if (boardAndHand.length === 6) {
+    firstFive = [boardAndHand.slice(0,5)];
+    secondFive = [boardAndHand.slice(1,6)];
   }
-  return false;
+  // if 5 long, make 1 slice
+  if (boardAndHand.length === 5) {
+    firstFive = [boardAndHand.slice(0,5)];
+  }
+  // if 7 long, check 3 slices
+  if (boardAndHand.length === 7) {
+    if (`${thirdFive}` in straightHash) { return straightHash[`${thirdFive}`]};
+    if (`${secondFive}` in straightHash) { return straightHash[`${secondFive}`]};
+   if (`${firstFive}` in straightHash) { return straightHash[`${firstFive}`]};
+  }
+  // if 6 long, check 2 slices
+
+  if (boardAndHand.length === 6) {
+    if (`${secondFive}` in straightHash) { return straistraightHash[`${secondFive}`]};
+   if (`${firstFive}` in straightHash) { return straightHash[`${firstFive}`]};
+
+  
+  }
+  // if 5 long, check 2 slices
+
+  if (boardAndHand.length === 5) {
+   if (`${firstFive}` in straightHash) { return straightHash[`${firstFive}`]};
+
+  
 }
-console.log(passAceHighStraightCheck(straightArr, boardAndHand));
+}
+console.log(testArr11);
+// sliceUp(reducedBoardAndHand);
+console.log(sliceUp(testArr11)); 
+console.log(sliceUp(testArr14)); 
+
+// sliceUp(testArr1)
+// sliceUp(testArr1)
+// sliceUp(testArr1)
+// sliceUp(testArr1)
+
+
+
+
+
+
+// const arr = ['a', 'b', 'c', 'd', 'e'];
+// const iterator = arr.values();
+
+// for (const letter of iterator) {
+//   console.log(letter);
+// } //"a" "b" "c" "d" "e"
+// for (const letter of iterator) {
+//   console.log(letter);
+// } // undefined
+
+
+// console.log(iterator);        // Array Iterator {  }
+// iterator.next().value;        // "a"
+// arr[1] = 'n';
+// iterator.next().value;        // "n"
+
+
+// // let testArr1 = ['2', '3', '4', '5', '6'];
+// let iteration = testArr1.values();
+
+// console.log(iteration);
+
+// for ( let x of iteration) {
+  
+// }
+
+
+
+
+
+
+
+console.log('^^^^^');
+
+
+
+
+// let testArr1 = ['2', '3', '4', '5', '6'];
+
+
+// function checkStraight (arr) {
+//   let tempArr = [];
+//   let count = 1;
+//   for(let i = 0; i < arr.length; i++){
+//     // console.log(((parseInt(arr[i])) +1));
+//     // console.log(((parseInt  (arr[i+1])  )));
+//     // console.log((((parseInt  (arr[-2])  )) + 1));
+//     // console.log(arr[1]);
+//     // if i < length of arr and current index in array +1 subtracted from next index in array = 0 , push current array index and +count
+//    if ( arr.length -1 && ((parseInt(arr[i])) +1)  - ((parseInt  (arr[i+1])  )) === 0 ) {tempArr.push(arr[i]) && count++}
+//     // if last index - index beofre that +1 = 0
+//    else if (  count === 5  && ((parseInt(arr[arr.length -1])) )  - (((parseInt  (arr[arr.length-2])  )) + 1) === 0 ) {tempArr.push(arr[i]) && count++}
+//   }
+//   if (count > 4) 
+//   return tempArr.pop();
+//   else
+//   return false
+// }
+
+
+
+// last index - 1 = last idex before that
+// console.log(arr[i]);
+// console.log(tempArr);
+// console.log(count);
+
+
+// function forLoop (arr) {
+//   for(let i = arr.length -1; i )
+// }
+
+
+
+
+
+
+
+
+
+// function checkStraight (arr) {
+//   for(let i = 0; i < arr.length - 1; i++){}
+// }
+
+
+
+
+
+
+// function checkStraight (arr) {
+//   let tempArr = [];
+//   let count = 1;
+//   for(let i = arr.length - 1; i >= 0; i--){
+//     console.log(`arr @index ${i} is ${arr[i]}`);
+//     console.log(`count is ${count}`);
+//     console.log(((parseInt(arr[i])) -1));
+//     console.log('^ parsed int 1');
+//     console.log(((parseInt(arr[i-1]))));
+//     console.log('^ parsed int 2');
+//     // last index in array - 1 subtracted from index beofre in array = 0 , push current array index and +count
+//    if (((parseInt(arr[i])) -1)  - ((parseInt  (arr[i-1])  )) === 0 ) {tempArr.unshift(arr[i]) && count++}
+//    console.log(`count is now ${count}`);
+//     console.log(` tempArr is ${tempArr}`);
+
+//    if (i === 0 &&((parseInt(arr[i])) +1)  - ((parseInt  (arr[i+1])  )) === 0 ) {tempArr.unshift(arr[i]) && count++}
+//   //  console.log(`${tempArr}`);
+
+//     // if last index - index beofre that +1 = 0
+//   //  else if (  count === 6  && ((parseInt(arr[arr.length -1])) )  - (((parseInt  (arr[arr.length-2])  )) + 1) === 0 ) {tempArr.push(arr[i]) && count++}
+ 
+// } 
+
+//   if (count > 4) {
+//   console.log(`${tempArr}`);
+  
+//   return tempArr.pop();
+// }
+//   else if (count < 4) {
+//   return false
+//   }
+// }
+
+// // let testArr1 = ['2', '3', '4', '5', '6'];
+//  let testArr100 = ['2', '3', '4', '5', '6', '13', '14'];
+//  let testArr200 = ['2', '3', '10', '11', '12', '13', '14'];
+
+
+// // console.log(checkStraight(testArr1));
+// console.log(checkStraight(testArr100));
+// // console.log(checkStraight(testArr200));
+// checkStraight(testArr1)
+// console.log(checkStraight(testArr5));
+// console.log(checkStraight(testArr14));
+// console.log(checkStraight(testArr3));
+// console.log(checkStraight(reducedBoardAndHand));
+
+
+
+
+
+// **** good ish one dont edit ******
+// function checkStraight (arr) {
+//   let tempArr = [];
+//   let count = 1;
+//   for(let i = 0; i < arr.length; i++){
+//     // console.log(((parseInt(arr[i])) +1));
+//     // console.log(((parseInt  (arr[i+1])  )));
+//     // console.log((((parseInt  (arr[-2])  )) + 1));
+//     // console.log(arr[1]);
+//     // if i < length of arr and current index in array +1 subtracted from next index in array = 0 , push current array index and +count
+//    if ( arr.length -1 && ((parseInt(arr[i])) +1)  - ((parseInt  (arr[i+1])  )) === 0 ) {tempArr.push(arr[i]) && count++}
+//     // if last index - index beofre that +1 = 0
+//    else if (((parseInt(arr[arr.length -1])) )  - (((parseInt  (arr[arr.length-2])  )) + 1) === 0 ) {tempArr.push(arr[i]) && count++}
+//   }
+//   if (count > 4) 
+//   return tempArr.pop();
+//   else
+//   return false
+// }
+
+
+
+
+;
+
+
+
+
+
+
+
+
+
+
+// function newPLayer(first, last, chips, status) {
+//   this.firstName = first;
+//   this.lastName = last;
+//   this.chips = 0;
+//   this.status = '';
+// }
+
+// let pokerPlayer = new newPLayer("John", "Doe", 10000, "new");
+// let riverRat25 = new newPLayer("Sally", "Rally", 10000, "new");
+
+
+// console.log(pokerPlayer);
+// console.log(riverRat25);
+// console.log();
+
+
+
+
+// function reduceBoardAndHand (boardAndHand) {
+//   let length = boardAndHand.length
+//   for(let i = 0; i < boardAndHand.length; i++) {
+//     if (i === 0) {
+//       reducedBoardAndHand.push(boardAndHand[i]);
+//       // console.log(boardAndHand[i]);
+//       } else if (reducedBoardAndHand.length<5 && !(reducedBoardAndHand.includes(boardAndHand[i]))) {
+//       reducedBoardAndHand.push(boardAndHand[i]);
+
+//     } else if (biggerThanLast(boardAndHand[i], boardAndHand[1+1])) { 
+    
+//     }
+      
+//     }
+    // if (!boardAndHand.inlcudes(boardAndHand[i])){
+    //   reducedBoardAndHand.push(boardAndHand[i])
+    // }
+  
+// }
+
+
+// function reduceBoardAndHand (boardAndHand) {
+//   for(let i = 0; i < boardAndHand.length; i++){
+
+//   }
+// }
+
+
+
+
+// if ele@index = ele@last index +1
+// pop first ele and push new ele
+// 
+// 
+
+// console.log(testArr8);
+// reduceBoardAndHand(testArr8)
+// // reduceBoardAndHand(boardAndHand)
+// // reduceBoardAndHand(boardAndHand)
+// console.log(reducedBoardAndHand);
+
+
+// function pass5HighStraightCheck(boardAndHand) {
+//   if (
+//     boardAndHand[0] === '2' &&
+//     boardAndHand[1] === '3' &&
+//     boardAndHand[2] === '4' &&
+//     boardAndHand[3] === '5' &&
+//     boardAndHand[boardAndHand.length-1] === '14'
+//     ||
+//     boardAndHand[1] === '2' &&
+//     boardAndHand[2] === '3' &&
+//     boardAndHand[3] === '4' &&
+//     boardAndHand[4] === '5' &&
+//     boardAndHand[boardAndHand.length-1] === '14'
+//     ||
+//     boardAndHand[2] === '2' &&
+//     boardAndHand[3] === '3' &&
+//     boardAndHand[4] === '4' &&
+//     boardAndHand[5] === '5' &&
+//     boardAndHand[boardAndHand.length-1] === '14'
+//   ) {
+//     return 5;
+//   }
+//   return false;
+// }
+
+// console.log(pass5HighStraightCheck(testArr7));
+// console.log(pass5HighStraightCheck(testArr7));
+// // console.log(pass5HighStraightCheck(lowArr3));
+
+
+// console.log(pass5HighStraightCheck(boardAndHand));
+// console.log(`=-=-=-=-pass5HighStraightCheck-=-=-=-`);
+
+// // needs firstFive, secondFive, and thirdFive passed thru
+// function passAceHighStraightCheck(boardAndHand) {
+//   if (
+//     boardAndHand[0] === '2' &&
+//     boardAndHand[1] === '3' &&
+//     boardAndHand[2] === '4' &&
+//     boardAndHand[3] === '5' &&
+//     boardAndHand[4] === '14'
+//   ) {
+//     return 14;
+//   }
+//   return false;
+// }
+// console.log(`=-=-=-=-passAceHighStraightCheck-=-=-=-`);
+
+// console.log(passAceHighStraightCheck(boardAndHand));
 
 function isTwoPair(board, hand) {}
 function isThreeOfKind(board, hand) {}
@@ -667,48 +1008,162 @@ function exists(array2D, list2) {
 //   }
 //   return false;
 // }
-testArr1 = ['2', '3', '4', '5', '6'];
-testArr2 = ['3', '4', '5', '6', '7'];
-testArr3 = ['3', '4', '5', '6', '7', '4', '9'];
-testArr4 = ['2', '3', '4', '5', '7'];
-testArr5 = ['3', '4', '5', '6', '7', '8', '2'];
-testArr6 = ['3', '4', '5', '6', '7', '8', '9'];
 
 
 
-function arrayAlreadyHasArray(arr, testArr){
-  for(var i = 0; i<arr.length; i++){
-      let checker = []
-      counter = 0
-      for(var j = 0; j<arr[i].length; j++){
-          if(arr[i][j] === testArr[j]){
-              checker.push(true)
-              counter++
-          } else {
-              checker.push(false)
-          }
-      } if (counter === 5 && ((parseInt(testArr[5]) - parseInt(testArr[4])) !== 1)) {
-        return testArr[4];
-      } else if (counter === 6 && ((parseInt(testArr[6]) - parseInt(testArr[5])) !== 1)) {
-        return testArr[5];
-      }
-      else if (counter === 7 && ((parseInt(testArr[7]) - parseInt(testArr[6])) !== 1)) {
-        return testArr[6];
-      }
-  }
-  return false
+
+
+
+
+// testArr1 = ['2', '3', '4', '5', '6'];
+// testArr2 = ['3', '4', '5', '6', '7'];
+// testArr3 = ['3', '4', '5', '6', '7', '4', '9'];
+// testArr4 = ['2', '3', '4', '5', '7'];
+// testArr5 = ['3', '4', '5', '6', '7', '8', '2'];
+// testArr6 = ['3', '4', '5', '6', '7', '8', '9'];
+
+// testArr7 = ['2', '2', '3', '3', '4', '5', '6']
+// testArr8 = ['2', '3', '4', '5', '6', '7', '8']
+// testArr9 = ['3', '4', '5', '6', '7', '8', '9']
+// testArr10 = ['4', '5', '6', '7', '8', '9', '10']
+// testArr11 = ['5', '6', '7', '8', '9', '10', '11']
+// testArr12 = ['6', '7', '8', '9', '9', '10', '11']
+// testArr13 = ['7', '8', '9', '10', '11', '12', '13'] //return K high straight
+// testArr14 = ['8', '9', '10', '11', '12', '13', '14'] //return broadway straight
+// testArr15 = ['9', '10', '11', '12', '13', '14', '15'] //return broadway straight
+// testArr16 = ['9', '10', '11', '12', '13', '14', '15'] //return broadway straight
+
+
+
+
+// function arrayAlreadyHasArray(array) {
+//   var conseq = 1;
+//   for (var idx = 1; idx < array.length ; idx++) {
+//       if (array[idx] == array[idx-1] + 1)
+//           conseq++;
+//       else
+//           conseq = 1;
+//       if (conseq == 5)
+//           return true;
+//   }
+//   return false;
+// }
+
+// function fiveInARow(array) {
+
+//   // compare if one element is greater than or equal to the previous one
+//   function compare(elt, i, arr) { return !i || elt >= arr[i-1]; };
+
+//   // check if at a given position, every one of the last five comparisons is true
+//   function check (_, i, greaters) { 
+//     return i >= 4 && greaters.slice(i-4, i) . every(Boolean);                         
+//   }
+
+//   return array . map(compare) . some(check);
+// }
+
+
+
+// console.log('-=-=-=-=--=-=--=-here-=-=-=--=-=-=-');
+
+// console.log(arrayAlreadyHasArray(testArr1)); // 6
+// console.log(arrayAlreadyHasArray(testArr2)); // 7
+// console.log(arrayAlreadyHasArray(testArr3)); // 7
+// console.log(arrayAlreadyHasArray(testArr4)); // false
+// console.log(arrayAlreadyHasArray(testArr5)); // 8
+// console.log(arrayAlreadyHasArray(testArr6)); 
+// console.log(arrayAlreadyHasArray(testArr7)); 
+// console.log(arrayAlreadyHasArray(testArr8));
+// console.log(arrayAlreadyHasArray(testArr9)); 
+// console.log(arrayAlreadyHasArray(testArr10)); 
+// console.log(arrayAlreadyHasArray(testArr11)); 
+// console.log(arrayAlreadyHasArray(testArr12)); 
+// console.log(arrayAlreadyHasArray(testArr13));
+// console.log(arrayAlreadyHasArray(testArr14)); 
+// console.log(arrayAlreadyHasArray(testArr15)); 
+// console.log(passAceHighStraightCheck(testArr16)); // 14
+// console.log('break----=-=-==----------');
+// console.log(fiveInARow(testArr1)); // 6 
+// console.log(fiveInARow(testArr2)); // 7
+// console.log(fiveInARow(testArr3)); // 7
+// console.log(fiveInARow(testArr4)); // false
+// console.log(fiveInARow(testArr5)); // 8
+// console.log(fiveInARow(testArr6)); 
+// console.log(fiveInARow(testArr7)); 
+// console.log(fiveInARow(testArr8));
+// console.log(fiveInARow(testArr9)); 
+// console.log(fiveInARow(testArr10)); 
+// console.log(fiveInARow(testArr11)); 
+// console.log(fiveInARow(testArr12)); 
+// console.log(fiveInARow(testArr13));
+// console.log(fiveInARow(testArr14)); 
+// console.log(fiveInARow(testArr15)); 
+// console.log(passAceHighStraightCheck(testArr16)); // 14
+// console.log('break----=-=-==----------');
+// console.log(arrayAlreadyHasArray(straightArr, testArr1)); // 6
+// console.log(arrayAlreadyHasArray(straightArr, testArr2)); // 7
+// console.log(arrayAlreadyHasArray(straightArr, testArr3)); // 7
+// console.log(arrayAlreadyHasArray(straightArr, testArr4)); // false
+// console.log(arrayAlreadyHasArray(straightArr, testArr5)); // 8
+// console.log(arrayAlreadyHasArray(straightArr, testArr6)); 
+// console.log(arrayAlreadyHasArray(straightArr, testArr7)); 
+// console.log(arrayAlreadyHasArray(straightArr, testArr8));
+// console.log(arrayAlreadyHasArray(straightArr, testArr9)); 
+// console.log(arrayAlreadyHasArray(straightArr, testArr10)); 
+// console.log(arrayAlreadyHasArray(straightArr, testArr11)); 
+// console.log(arrayAlreadyHasArray(straightArr, testArr12)); 
+// console.log(arrayAlreadyHasArray(straightArr, testArr13));
+// console.log(arrayAlreadyHasArray(straightArr, testArr14)); 
+// console.log(arrayAlreadyHasArray(straightArr, testArr15)); 
+// console.log(passAceHighStraightCheck(straightArr, testArr16)); // 14
+
+
+
+// // ****    good version dont edit plz      ****** 
+
+// // function arrayAlreadyHasArray(arr, testArr){
+// //   for(var i = 0; i<arr.length; i++){
+// //       let checker = []
+// //       for(var j = 0; j<arr[i].length; j++){
+// //           if(arr[i][j] === testArr[j]){
+// //               checker.push(true)
+// //           } else {
+// //               checker.push(false)
+// //           }
+// //       }
+// //       if (checker.every(check => check === true)){
+// //           return true
+// //       }
+// //   }
+// //   return false
+// // }
+
+
+
+
+vendors = [{
+  Name: 'Magenic',
+  ID: 'ABC'
+},
+{
+  Name: 'Microsoft',
+  ID: 'DEF'
+} // and so on... 
+];
+
+if (vendors.filter(e => e.Name === 'Magenic').length > 0) {
+  /* vendors contains the element we're looking for */
+}
+
+
+if (vendors.some(e => e.Name === 'Magenic')) {
+  /* vendors contains the element we're looking for */
+
 }
 
 
 
+if (vendors.filter(function(e) { return e.Name === 'Magenic'; }).length > 0) {
+  /* vendors contains the element we're looking for */
 
-
-
-
-console.log(arrayAlreadyHasArray(straightArr, testArr1)); // 6
-console.log(arrayAlreadyHasArray(straightArr, testArr2)); // 7
-console.log(arrayAlreadyHasArray(straightArr, testArr3)); // 7
-console.log(arrayAlreadyHasArray(straightArr, testArr4)); // false
-console.log(arrayAlreadyHasArray(straightArr, testArr5)); // 8
-console.log(arrayAlreadyHasArray(straightArr, testArr6)); // 8
-
+}
