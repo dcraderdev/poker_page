@@ -28,6 +28,16 @@ let testBoard = {
   card5: ['3H'],
 };
 
+
+// used in straightCheck
+let firstFive = [];
+let secondFive = [];
+let thirdFive = [];
+
+// used in shrinkHand, used to remove duplicate cards to check for straight
+let reducedBoardAndHand = [];
+
+
 // array containing all suits to create deck with
 let suits = ['S', 'C', 'H', 'D'];
 
@@ -353,19 +363,26 @@ function pairCheck(list, what) {
 // iterates through all ranks to use in pairCheck
 function passPairCheck(list) {
   let x = 2;
-  for (let i = x; i <= 15; i++) {
+  let counter = 0;
+  tempPairCombinations = [];
+  for (let i = x; i <= 14; i++) {
     if (pairCheck(list, x)) {
-      pairCombinations.push(x);
-      pairArray.push(x);
-      console.log(`yes pair of ${[x]}s`);
+      counter++
+      tempPairCombinations.push(x);
     }
     x++;
-  }
-  return pairCombinations;
+
+// console.log(pairCombinations);
+  } if (counter === 0) {
+    return false
 }
+return tempPairCombinations
+}
+
 
 console.log(`=-=-=-=-passPairCheck-=-=-=-`);
 passPairCheck(boardAndHand);
+console.log(passPairCheck(boardAndHand)); 
 
 // check for triple of same card
 function tripCheck(list, what) {
@@ -385,20 +402,27 @@ function tripCheck(list, what) {
 // if triple of same card, returns card
 function passTripCheck(list) {
   let x = 2;
-  for (let i = x; i <= 15; i++) {
+  let counter = 0
+  tempTripCombinations = [];
+
+  for (let i = x; i <= 14; i++) {
     if (tripCheck(list, x)) {
-      tripCombinations.push(x);
+      tempTripCombinations.push(x);
       tripArray.push(x);
-      console.log(`yes trips of ${[x]}s`);
+      counter++;
     }
     x++;
   }
-  return tripCombinations;
+  if (counter === 0)
+  return false;
+  else return tempTripCombinations
 }
 console.log(`=-=-=-=-passTripCheck-=-=-=-`);
 passTripCheck(boardAndHand);
+console.log(passTripCheck(boardAndHand));
 
 // check for quad of same card
+// list is board and hand, 
 function quadCheck(list, what) {
   let count = 0;
   for (let i = 0; i < list.length; i++) {
@@ -415,20 +439,25 @@ function quadCheck(list, what) {
 1;
 
 // if quad of same card, returns card
+//list is boardandhand
+// x iterates over all card ranks
 function passQuadCheck(list) {
   let x = 2;
-  for (let i = x; i <= 15; i++) {
+  tempQuadCombinations = [];
+
+  for (let i = x; i <= 14; i++) {
     if (quadCheck(list, x)) {
-      quadCombinations.push(x);
-      quadArray.push(x);
-      console.log(`yes quads of ${[x]}s`);
+      tempQuadCombinations.push(x);
+      return tempQuadCombinations
     }
     x++;
   }
-  return quadCombinations;
+  return false;
 }
 console.log(`=-=-=-=-passQuadCheck-=-=-=-`);
 passQuadCheck(boardAndHand);
+console.log(passQuadCheck(boardAndHand));
+
 
 // sort array by number
 function compareNumbers(a, b) {
@@ -455,7 +484,6 @@ let testArr14 = ['8', '9', '10', '11', '12', '13', '14'] //return broadway strai
 let testArr15 = ['9', '10', '11', '12', '13', '14'] //return broadway straight
 let testArr16 = ['9', '10', '11', '12', '13', '14'] //return broadway straight
 
-let reducedBoardAndHand = [];
 
 // creates new boardandHand (reducedBoardAndHand) that does not contain duplicates
 function shrinkBoardAndHand (boardAndHand) {
@@ -470,10 +498,9 @@ function shrinkBoardAndHand (boardAndHand) {
   
 }
 
-console.log(reducedBoardAndHand);
-console.log(boardAndHand);
+console.log(`=-=-=-=-shrinkBoardAndHand-=-=-=-`);
 shrinkBoardAndHand(boardAndHand)
-console.log(reducedBoardAndHand);
+
 
 
 
@@ -488,15 +515,7 @@ console.log(reducedBoardAndHand);
 
 // check if boardAndHand contains 5 cards
 // if so break into 1 groups and check if either group includes a straight
-
-let firstFive = [];
-let secondFive = [];
-let thirdFive = [];
-
-
-
-
-function sliceUp (boardAndHand) {
+function passStraightCheck (boardAndHand) {
   // if 7 long, make 3 slices
   if (boardAndHand.length === 7) {
     firstFive = [boardAndHand.slice(0,5)];
@@ -533,16 +552,14 @@ function sliceUp (boardAndHand) {
 
   
 }
+return false
 }
-console.log(testArr11);
-// sliceUp(reducedBoardAndHand);
-console.log(sliceUp(testArr11)); 
-console.log(sliceUp(testArr14)); 
 
-// sliceUp(testArr1)
-// sliceUp(testArr1)
-// sliceUp(testArr1)
-// sliceUp(testArr1)
+
+console.log(`=-=-=-=-passStraightCheck-=-=-=-`);
+passStraightCheck(reducedBoardAndHand);
+
+console.log(passStraightCheck(reducedBoardAndHand));
 
 
 
