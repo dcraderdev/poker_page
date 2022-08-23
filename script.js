@@ -1806,3 +1806,105 @@ if (calculator(111, "/",   3) ===  37) score++;
 if (calculator( 42, "?", 42) === "Invalid Operator") score++;
 
 console.log("You have scored " + score + "/5 points.");
+
+
+
+
+
+
+
+
+
+
+function suitsOfPlayer (handPlayerNumber){
+  let tempSuits = [ 
+    handPlayerNumber.card1.suit,
+    handPlayerNumber.card2.suit,
+    handPlayerNumber.card3.suit,
+    handPlayerNumber.card4.suit,
+    handPlayerNumber.card5.suit,
+    handPlayerNumber.card6.suit,
+    handPlayerNumber.card7.suit
+  ]
+  return tempSuits
+
+}
+
+
+let practiceHand2 =  {
+  card1: { rank: '7', suit: 'S'},
+  card2: { rank: '13', suit: 'S'},
+  card3: {rank: '2', suit: 'S'},
+  card4: {rank: '3', suit: 'S'},
+  card5: {rank: '14', suit: 'S'},
+  card6: {rank: '4', suit: 'S'},
+  card7: {rank: '6', suit: 'S'}
+};
+
+
+
+// orderedHand(practiceHand2)
+
+console.log(passStraightCheck(practiceHand2));
+console.log('^^here');
+
+
+function passStraightFlushCheck (handPlayerNumber){
+  let hearts = [];
+  let diamonds = [];
+  let spades = [];
+  let clubs = [];
+
+  for(let i = 1; i < 8; i++){
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'H'){hearts.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'D'){diamonds.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'S'){spades.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'C'){clubs.push(handPlayerNumber[`card${[i]}`]['rank'])}
+console.log(spades);
+console.log( passStraightCheck((orderedHand(spades))));
+  } // sort array then passStraightCheck
+  let orderedHearts = orderedHand(hearts);
+  let orderedDiamonds = orderedHand(diamonds);
+  let orderedSpades = orderedHand(spades);
+  let orderedClubs = orderedHand(clubs);
+console.log(orderedSpades);
+console.log(passStraightCheck(orderedSpades));
+  if (hearts.length>4 && (passStraightCheck(orderedHearts) !== false)) {return Math.max(...hearts)}
+  if (diamonds.length>4 && passStraightCheck(orderedDiamonds)) {return Math.max(...diamonds)}
+  if (spades.length>4 && passStraightCheck(orderedSpades)) {return Math.max(...spades) }
+  if (clubs.length>4 && passStraightCheck(orderedClubs)) {return Math.max(...clubs)}
+
+  return `${hearts}, ${diamonds}, ${spades}, ${clubs}`
+}
+
+console.log(passStraightFlushCheck(practiceHand2));
+
+// console.log(getSuits(handPlayer1));
+// console.log(handPlayer1);
+
+
+function pass5HighStraightFlushCheck (handPlayerNumber){
+  let hearts = [];
+  let diamonds = [];
+  let spades = [];
+  let clubs = [];
+
+  for(let i = 1; i < 8; i++){
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'H'){hearts.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'D'){diamonds.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'S'){spades.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'C'){clubs.push(handPlayerNumber[`card${[i]}`]['rank'])}
+
+  } // sort array then passStraightCheck
+  if (hearts.length>4 && (pass5HighStraightCheck(hearts))) {return 5}
+  if (diamonds.length>4 && (pass5HighStraightCheck(diamonds))) {return 5}
+  if (spades.length>4 && (pass5HighStraightCheck(spades))) {return 5}
+  if (clubs.length>4 && (pass5HighStraightCheck(clubs))) {return 5}
+
+  return false
+}
+
+console.log(pass5HighStraightFlushCheck(practiceHand2));
+
+
+
