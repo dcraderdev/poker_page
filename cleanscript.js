@@ -7,9 +7,9 @@ let board = {};
 let burnCards = { card1: {}, card2: {}, card3: {} };
 let boardAndHand = [];
 let cardAndBoard = [];
-let handPlayerOne = {};
-let handPlayerTwo = {};
-let handPlayerThree = {};
+let handPlayer1 = {};
+let handPlayer2 = {};
+let handPlayer3 = {};
 let handPlayerFour = {};
 let handPlayerFive = {};
 let handPlayerSix = {};
@@ -34,8 +34,6 @@ let firstFive = [];
 let secondFive = [];
 let thirdFive = [];
 
-// used in shrinkHand, used to remove duplicate cards to check for straight
-let reducedBoardAndHand = [];
 
 
 // array containing all suits to create deck with
@@ -138,8 +136,17 @@ console.log(`=-=-=-=-=-shuffleDeck-=-=-==-=-`);
 // create deck makes us an un ordered deck
 let testDeck = createDeck();
 shuffleDeck(testDeck);
+console.log(testDeck);
+
 // test check for suffled deck
 // console.log(testDeck);
+
+
+
+
+
+
+
 
 // organize shuffled deck for hash
 
@@ -178,14 +185,62 @@ console.log(`-=-=-=-=-createHashDeck-=-=-=-==-`);
 createHashDeck(testDeck);
 console.log(hashDeck);
 
+
+
+
+
+
+
+// let handPlayer1Arr = [];
+// let handPlayer2Arr = [];
+
+// //create arrays for handPlayer1Arr and handPlayer2Arr
+// function cardsForTwoPlayersArr(deck) {
+//   for(let i = 0; i < 13; i++){
+//     if(i === 1 || i === 3  || i === 6 || i === 7 || i === 8 || i === 10 || i === 12){handPlayer1Arr.push(deck[i])}
+//     if(i === 2 || i === 4  || i === 6 || i === 7 || i === 8 || i === 10 || i === 12){handPlayer2Arr.push(deck[i])}
+
+//   }
+
+// }
+
+// console.log(cardsForTwoPlayersArr(testDeck));
+// console.log(handPlayer1Arr);
+
+
+
+
+
+
+
+// iterate over cards 
+// sort them by suit
+// if arr >= 5 sort them by rank and check for straight
+
+
+
 // cards in form of a Hash
+// assigns cards for two player hand
 function cardsForTwoPLayersHash(deck) {
-  //puts empty hash named card1 inside handPlayerOne
-  handPlayerOne.card1 = deck.card1;
-  handPlayerTwo.card1 = deck.card2;
-  handPlayerOne.card2 = deck.card3;
-  handPlayerTwo.card2 = deck.card4;
+  // player one cards - 1st and 3rd card + flop, turn, river
+  handPlayer1.card1 = deck.card1;
+  handPlayer1.card2 = deck.card3;
+  handPlayer1.card3 = deck.card6;
+  handPlayer1.card4 = deck.card7;
+  handPlayer1.card5 = deck.card8;
+  handPlayer1.card6 = deck.card10;
+  handPlayer1.card7 = deck.card12;
+
+  // player two cards - 2nd and 4th card + flop, turn, river
+  handPlayer2.card1 = deck.card2;
+  handPlayer2.card2 = deck.card4;
+  handPlayer2.card3 = deck.card6;
+  handPlayer2.card4 = deck.card7;
+  handPlayer2.card5 = deck.card8;
+  handPlayer2.card6 = deck.card10;
+  handPlayer2.card7 = deck.card12;
 }
+
 
 console.log(`=-=--=-cardsForTwoPLayersHash-=-==-`);
 // invoke cardsForTwoPlayers
@@ -193,75 +248,177 @@ cardsForTwoPLayersHash(hashDeck);
 
 // test check players hands
 console.log(`hand player one`);
-console.log(handPlayerOne);
+console.log(handPlayer1);
 console.log(`hand player two`);
-console.log(handPlayerTwo);
+console.log(handPlayer2);
 
-// push flop cards into board hash
-function logFlop2Players(deck) {
-  burnCards.card1 = deck.card5;
-  boardFlop.card1 = deck.card6;
-  boardFlop.card2 = deck.card7;
-  boardFlop.card3 = deck.card8;
-  board.card1 = deck.card6;
-  board.card2 = deck.card7;
-  board.card3 = deck.card8;
+
+
+var p = {
+  0: "value1",
+  "b": "value2",
+  key: "value3"
+};
+
+for (var key of Object.keys(p)) {
+  console.log(key + " -> " + p[key])
 }
-console.log(`=-=-==-=-logFlop2Players-=-=-==-`);
-logFlop2Players(hashDeck);
 
-console.log(`Burn Cards`);
-console.log(burnCards);
-console.log(`The Flop`);
-console.log(boardFlop);
 
-// push turn cards into turn hash
-function logTurn2Players(deck) {
-  burnCards.card2 = deck.card9;
-  boardTurn.card1 = deck.card10;
-  board.card4 = deck.card10;
+function getCard (handPlayerNumber){
+
+
+
+
+for (let [key, value] of Object.entries(handPlayerNumber)) {
+  console.log(key, value);
 }
-console.log(`=-=-=-=-logTurn2Players-=-=-==-`);
-logTurn2Players(hashDeck);
-
-console.log(`Burn Card`);
-console.log(burnCards);
-console.log(`The Turn`);
-console.log(boardTurn);
-
-// push turn cards into turn hash
-function logRiver2Players(deck) {
-  burnCards.card3 = deck.card11;
-  boardRiver.card1 = deck.card12;
-  board.card5 = deck.card12;
 }
-console.log(`=-==-=-logRiver2Players-=-===-`);
-logRiver2Players(hashDeck);
 
-console.log(`Burn Card`);
-console.log(burnCards);
-console.log(`The River`);
-console.log(boardRiver);
+console.log(getCard(handPlayer1));
+console.log('-=-=-=-=-=-=-=-=-');
+
+const items = {
+  'card1': {rank:'9', suit:'H'},
+  'first': new Date(),
+  'second': 2,
+  'third': 'test'
+}
+
+
+// for (const rank in items['card1']) {
+//   console.log(rank)
+// }
+
+
+
+// function getSuits (handPlayerNumber){
+//   let hearts = [];
+//   let diamonds = [];
+//   let spades = [];
+//   let clubs = [];
+
+//   for(let i = 1; i < 8; i++){
+//     if (handPlayer1[`card${[i]}`]['suit'] === 'H'){hearts.push(handPlayer1[`card${[i]}`]['rank'])}
+//     if (handPlayer1[`card${[i]}`]['suit'] === 'D'){diamonds.push(handPlayer1[`card${[i]}`]['rank'])}
+//     if (handPlayer1[`card${[i]}`]['suit'] === 'S'){spades.push(handPlayer1[`card${[i]}`]['rank'])}
+//     if (handPlayer1[`card${[i]}`]['suit'] === 'C'){clubs.push(handPlayer1[`card${[i]}`]['rank'])}
+
+//   }
+//   if (hearts.length>4) {}
+//   if (diamonds.length>4) {}
+//   if (spades.length>4) {}
+//   if (clubs.length>4) {}
+
+//   return `${hearts}, ${diamonds}, ${spades}, ${clubs}`
+// }
+
+
+// console.log(getSuits(handPlayer1));
+
+
+
+
+
+
+
+
+Object.entries(handPlayer1['card1']).map(item => {
+  console.log(items['card1'])
+})
+
+console.log('^^here');
+
+Object.entries(items).forEach(item => {
+  console.log(item)
+})
+
+for (const item of Object.entries(items)) {
+  console.log(item)
+}
+
+
+
+
+// // push flop cards into board hash
+// function logFlop2Players(deck) {
+//   burnCards.card1 = deck.card5;
+//   boardFlop.card1 = deck.card6;
+//   boardFlop.card2 = deck.card7;
+//   boardFlop.card3 = deck.card8;
+//   board.card1 = deck.card6;
+//   board.card2 = deck.card7;
+//   board.card3 = deck.card8;
+// }
+// console.log(`=-=-==-=-logFlop2Players-=-=-==-`);
+// logFlop2Players(hashDeck);
+
+// console.log(`Burn Cards`);
+// console.log(burnCards);
+// console.log(`The Flop`);
+// console.log(boardFlop);
+
+// // push turn cards into turn hash
+// function logTurn2Players(deck) {
+//   burnCards.card2 = deck.card9;
+//   boardTurn.card1 = deck.card10;
+//   board.card4 = deck.card10;
+// }
+// console.log(`=-=-=-=-logTurn2Players-=-=-==-`);
+// logTurn2Players(hashDeck);
+
+// console.log(`Burn Card`);
+// console.log(burnCards);
+// console.log(`The Turn`);
+// console.log(boardTurn);
+
+// // push turn cards into turn hash
+// function logRiver2Players(deck) {
+//   burnCards.card3 = deck.card11;
+//   boardRiver.card1 = deck.card12;
+//   board.card5 = deck.card12;
+// }
+// console.log(`=-==-=-logRiver2Players-=-===-`);
+// logRiver2Players(hashDeck);
+
+// console.log(`Burn Card`);
+// console.log(burnCards);
+// console.log(`The River`);
+// console.log(boardRiver);
+
+
+
+
+
+
 
 // array of object values from board and player1 hand
-
-function boardHandFlopTurnRiver(handPlayerOne, board) {
-  boardAndHand = [
-    handPlayerOne.card1.rank,
-    handPlayerOne.card2.rank,
-    board.card1.rank,
-    board.card2.rank,
-    board.card3.rank,
-    board.card4.rank,
-    board.card5.rank,
+function playerCardRanks(handPlayerNumber) {
+ let playerCardRanks = [
+    handPlayerNumber.card1.rank,
+    handPlayerNumber.card2.rank,
+    handPlayerNumber.card3.rank,
+    handPlayerNumber.card4.rank,
+    handPlayerNumber.card5.rank,
+    handPlayerNumber.card6.rank,
+    handPlayerNumber.card7.rank,
+   
 
   ];
-  return boardAndHand;
+  return playerCardRanks;
 }
 
-console.log(board);
-console.log(`=-=-=--=-=- boardHandFlopTurnRiver -=-=-=-`);
-boardHandFlopTurnRiver(handPlayerOne, board);
+// console.log(board);
+// console.log(`=-=-=--=-=- boardHandFlopTurnRiver -=-=-=-`);
+
+let handPlayer1Ranks = playerCardRanks(handPlayer1);
+let handPlayer2Ranks = playerCardRanks(handPlayer2);
+
+
+
+console.log(playerCardRanks(handPlayer1));
+
+
 
 
 let pairCombinations = [];
@@ -273,8 +430,68 @@ let quadArray = [];
 
 
 // sort array by number
+function compareNumbers(a, b) {
+  return a - b;
+}
+
+
+let practiceHand =  {
+  card1: { rank: '9', suit: 'S'},
+  card2: { rank: '10', suit: 'S'},
+  card3: {rank: '2', suit: 'S'},
+  card4: {rank: '3', suit: 'S'},
+  card5: {rank: '6', suit: 'S'},
+  card6: {rank: '4', suit: 'S'},
+  card7: {rank: '5', suit: 'S'}
+};
+
+
+
+
+
+// // cards in playerhand1
+// function sortHand(handPlayerNumber) {
+
+//   let sortable = [];
+// for(let card=1;card<=7;i++){
+// {for (let card in handPlayerNumber) {
+//     sortable.push([card, handPlayerNumber[card[i]]]);
+//     console.log(card);
+// }}
+
+// sortable.sort(function(a, b) {
+//     return a[1] - b[1];
+// })}
+// return sortable
+// };
+
+
+// console.log(sortHand(handPlayer1));
+
+
+
+
+// [['str', {object}]['str', {object}]]
+
+
+
+// let sortable = [];
+// for (var vehicle in maxSpeed) {
+//     sortable.push([vehicle, maxSpeed[vehicle]]);
+// }
+
+// sortable.sort(function(a, b) {
+//     return a[1] - b[1];
+// });
+
+
+
+
+
+// sort array of ranks by number
 // moves aces to back
 function orderedHand(hand) {
+
   let orderedHand = hand.sort(compareNumbers);
 
   if (orderedHand[orderedHand.length - 1] === '14') {
@@ -296,52 +513,22 @@ function orderedHand(hand) {
   return orderedHand;
 }
 
-console.log(boardAndHand);
-
-console.log(`=-=-=-orderedHand(boardAndHand)-=-=-`);
-orderedHand(boardAndHand);
-
-console.log(boardAndHand);
+console.log(orderedHand(playerCardRanks(practiceHand)));
 
 
-// check if boardAndHand contains 7 cards
-// if so break into 3 groups and check if either group includes a straight
+console.log(handPlayer1Ranks);
 
-// check if boardAndHand contains 6 cards
-// if so break into 2 groups and check if either group includes a straight
+console.log(`=-=-=-orderedHand(handPlayerNumber)-=-=-`);+
 
-// check if boardAndHand contains 5 cards
-// if so break into 1 groups and check if either group includes a straight
-
-// let firstFive = [];
-// let secondFive = [];
-// let thirdFive = [];
+console.log(handPlayer1);
+console.log(handPlayer2);
 
 
-// function sliceUp (boardAndHand) {
-//   if (boardAndHand.length === 7) {
-//     firstFive = [boardAndHand.slice(0,5)];
-//     secondFive = [boardAndHand.slice(1,6)];
-//     thirdFive = [boardAndHand.slice(2,7)];
-//   }
-//   if (boardAndHand.length === 6) {
-//     firstFive = [boardAndHand.slice(0,5)];
-//     secondFive = [boardAndHand.slice(1,6)];
-//   }
-//   if (boardAndHand.length === 5) {
-//     firstFive = [boardAndHand.slice(0,5)];
-//   }
-//   if (boardAndHand.length === 7) {
-//     return firstFive, secondFive, thirdFive
-//   }
-//   if (boardAndHand.length === 6) {
-//     return firstFive, secondFive
-//   }
-//   if (boardAndHand.length === 5) {
-//     return firstFive
-// }
-// }
 
+let orderedHandPlayer1Ranks = orderedHand(handPlayer1Ranks);
+console.log(handPlayer1Ranks);
+let orderedHandPlayer2Ranks = orderedHand(handPlayer2Ranks);
+console.log(handPlayer2Ranks);
 
 
 
@@ -399,7 +586,7 @@ function tripCheck(list, what) {
   }
 }
 
-// if triple of same card, returns card
+// takes in array, if triple of same card, returns card
 function passTripCheck(list) {
   let x = 2;
   let counter = 0
@@ -418,8 +605,8 @@ function passTripCheck(list) {
   else return tempTripCombinations
 }
 console.log(`=-=-=-=-passTripCheck-=-=-=-`);
-passTripCheck(boardAndHand);
-console.log(passTripCheck(boardAndHand));
+passTripCheck(handPlayer1);
+console.log(passTripCheck(handPlayer1));
 
 // check for quad of same card
 // list is board and hand, 
@@ -455,14 +642,14 @@ function passQuadCheck(list) {
   return false;
 }
 console.log(`=-=-=-=-passQuadCheck-=-=-=-`);
-passQuadCheck(boardAndHand);
-console.log(passQuadCheck(boardAndHand));
+passQuadCheck(handPlayer1);
+console.log(passQuadCheck(handPlayer1));
 
 
-// sort array by number
-function compareNumbers(a, b) {
-  return a - b;
-}
+// // sort array by number
+// function compareNumbers(a, b) {
+//   return a - b;
+// }
 
 
 
@@ -487,6 +674,7 @@ let testArr16 = ['9', '10', '11', '12', '13', '14'] //return broadway straight
 
 // creates new boardandHand (reducedBoardAndHand) that does not contain duplicates
 function shrinkBoardAndHand (boardAndHand) {
+  let reducedBoardAndHand = [];
   for(let i = 0; i < boardAndHand.length; i++) {
     if (i === 0) {
       reducedBoardAndHand.push(boardAndHand[i]);
@@ -495,11 +683,16 @@ function shrinkBoardAndHand (boardAndHand) {
       reducedBoardAndHand.push(boardAndHand[i]);
     } 
     }
-  
+  return reducedBoardAndHand
 }
 
 console.log(`=-=-=-=-shrinkBoardAndHand-=-=-=-`);
-shrinkBoardAndHand(boardAndHand)
+
+
+
+let reducedHandPlayer1 = shrinkBoardAndHand(orderedHandPlayer1Ranks)
+let reducedHandPlayer2 = shrinkBoardAndHand(orderedHandPlayer2Ranks)
+
 
 
 
@@ -515,39 +708,42 @@ shrinkBoardAndHand(boardAndHand)
 
 // check if boardAndHand contains 5 cards
 // if so break into 1 groups and check if either group includes a straight
-function passStraightCheck (boardAndHand) {
+function passStraightCheck (reducedHandPlayerNumber) {
   // if 7 long, make 3 slices
   if (boardAndHand.length === 7) {
-    firstFive = [boardAndHand.slice(0,5)];
-    secondFive = [boardAndHand.slice(1,6)];
-    thirdFive = [boardAndHand.slice(2,7)];
+    firstFive = [reducedHandPlayerNumber.slice(0,5)];
+    secondFive = [reducedHandPlayerNumber.slice(1,6)];
+    thirdFive = [reducedHandPlayerNumber.slice(2,7)];
   }
   // if 6 long, make 2 slices
-  if (boardAndHand.length === 6) {
-    firstFive = [boardAndHand.slice(0,5)];
-    secondFive = [boardAndHand.slice(1,6)];
+  if (reducedHandPlayerNumber.length === 6) {
+    firstFive = [reducedHandPlayerNumber.slice(0,5)];
+    secondFive = [reducedHandPlayerNumber.slice(1,6)];
   }
   // if 5 long, make 1 slice
-  if (boardAndHand.length === 5) {
-    firstFive = [boardAndHand.slice(0,5)];
+  if (reducedHandPlayerNumber.length === 5) {
+    firstFive = [reducedHandPlayerNumber.slice(0,5)];
   }
+  // console.log(firstFive);
+  // console.log(secondFive);
+  // console.log(thirdFive);
   // if 7 long, check 3 slices
-  if (boardAndHand.length === 7) {
+  if (reducedHandPlayerNumber.length === 7) {
     if (`${thirdFive}` in straightHash) { return straightHash[`${thirdFive}`]};
     if (`${secondFive}` in straightHash) { return straightHash[`${secondFive}`]};
    if (`${firstFive}` in straightHash) { return straightHash[`${firstFive}`]};
   }
   // if 6 long, check 2 slices
 
-  if (boardAndHand.length === 6) {
-    if (`${secondFive}` in straightHash) { return straistraightHash[`${secondFive}`]};
+  if (reducedHandPlayerNumber.length === 6) {
+    if (`${secondFive}` in straightHash) { return straightHash[`${secondFive}`]};
    if (`${firstFive}` in straightHash) { return straightHash[`${firstFive}`]};
 
   
   }
-  // if 5 long, check 2 slices
+  // if 5 long, check 2 slices 
 
-  if (boardAndHand.length === 5) {
+  if (reducedHandPlayerNumber.length === 5) {
    if (`${firstFive}` in straightHash) { return straightHash[`${firstFive}`]};
 
   
@@ -555,16 +751,20 @@ function passStraightCheck (boardAndHand) {
 return false
 }
 
-
 console.log(`=-=-=-=-passStraightCheck-=-=-=-`);
-passStraightCheck(reducedBoardAndHand);
-
-console.log(passStraightCheck(reducedBoardAndHand));
-
+console.log(reducedHandPlayer1);
+console.log(passStraightCheck(reducedHandPlayer1));
 
 
+// console.log(straightHash);
+// console.log(passStraightCheck(['2','3','4','5','6']));
+
+// console.log(passStraightCheck(reducedBoardAndHand));
 
 
+
+
+// takes in entire orderedBoardAndHand and returns true if contains 5 high straight
 function pass5HighStraightCheck(boardAndHand) {
   let lowFive2 = '2,3,4,5,14'
   let lowFive = ['2','3','4','5','14']
@@ -583,9 +783,478 @@ function pass5HighStraightCheck(boardAndHand) {
 }
 
 
-console.log(pass5HighStraightCheck(['2','3','4','5','14']));
-console.log(pass5HighStraightCheck(['2','3','4','5','6','14']));
-console.log(pass5HighStraightCheck(['2','3','4','5','6']));
+// console.log(pass5HighStraightCheck(['2','3','4','5','14']));
+// console.log(pass5HighStraightCheck(['2','3','4','5','6','14']));
+// console.log(pass5HighStraightCheck(['2','3','4','5','6']));
+
+
+function playerSuits(handPlayerNumber) {
+  // check suits of all cards in hand
+  let tempSuits2 = [ 
+    handPlayerNumber.card1.suit,
+    handPlayerNumber.card2.suit,
+    handPlayerNumber.card3.suit,
+    handPlayerNumber.card4.suit,
+    handPlayerNumber.card5.suit,
+    handPlayerNumber.card6.suit,
+    handPlayerNumber.card7.suit
+  ]
+  return tempSuits2
+}
+
+
+
+
+// let practiceHand =  {
+//   card1: { rank: '10', suit: 'S'},
+//   card2: { rank: '10', suit: 'S'},
+//   card3: {rank: '2', suit: 'S'},
+//   card4: {rank: '3', suit: 'S'},
+//   card5: {rank: '2', suit: 'S'},
+//   card6: {rank: '4', suit: 'S'},
+//   card7: {rank: '5', suit: 'C'}
+// };
+
+
+function suitsOfPlayer (handPlayerNumber){
+  let tempSuits = [ 
+    handPlayerNumber.card1.suit,
+    handPlayerNumber.card2.suit,
+    handPlayerNumber.card3.suit,
+    handPlayerNumber.card4.suit,
+    handPlayerNumber.card5.suit,
+    handPlayerNumber.card6.suit,
+    handPlayerNumber.card7.suit
+  ]
+  return tempSuits
+
+}
+
+
+let practiceHand2 =  {
+  card1: { rank: '9', suit: 'H'},
+  card2: { rank: '7', suit: 'S'},
+  card3: {rank: '2', suit: 'S'},
+  card4: {rank: '3', suit: 'S'},
+  card5: {rank: '6', suit: 'S'},
+  card6: {rank: '4', suit: 'S'},
+  card7: {rank: '5', suit: 'S'}
+};
+
+
+
+function passStraightFlushCheck (handPlayerNumber){
+  let hearts = [];
+  let diamonds = [];
+  let spades = [];
+  let clubs = [];
+
+  for(let i = 1; i < 8; i++){
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'H'){hearts.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'D'){diamonds.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'S'){spades.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'C'){clubs.push(handPlayerNumber[`card${[i]}`]['rank'])}
+
+  } // sort array then passStraightCheck
+  if (hearts.length>4) {return passStraightCheck(orderedHand(hearts))}
+  if (diamonds.length>4) {return passStraightCheck(orderedHand(diamonds))}
+  if (spades.length>4) {return passStraightCheck(orderedHand(spades))}
+  if (clubs.length>4) {return passStraightCheck(orderedHand(clubs))}
+
+  return `${hearts}, ${diamonds}, ${spades}, ${clubs}`
+}
+
+console.log(passStraightFlushCheck(practiceHand2));
+
+// console.log(getSuits(handPlayer1));
+// console.log(handPlayer1);
+
+
+
+
+
+
+
+
+// **** good flush check dont edit ******
+
+// // checks for 5 of same suit and returns highest card within that suit range
+// function passFlushCheck(handPlayerNumber) {
+//   // check suits of all cards in hand
+//   let tempSuits = [ 
+//     handPlayerNumber.card1.suit,
+//     handPlayerNumber.card2.suit,
+//     handPlayerNumber.card3.suit,
+//     handPlayerNumber.card4.suit,
+//     handPlayerNumber.card5.suit,
+//     handPlayerNumber.card6.suit,
+//     handPlayerNumber.card7.suit
+//   ]
+
+//   let tempRanks = [ 
+//     handPlayerNumber.card1.rank,
+//     handPlayerNumber.card2.rank,
+//     handPlayerNumber.card3.rank,
+//     handPlayerNumber.card4.rank,
+//     handPlayerNumber.card5.rank,
+//     handPlayerNumber.card6.rank,
+//     handPlayerNumber.card7.rank
+//   ]
+
+
+//   //check for 5+ of same suit
+//   let tempSpadesRanks = [];
+//   let tempDiamondsRanks = [];
+//   let tempClubsRanks = [];
+//   let tempHeartsRanks = [];
+//   let countSpades = 0;
+//   let countDiamonds = 0;
+//   let countClubs = 0;
+//   let countHearts = 0;
+
+
+
+//   for(let i = 0; i <= tempSuits.length; i++){
+
+//     // console.log(tempSuits);
+//     // console.log(tempRanks);
+
+//     if (tempSuits[i] === 'S' ){
+//       tempSpadesRanks.push(tempRanks[i])
+//       countSpades++
+//     }
+//     if (tempSuits[i] === 'D' ){
+//       tempDiamondsRanks.push(tempRanks[i])
+//       countDiamonds++
+//     }
+//     if (tempSuits[i] === 'C' ){
+//       tempClubsRanks.push(tempRanks[i])
+//       countClubs++
+//     }
+//     if (tempSuits[i] === 'H' ){
+//       tempHeartsRanks.push(tempRanks[i])
+//       countHearts++
+//     }
+
+
+//   }
+//   if (countSpades > 4){return Math.max(...tempSpadesRanks)}
+//   if (countDiamonds > 4){return Math.max(...tempDiamondsRanks)}
+//   if (countClubs > 4){return Math.max(...tempClubsRanks)}
+//   if (countHearts > 4){return Math.max(...tempHeartsRanks)}
+
+// //   if true, return true and highest card rank with that suit
+// //   if false return false
+//     return false
+// }
+
+
+// console.log(`-=-=-=-passFlushCheck-=-=-=`);
+// console.log(passFlushCheck(handPlayer1));
+// console.log(passFlushCheck(handPlayer2));
+// console.log(passFlushCheck(practiceHand));
+
+
+
+
+
+
+
+
+// iterate over each handPlayerNumber key and check for straight
+// if straight check if all 5 are same suit
+
+// iterate over each handPlayerNumber value and check for flush
+
+
+// function passStraightFlushCheck (handPlayerNumber) {
+//   let tempFirstFive = [];
+//   let tempSecondFive = [];
+//   let tempThirdFive = [];
+
+//   straightHighCard = [];
+
+//   // console.log(handPlayerNumber);
+//   // get temp ranks for hand being played
+//   let tempRanks = playerCardRanks(handPlayerNumber)
+//   console.log(tempRanks);
+//   // put ranks in order for hand being played
+//   let tempOrdered = orderedHand(tempRanks)
+//   console.log(tempOrdered);
+
+//   // remove duplicates for hand being played
+//   let tempReduce = shrinkBoardAndHand(tempOrdered)
+//   console.log(tempReduce);
+
+// // if 7 long, make 3 slices
+// if (boardAndHand.length === 7) {
+//   firstFive = [tempReduce.slice(0,5)];
+//   secondFive = [tempReduce.slice(1,6)];
+//   thirdFive = [tempReduce.slice(2,7)];
+// }
+// // if 6 long, make 2 slices
+// if (tempReduce.length === 6) {
+//   firstFive = [tempReduce.slice(0,5)];
+//   secondFive = [tempReduce.slice(1,6)];
+// }
+// // if 5 long, make 1 slice
+// if (tempReduce.length === 5) {
+//   firstFive = [tempReduce.slice(0,5)];
+// }
+// console.log(firstFive);
+// console.log(secondFive);
+// console.log(thirdFive);
+// // if 7 long, check 3 slices
+// if (tempReduce.length === 7) {
+//   if (`${thirdFive}` in straightHash) { return straightHash[`${thirdFive}`]};
+//   if (`${secondFive}` in straightHash) { return straightHash[`${secondFive}`]};
+//  if (`${firstFive}` in straightHash) { return straightHash[`${firstFive}`]};
+// }
+// // if 6 long, check 2 slices
+
+// if (tempReduce.length === 6) {
+//   if (`${secondFive}` in straightHash) { return straistraightHash[`${secondFive}`]};
+//  if (`${firstFive}` in straightHash) { return straightHash[`${firstFive}`]};
+
+
+// }
+// // if 5 long, check 2 slices 
+
+// if (tempReduce.length === 5) {
+//  if (`${firstFive}` in straightHash) { return straightHash[`${firstFive}`]};
+// }
+
+
+
+
+
+//   //check if all 5 cards are same suit
+
+//   // check if handPLayerNumber has flush
+
+
+
+
+
+
+// return false
+// }
+
+// // console.log(passStraightFlushCheck(handPlayer1));
+// console.log(passStraightFlushCheck(practiceHand));
+
+
+
+
+
+
+
+// // checks for 5 of same suit and returns highest card within that suit range
+// function passFlushCheck(handPlayerNumber) {
+
+//   // take entire hand, chop into 3 slices
+//   // check for straight
+//   // check for 5 card flush
+//   // if both then straight flush
+
+
+//   // check suits of all cards in hand
+//   let tempSuits = [ 
+//     handPlayerNumber.card1.suit,
+//     handPlayerNumber.card2.suit,
+//     handPlayerNumber.card3.suit,
+//     handPlayerNumber.card4.suit,
+//     handPlayerNumber.card5.suit,
+//     handPlayerNumber.card6.suit,
+//     handPlayerNumber.card7.suit
+//   ]
+
+//   let tempRanks = [ 
+//     handPlayerNumber.card1.rank,
+//     handPlayerNumber.card2.rank,
+//     handPlayerNumber.card3.rank,
+//     handPlayerNumber.card4.rank,
+//     handPlayerNumber.card5.rank,
+//     handPlayerNumber.card6.rank,
+//     handPlayerNumber.card7.rank
+//   ]
+
+
+//   //check for 5+ of same suit
+//   let tempSpadesRanks = [];
+//   let tempDiamondsRanks = [];
+//   let tempClubsRanks = [];
+//   let tempHeartsRanks = [];
+//   let countSpades = 0;
+//   let countDiamonds = 0;
+//   let countClubs = 0;
+//   let countHearts = 0;
+
+
+
+//   for(let i = 0; i <= tempSuits.length; i++){
+
+//     // console.log(tempSuits);
+//     // console.log(tempRanks);
+
+//     if (tempSuits[i] === 'S' ){
+//       tempSpadesRanks.push(tempRanks[i])
+//       countSpades++
+//     }
+//     if (tempSuits[i] === 'D' ){
+//       tempDiamondsRanks.push(tempRanks[i])
+//       countDiamonds++
+//     }
+//     if (tempSuits[i] === 'C' ){
+//       tempClubsRanks.push(tempRanks[i])
+//       countClubs++
+//     }
+//     if (tempSuits[i] === 'H' ){
+//       tempHeartsRanks.push(tempRanks[i])
+//       countHearts++
+//     }
+
+
+//   }
+//   if (countSpades > 4){return Math.max(...tempSpadesRanks)}
+//   if (countDiamonds > 4){return Math.max(...tempDiamondsRanks)}
+//   if (countClubs > 4){return Math.max(...tempClubsRanks)}
+//   if (countHearts > 4){return Math.max(...tempHeartsRanks)}
+
+// //   if true, return true and highest card rank with that suit
+// //   if false return false
+//     return false
+// }
+
+
+console.log(`-=-=-=-passFlushCheck-=-=-=`);
+// console.log(passFlushCheck(handPlayer1));
+// console.log(passFlushCheck(handPlayer2));
+// console.log(passFlushCheck(practiceHand));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let arr = ['1','2','3','5','4','8','9']
+
+// function arrIsStraight (arr) {
+
+
+// }
+
+// // console.log(arrIsStraight(arr));
+
+
+// practice hand array
+// ['2', '2', '3', '4', '5', '10', '10']
+
+
+
+// check if 5 cards are in a row
+// check if those cards have same suit
+
+
+
+
+
+
+
+// function passStraightFlushCheck (handPlayerNumber) {
+//   // check suits of all cards in hand
+//   let tempSuits = [ 
+//     handPlayerNumber.card1.suit,
+//     handPlayerNumber.card2.suit,
+//     handPlayerNumber.card3.suit,
+//     handPlayerNumber.card4.suit,
+//     handPlayerNumber.card5.suit,
+//     handPlayerNumber.card6.suit,
+//     handPlayerNumber.card7.suit
+//   ]
+
+//   let tempRanks = [ 
+//     handPlayerNumber.card1.rank,
+//     handPlayerNumber.card2.rank,
+//     handPlayerNumber.card3.rank,
+//     handPlayerNumber.card4.rank,
+//     handPlayerNumber.card5.rank,
+//     handPlayerNumber.card6.rank,
+//     handPlayerNumber.card7.rank
+//   ]
+
+
+//   //check for 5+ of same suit
+//   let tempSpadesRanks = [];
+//   let tempDiamondsRanks = [];
+//   let tempClubsRanks = [];
+//   let tempHeartsRanks = [];
+//   let countSpades = 0;
+//   let countDiamonds = 0;
+//   let countClubs = 0;
+//   let countHearts = 0;
+
+
+
+//   for(let i = 0; i <= tempSuits.length; i++){
+
+//     // console.log(tempSuits);
+//     // console.log(tempRanks);
+
+//     if (tempSuits[i] === 'S' ){
+//       tempSpadesRanks.push(tempRanks[i])
+//       countSpades++
+//     }
+//     if (tempSuits[i] === 'D' ){
+//       tempDiamondsRanks.push(tempRanks[i])
+//       countDiamonds++
+//     }
+//     if (tempSuits[i] === 'C' ){
+//       tempClubsRanks.push(tempRanks[i])
+//       countClubs++
+//     }
+//     if (tempSuits[i] === 'H' ){
+//       tempHeartsRanks.push(tempRanks[i])
+//       countHearts++
+//     }
+
+
+//   }
+//   if (countSpades > 4 && tempSpadesRanks.passStraightCheck()){return Math.max(...tempSpadesRanks)}
+//   if (countDiamonds > 4){return Math.max(...tempDiamondsRanks)}
+//   if (countClubs > 4){return Math.max(...tempClubsRanks)}
+//   if (countHearts > 4){return Math.max(...tempHeartsRanks)}
+
+// //   if true, return true and highest card rank with that suit
+// //   if false return false
+//     return false
+// }
+
+
+
+
+
+
+
+
 
 
 
@@ -605,564 +1274,24 @@ console.log(pass5HighStraightCheck(['2','3','4','5','6']));
 
 
 
-
-// const arr = ['a', 'b', 'c', 'd', 'e'];
-// const iterator = arr.values();
-
-// for (const letter of iterator) {
-//   console.log(letter);
-// } //"a" "b" "c" "d" "e"
-// for (const letter of iterator) {
-//   console.log(letter);
-// } // undefined
-
-
-// console.log(iterator);        // Array Iterator {  }
-// iterator.next().value;        // "a"
-// arr[1] = 'n';
-// iterator.next().value;        // "n"
-
-
-// // let testArr1 = ['2', '3', '4', '5', '6'];
-// let iteration = testArr1.values();
-
-// console.log(iteration);
-
-// for ( let x of iteration) {
-  
-// }
-
-
-
-
-
-
-
 console.log('^^^^^');
 
 
 
 
-// let testArr1 = ['2', '3', '4', '5', '6'];
 
+// console.log(Math.max(1, 3, 2));
+// // expected output: 3
 
-// function checkStraight (arr) {
-//   let tempArr = [];
-//   let count = 1;
-//   for(let i = 0; i < arr.length; i++){
-//     // console.log(((parseInt(arr[i])) +1));
-//     // console.log(((parseInt  (arr[i+1])  )));
-//     // console.log((((parseInt  (arr[-2])  )) + 1));
-//     // console.log(arr[1]);
-//     // if i < length of arr and current index in array +1 subtracted from next index in array = 0 , push current array index and +count
-//    if ( arr.length -1 && ((parseInt(arr[i])) +1)  - ((parseInt  (arr[i+1])  )) === 0 ) {tempArr.push(arr[i]) && count++}
-//     // if last index - index beofre that +1 = 0
-//    else if (  count === 5  && ((parseInt(arr[arr.length -1])) )  - (((parseInt  (arr[arr.length-2])  )) + 1) === 0 ) {tempArr.push(arr[i]) && count++}
-//   }
-//   if (count > 4) 
-//   return tempArr.pop();
-//   else
-//   return false
-// }
+// console.log(Math.max(-1, -3, -2));
+// // expected output: -1
 
+// const array1 = [1, 3, 2];
 
+// console.log(Math.max(...array1));
+// // expected output: 3
 
-// last index - 1 = last idex before that
-// console.log(arr[i]);
-// console.log(tempArr);
-// console.log(count);
 
+// console.log(Math.max(array1));
 
-// function forLoop (arr) {
-//   for(let i = arr.length -1; i )
-// }
 
-
-
-
-
-
-
-
-
-// function checkStraight (arr) {
-//   for(let i = 0; i < arr.length - 1; i++){}
-// }
-
-
-
-
-
-
-// function checkStraight (arr) {
-//   let tempArr = [];
-//   let count = 1;
-//   for(let i = arr.length - 1; i >= 0; i--){
-//     console.log(`arr @index ${i} is ${arr[i]}`);
-//     console.log(`count is ${count}`);
-//     console.log(((parseInt(arr[i])) -1));
-//     console.log('^ parsed int 1');
-//     console.log(((parseInt(arr[i-1]))));
-//     console.log('^ parsed int 2');
-//     // last index in array - 1 subtracted from index beofre in array = 0 , push current array index and +count
-//    if (((parseInt(arr[i])) -1)  - ((parseInt  (arr[i-1])  )) === 0 ) {tempArr.unshift(arr[i]) && count++}
-//    console.log(`count is now ${count}`);
-//     console.log(` tempArr is ${tempArr}`);
-
-//    if (i === 0 &&((parseInt(arr[i])) +1)  - ((parseInt  (arr[i+1])  )) === 0 ) {tempArr.unshift(arr[i]) && count++}
-//   //  console.log(`${tempArr}`);
-
-//     // if last index - index beofre that +1 = 0
-//   //  else if (  count === 6  && ((parseInt(arr[arr.length -1])) )  - (((parseInt  (arr[arr.length-2])  )) + 1) === 0 ) {tempArr.push(arr[i]) && count++}
- 
-// } 
-
-//   if (count > 4) {
-//   console.log(`${tempArr}`);
-  
-//   return tempArr.pop();
-// }
-//   else if (count < 4) {
-//   return false
-//   }
-// }
-
-// // let testArr1 = ['2', '3', '4', '5', '6'];
-//  let testArr100 = ['2', '3', '4', '5', '6', '13', '14'];
-//  let testArr200 = ['2', '3', '10', '11', '12', '13', '14'];
-
-
-// // console.log(checkStraight(testArr1));
-// console.log(checkStraight(testArr100));
-// // console.log(checkStraight(testArr200));
-// checkStraight(testArr1)
-// console.log(checkStraight(testArr5));
-// console.log(checkStraight(testArr14));
-// console.log(checkStraight(testArr3));
-// console.log(checkStraight(reducedBoardAndHand));
-
-
-
-
-
-// **** good ish one dont edit ******
-// function checkStraight (arr) {
-//   let tempArr = [];
-//   let count = 1;
-//   for(let i = 0; i < arr.length; i++){
-//     // console.log(((parseInt(arr[i])) +1));
-//     // console.log(((parseInt  (arr[i+1])  )));
-//     // console.log((((parseInt  (arr[-2])  )) + 1));
-//     // console.log(arr[1]);
-//     // if i < length of arr and current index in array +1 subtracted from next index in array = 0 , push current array index and +count
-//    if ( arr.length -1 && ((parseInt(arr[i])) +1)  - ((parseInt  (arr[i+1])  )) === 0 ) {tempArr.push(arr[i]) && count++}
-//     // if last index - index beofre that +1 = 0
-//    else if (((parseInt(arr[arr.length -1])) )  - (((parseInt  (arr[arr.length-2])  )) + 1) === 0 ) {tempArr.push(arr[i]) && count++}
-//   }
-//   if (count > 4) 
-//   return tempArr.pop();
-//   else
-//   return false
-// }
-
-
-
-
-;
-
-
-
-
-
-
-
-
-
-
-// function newPLayer(first, last, chips, status) {
-//   this.firstName = first;
-//   this.lastName = last;
-//   this.chips = 0;
-//   this.status = '';
-// }
-
-// let pokerPlayer = new newPLayer("John", "Doe", 10000, "new");
-// let riverRat25 = new newPLayer("Sally", "Rally", 10000, "new");
-
-
-// console.log(pokerPlayer);
-// console.log(riverRat25);
-// console.log();
-
-
-
-
-// function reduceBoardAndHand (boardAndHand) {
-//   let length = boardAndHand.length
-//   for(let i = 0; i < boardAndHand.length; i++) {
-//     if (i === 0) {
-//       reducedBoardAndHand.push(boardAndHand[i]);
-//       // console.log(boardAndHand[i]);
-//       } else if (reducedBoardAndHand.length<5 && !(reducedBoardAndHand.includes(boardAndHand[i]))) {
-//       reducedBoardAndHand.push(boardAndHand[i]);
-
-//     } else if (biggerThanLast(boardAndHand[i], boardAndHand[1+1])) { 
-    
-//     }
-      
-//     }
-    // if (!boardAndHand.inlcudes(boardAndHand[i])){
-    //   reducedBoardAndHand.push(boardAndHand[i])
-    // }
-  
-// }
-
-
-// function reduceBoardAndHand (boardAndHand) {
-//   for(let i = 0; i < boardAndHand.length; i++){
-
-//   }
-// }
-
-
-
-
-// if ele@index = ele@last index +1
-// pop first ele and push new ele
-// 
-// 
-
-// console.log(testArr8);
-// reduceBoardAndHand(testArr8)
-// // reduceBoardAndHand(boardAndHand)
-// // reduceBoardAndHand(boardAndHand)
-// console.log(reducedBoardAndHand);
-
-
-
-
-// let modifiedArr = arr.map(function(element){
-//   return element *3;
-// });
-
-function countVowels(word) {
-  let vowels = 'aeiou';
-  let count = 0;
-
-  word.split('').map(function (x) {
-    if (vowels.includes(x)) {
-      count++;
-    }
-  });
-
-  return count;
-}
-
-// function stringChanger(word, operation) {
-//   if (operation === 'capitalize') {}
-//   if (operation === 'uppercase') {}
-//   if (operation === 'double') {}
-//   if (operation === 'reverse') {}
-//   if (operation === 'unknown') {}
-// }
-
-// console.log();
-
-// function stringChanger(word, operation) {
-//    if (operation === 'capitalize') {
-//       return word[0].toUpperCase()+word.slice(1);
-//    }
-//    if (operation === 'uppercase') {
-//     return word.toUpperCase();
-//    }
-//    if (operation === 'double') {
-//     return word+word;
-//    }
-//    if (operation === 'reverse') {
-//     return word.split('').reverse().join('');
-//    }
-//    if (operation === 'unknown') {
-//     return word;
-//    }
-// }
-
-// console.log(stringChanger("foo", "capitalize"));
-// console.log(stringChanger("foo", "uppercase"));
-// console.log(stringChanger("foo", "double"));
-// console.log(stringChanger("foo", "reverse"));
-// console.log(stringChanger("foo", "unknown"));
-
-// // TESTS
-// // DO NOT MODIFY ANYTHING BELOW THIS LINE
-
-// let score = 0;
-
-// if (stringChanger("foo", "capitalize") === "Foo") score++;
-// if (stringChanger("foo", "uppercase") === "FOO") score++;
-// if (stringChanger("foo", "double") === "foofoo") score++;
-// if (stringChanger("foo", "reverse") === "oof") score++;
-
-// if (stringChanger("foo", "unknown") === "foo") score++;
-
-function exists(array2D, list2) {
-  let checker = 0;
-  for (var i = 0; i < array2D.length; i++) {
-    for (var j = 0; j < list2.length; j++) {
-      if (array2D[i][j] === list2[j]) {
-        checker++;
-      }
-    }
-  }
-  if (checker === 5) {
-    return `${true}, straight`;
-  }
-  return false;
-}
-
-// testArr1 = ['2', '3', '4', '5', '6']
-// testArr2 = ['3', '4', '5', '6', '7']
-// testArr3 = ['3', '4', '5', '6', '7', '8', '9']
-// testArr4 = ['2', '3', '4', '5', '7']
-
-// function fullBoardStraightCheck (straightArr, boardAndHand) {
-//   for(let i = 0; i < straightArr.length; i++){
-//     let checker = 0
-//     for(var j = 2; j<7; j++){
-//       console.log(straightArr[i]);
-//       console.log(boardAndHand[j]);
-//         if(straightArr[i] === boardAndHand[j]){
-//             checker++
-//         } else {
-//             checker.push(false)
-//         }
-//     }
-//     if (checker.every(check => check === 5)){
-//         return boardAndHand[boardAndHand.length - 1]
-//     }
-//   }
-//     return false
-//   }
-
-//   }
-//   for(let i = 1; i < 6; i++){
-
-//   }
-//   for(let i = 0; i < 5; i++){
-
-//   }
-
-// }
-
-// console.log(fullBoardStraightCheck(testArr3));
-
-// testArr1 = ['2', '3', '4', '5', '6']
-// testArr2 = ['3', '4', '5', '6', '7']
-// testArr3 = ['3', '4', '5', '6', '7', '4', '9']
-// testArr4 = ['2', '3', '4', '5', '7']
-
-// function arrayAlreadyHasArray(arr, testArr){
-//   for(var i = 0; i<arr.length; i++){
-//       let checker = []
-//       for(var j = 0; j<arr[i].length; j++){
-//           if(arr[i][j] === testArr[j]){
-//               checker.push(true)
-//           } else {
-//               checker.push(false)
-//           }
-//       }
-//       if (checker.every(check => check === true)){
-//           return testArr[testArr.length - 1]
-//       }
-//   }
-//   return false
-// }
-
-// console.log(arrayAlreadyHasArray(straightArr, testArr1));    // true
-// console.log(arrayAlreadyHasArray(straightArr, testArr2));   //
-// console.log(arrayAlreadyHasArray(straightArr, testArr3));   //
-// console.log(arrayAlreadyHasArray(straightArr, testArr4));   //
-
-// function arrayAlreadyHasArray(arr, testArr) {
-//   for (var i = 0; i < arr.length; i++) {
-//     let checker = [];
-//     let counter = 0;
-//     for (var j = 0; j < arr[i].length; j++) {
-//       // if 2d array[i][j] = boardandhand[j]
-//       // +counter
-//       // else false
-//       if (arr[i][j] === testArr[j]) {
-//         counter++;
-//         checker.push(true);
-//       } else {
-//         checker.push(false);
-//       }
-//     }
-//     if (counter === 5) {
-//       return testArr[testArr[5]];
-//     } else if (counter === 6) {
-//       return testArr[testArr[5]];
-//     } else if (checker.every((check) => check === true)) {
-//       return testArr[testArr.length - 1];
-//     }
-//   }
-//   return false;
-// }
-
-
-
-
-
-
-
-// testArr1 = ['2', '3', '4', '5', '6'];
-// testArr2 = ['3', '4', '5', '6', '7'];
-// testArr3 = ['3', '4', '5', '6', '7', '4', '9'];
-// testArr4 = ['2', '3', '4', '5', '7'];
-// testArr5 = ['3', '4', '5', '6', '7', '8', '2'];
-// testArr6 = ['3', '4', '5', '6', '7', '8', '9'];
-
-// testArr7 = ['2', '2', '3', '3', '4', '5', '6']
-// testArr8 = ['2', '3', '4', '5', '6', '7', '8']
-// testArr9 = ['3', '4', '5', '6', '7', '8', '9']
-// testArr10 = ['4', '5', '6', '7', '8', '9', '10']
-// testArr11 = ['5', '6', '7', '8', '9', '10', '11']
-// testArr12 = ['6', '7', '8', '9', '9', '10', '11']
-// testArr13 = ['7', '8', '9', '10', '11', '12', '13'] //return K high straight
-// testArr14 = ['8', '9', '10', '11', '12', '13', '14'] //return broadway straight
-// testArr15 = ['9', '10', '11', '12', '13', '14', '15'] //return broadway straight
-// testArr16 = ['9', '10', '11', '12', '13', '14', '15'] //return broadway straight
-
-
-
-
-// function arrayAlreadyHasArray(array) {
-//   var conseq = 1;
-//   for (var idx = 1; idx < array.length ; idx++) {
-//       if (array[idx] == array[idx-1] + 1)
-//           conseq++;
-//       else
-//           conseq = 1;
-//       if (conseq == 5)
-//           return true;
-//   }
-//   return false;
-// }
-
-// function fiveInARow(array) {
-
-//   // compare if one element is greater than or equal to the previous one
-//   function compare(elt, i, arr) { return !i || elt >= arr[i-1]; };
-
-//   // check if at a given position, every one of the last five comparisons is true
-//   function check (_, i, greaters) { 
-//     return i >= 4 && greaters.slice(i-4, i) . every(Boolean);                         
-//   }
-
-//   return array . map(compare) . some(check);
-// }
-
-
-
-// console.log('-=-=-=-=--=-=--=-here-=-=-=--=-=-=-');
-
-// console.log(arrayAlreadyHasArray(testArr1)); // 6
-// console.log(arrayAlreadyHasArray(testArr2)); // 7
-// console.log(arrayAlreadyHasArray(testArr3)); // 7
-// console.log(arrayAlreadyHasArray(testArr4)); // false
-// console.log(arrayAlreadyHasArray(testArr5)); // 8
-// console.log(arrayAlreadyHasArray(testArr6)); 
-// console.log(arrayAlreadyHasArray(testArr7)); 
-// console.log(arrayAlreadyHasArray(testArr8));
-// console.log(arrayAlreadyHasArray(testArr9)); 
-// console.log(arrayAlreadyHasArray(testArr10)); 
-// console.log(arrayAlreadyHasArray(testArr11)); 
-// console.log(arrayAlreadyHasArray(testArr12)); 
-// console.log(arrayAlreadyHasArray(testArr13));
-// console.log(arrayAlreadyHasArray(testArr14)); 
-// console.log(arrayAlreadyHasArray(testArr15)); 
-// console.log(passAceHighStraightCheck(testArr16)); // 14
-// console.log('break----=-=-==----------');
-// console.log(fiveInARow(testArr1)); // 6 
-// console.log(fiveInARow(testArr2)); // 7
-// console.log(fiveInARow(testArr3)); // 7
-// console.log(fiveInARow(testArr4)); // false
-// console.log(fiveInARow(testArr5)); // 8
-// console.log(fiveInARow(testArr6)); 
-// console.log(fiveInARow(testArr7)); 
-// console.log(fiveInARow(testArr8));
-// console.log(fiveInARow(testArr9)); 
-// console.log(fiveInARow(testArr10)); 
-// console.log(fiveInARow(testArr11)); 
-// console.log(fiveInARow(testArr12)); 
-// console.log(fiveInARow(testArr13));
-// console.log(fiveInARow(testArr14)); 
-// console.log(fiveInARow(testArr15)); 
-// console.log(passAceHighStraightCheck(testArr16)); // 14
-// console.log('break----=-=-==----------');
-// console.log(arrayAlreadyHasArray(straightArr, testArr1)); // 6
-// console.log(arrayAlreadyHasArray(straightArr, testArr2)); // 7
-// console.log(arrayAlreadyHasArray(straightArr, testArr3)); // 7
-// console.log(arrayAlreadyHasArray(straightArr, testArr4)); // false
-// console.log(arrayAlreadyHasArray(straightArr, testArr5)); // 8
-// console.log(arrayAlreadyHasArray(straightArr, testArr6)); 
-// console.log(arrayAlreadyHasArray(straightArr, testArr7)); 
-// console.log(arrayAlreadyHasArray(straightArr, testArr8));
-// console.log(arrayAlreadyHasArray(straightArr, testArr9)); 
-// console.log(arrayAlreadyHasArray(straightArr, testArr10)); 
-// console.log(arrayAlreadyHasArray(straightArr, testArr11)); 
-// console.log(arrayAlreadyHasArray(straightArr, testArr12)); 
-// console.log(arrayAlreadyHasArray(straightArr, testArr13));
-// console.log(arrayAlreadyHasArray(straightArr, testArr14)); 
-// console.log(arrayAlreadyHasArray(straightArr, testArr15)); 
-// console.log(passAceHighStraightCheck(straightArr, testArr16)); // 14
-
-
-
-// // ****    good version dont edit plz      ****** 
-
-// // function arrayAlreadyHasArray(arr, testArr){
-// //   for(var i = 0; i<arr.length; i++){
-// //       let checker = []
-// //       for(var j = 0; j<arr[i].length; j++){
-// //           if(arr[i][j] === testArr[j]){
-// //               checker.push(true)
-// //           } else {
-// //               checker.push(false)
-// //           }
-// //       }
-// //       if (checker.every(check => check === true)){
-// //           return true
-// //       }
-// //   }
-// //   return false
-// // }
-
-
-
-
-vendors = [{
-  Name: 'Magenic',
-  ID: 'ABC'
-},
-{
-  Name: 'Microsoft',
-  ID: 'DEF'
-} // and so on... 
-];
-
-if (vendors.filter(e => e.Name === 'Magenic').length > 0) {
-  /* vendors contains the element we're looking for */
-}
-
-
-if (vendors.some(e => e.Name === 'Magenic')) {
-  /* vendors contains the element we're looking for */
-
-}
-
-
-
-if (vendors.filter(function(e) { return e.Name === 'Magenic'; }).length > 0) {
-  /* vendors contains the element we're looking for */
-
-}
