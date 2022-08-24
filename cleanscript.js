@@ -1,3 +1,5 @@
+
+'use strict'
 // Poker Page!!! All things poker coding and algos
 
 //New create unshuffled deck function below (function createDeck())
@@ -173,7 +175,7 @@ function suitOfCardInDeck(deck, position) {
 
 // pulls info from cardIndeck and stores info in card
 function createHashDeck(deck) {
-  for (i = 1; i <= 52; i++) {
+  for (let i = 1; i <= 52; i++) {
     hashDeck[`card${i}`] = {};
     hashDeck[`card${i}`]['rank'] = rankOfCardInDeck(deck, i);
     hashDeck[`card${i}`]['suit'] = suitOfCardInDeck(deck, i);
@@ -513,7 +515,7 @@ function orderedHand(hand) {
   return orderedHand;
 }
 
-console.log(orderedHand(playerCardRanks(practiceHand)));
+// console.log(orderedHand(playerCardRanks(practiceHand)));
 
 
 console.log(handPlayer1Ranks);
@@ -571,7 +573,7 @@ function pairCheck(list, what) {
 function passPairCheck(list) {
   let x = 2;
   let counter = 0;
-  tempPairCombinations = [];
+  let tempPairCombinations = [];
   for (let i = x; i <= 14; i++) {
     if (pairCheck(list, x)) {
       counter++
@@ -590,6 +592,33 @@ return tempPairCombinations
 console.log(`=-=-=-=-passPairCheck-=-=-=-`);
 passPairCheck(handPlayer1Ranks);
 console.log(passPairCheck(handPlayer1Ranks)); 
+
+
+// iterates through all ranks to use in pairCheck and if tempPairCombinations.length > 2 return max value from array, else false
+function passTwoPairCheck(list) {
+  let x = 2;
+  let counter = 0;
+  let tempPairCombinations = [];
+  for (let i = x; i <= 14; i++) {
+    if (pairCheck(list, x)) {
+      counter++
+      tempPairCombinations.push(x);
+    }
+    x++;
+
+  } if (tempPairCombinations.length > 1) {
+    return Math.max(...tempPairCombinations)
+}
+return false
+}
+
+console.log(`=-=-=-=-passTwoPairCheck-=-=-=-`);
+passTwoPairCheck(handPlayer1Ranks);
+console.log(passTwoPairCheck(handPlayer1Ranks)); 
+
+
+
+
 
 // check for triple of same card
 function tripCheck(list, what) {
@@ -610,7 +639,7 @@ function tripCheck(list, what) {
 function passTripCheck(list) {
   let x = 2;
   let counter = 0
-  tempTripCombinations = [];
+  let tempTripCombinations = [];
 
   for (let i = x; i <= 14; i++) {
     if (tripCheck(list, x)) {
@@ -643,14 +672,84 @@ function quadCheck(list, what) {
     return false;
   }
 }
-1;
+
+
+// iterates through all ranks to use in pairCheck and if tempPairCombinations.length > 2 return max value from array, else false
+// list result with big num such as 132 - this would be trip kinds with pair 2s, this allows true hand value to show
+function passFullHouseCheck(list) {
+  // pair variables
+  let x = 2;
+  let counter = 0;
+  let tempPairCombinations = [];
+  // trip variables
+  let y = 2;
+  let counter2 = 0
+  let tempTripCombinations = [];
+
+  // let eleven = '11'
+  // let twelve = '12'
+  // let elevenTwelve = eleven.concat(twelve)
+  // let fullHouse = biggerTrip.concat(biggerPair)
+
+  // console.log(elevenTwelve);
+
+  for (let i = x; i <= 14; i++) {
+    if (pairCheck(list, x)) {
+      counter++
+      tempPairCombinations.push(x);
+    }
+    x++;
+  }
+
+
+  for (let i = y; i <= 14; i++) {
+    if (tripCheck(list, y)) {
+      counter2++;
+      tempTripCombinations.push(y);
+    }
+    y++;
+  }
+
+  let biggerPair = [];
+  biggerPair.push(tempPairCombinations[tempPairCombinations.length-1]);
+  let biggerTrip = [];
+  biggerTrip.push(tempTripCombinations[tempTripCombinations.length-1]);
+
+  let fullHouse = []
+  fullHouse.push(biggerTrip, biggerPair)
+  
+
+  // console.log(tempPairCombinations);
+  // console.log(tempTripCombinations);
+  // console.log((biggerPair));
+  // console.log(biggerTrip);
+  // console.log(fullHouse);
+
+
+  if (counter > 0 && counter2 > 0){
+    return fullHouse
+  }
+
+  return false
+}
+
+
+console.log(`=-=-=-=-passFullHouseCheck-=-=-=-`);
+passFullHouseCheck(handPlayer1Ranks);
+// console.log(passFullHouseCheck(handPlayer1Ranks)); 
+// console.log(passFullHouseCheck(['2','2','2','3','3','4','4'])); 
+
+
+
+
+
 
 // if quad of same card, returns card
-//list is boardandhand
+// list is boardandhand
 // x iterates over all card ranks
 function passQuadCheck(list) {
   let x = 2;
-  tempQuadCombinations = [];
+  let tempQuadCombinations = [];
 
   for (let i = x; i <= 14; i++) {
     if (quadCheck(list, x)) {
@@ -771,17 +870,17 @@ console.log(passStraightCheck(reducedHandPlayer1));
 
 
 // takes in entire reducedHandPlayerNumber and returns true if contains 5 high straight
-function pass5HighStraightCheck(boardAndHand) {
+function pass5HighStraightCheck(reducedHandPlayer) {
   let lowFive2 = '2,3,4,5,14'
   let lowFive = ['2','3','4','5','14']
 
   let count = 0;
-  for(let i =0; i <boardAndHand.length;i++)
-  // if (boardAndHand[i].includes(lowFive)){
-  if (lowFive.includes(boardAndHand[i])){
+  for(let i =0; i <reducedHandPlayer.length;i++)
+  // if (reducedHandPlayer[i].includes(lowFive)){
+  if (lowFive.includes(reducedHandPlayer[i])){
 
     // console.log('yes');
-    lowfive = lowFive.filter(num => boardAndHand[i]);
+    let lowfive = lowFive.filter(num => reducedHandPlayer[i]);
     count++;
 
   } if (count === 5) {return true}
@@ -799,47 +898,47 @@ console.log(pass5HighStraightCheck(reducedHandPlayer1));
 // console.log(pass5HighStraightCheck(['2','3','4','5','6']));
 
 
-function playerSuits(handPlayerNumber) {
-  // check suits of all cards in hand
-  let tempSuits2 = [ 
-    handPlayerNumber.card1.suit,
-    handPlayerNumber.card2.suit,
-    handPlayerNumber.card3.suit,
-    handPlayerNumber.card4.suit,
-    handPlayerNumber.card5.suit,
-    handPlayerNumber.card6.suit,
-    handPlayerNumber.card7.suit
-  ]
-  return tempSuits2
-}
+// function playerSuits(handPlayerNumber) {
+//   // check suits of all cards in hand
+//   let tempSuits2 = [ 
+//     handPlayerNumber.card1.suit,
+//     handPlayerNumber.card2.suit,
+//     handPlayerNumber.card3.suit,
+//     handPlayerNumber.card4.suit,
+//     handPlayerNumber.card5.suit,
+//     handPlayerNumber.card6.suit,
+//     handPlayerNumber.card7.suit
+//   ]
+//   return tempSuits2
+// }
 
 
 
 
-// let practiceHand =  {
-//   card1: { rank: '10', suit: 'S'},
-//   card2: { rank: '10', suit: 'S'},
-//   card3: {rank: '2', suit: 'S'},
-//   card4: {rank: '3', suit: 'S'},
-//   card5: {rank: '2', suit: 'S'},
-//   card6: {rank: '4', suit: 'S'},
-//   card7: {rank: '5', suit: 'C'}
-// };
+// // let practiceHand =  {
+// //   card1: { rank: '10', suit: 'S'},
+// //   card2: { rank: '10', suit: 'S'},
+// //   card3: {rank: '2', suit: 'S'},
+// //   card4: {rank: '3', suit: 'S'},
+// //   card5: {rank: '2', suit: 'S'},
+// //   card6: {rank: '4', suit: 'S'},
+// //   card7: {rank: '5', suit: 'C'}
+// // };
 
 
-function suitsOfPlayer (handPlayerNumber){
-  let tempSuits = [ 
-    handPlayerNumber.card1.suit,
-    handPlayerNumber.card2.suit,
-    handPlayerNumber.card3.suit,
-    handPlayerNumber.card4.suit,
-    handPlayerNumber.card5.suit,
-    handPlayerNumber.card6.suit,
-    handPlayerNumber.card7.suit
-  ]
-  return tempSuits
+// function suitsOfPlayer (handPlayerNumber){
+//   let tempSuits = [ 
+//     handPlayerNumber.card1.suit,
+//     handPlayerNumber.card2.suit,
+//     handPlayerNumber.card3.suit,
+//     handPlayerNumber.card4.suit,
+//     handPlayerNumber.card5.suit,
+//     handPlayerNumber.card6.suit,
+//     handPlayerNumber.card7.suit
+//   ]
+//   return tempSuits
 
-}
+// }
 
 
 let practiceHand2 =  {
@@ -887,6 +986,27 @@ console.log(`=-=-=-=-passStraightFlushCheck-=-=-=-`);
 
 // console.log(reducedHandPlayer1);
 console.log(passStraightFlushCheck(handPlayer1));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // console.log(passStraightFlushCheck(practiceHand2));
@@ -1204,95 +1324,140 @@ console.log(pass5HighStraightFlushCheck(practiceHand2));
 
 
 
+// takes in handPlayerNumber Hash
+// checks for 5 of same suit and returns highest card within that suit range
+function passFlushCheck(handPlayerNumber) {
 
-// // checks for 5 of same suit and returns highest card within that suit range
-// function passFlushCheck(handPlayerNumber) {
-
-//   // take entire hand, chop into 3 slices
-//   // check for straight
-//   // check for 5 card flush
-//   // if both then straight flush
-
-
-//   // check suits of all cards in hand
-//   let tempSuits = [ 
-//     handPlayerNumber.card1.suit,
-//     handPlayerNumber.card2.suit,
-//     handPlayerNumber.card3.suit,
-//     handPlayerNumber.card4.suit,
-//     handPlayerNumber.card5.suit,
-//     handPlayerNumber.card6.suit,
-//     handPlayerNumber.card7.suit
-//   ]
-
-//   let tempRanks = [ 
-//     handPlayerNumber.card1.rank,
-//     handPlayerNumber.card2.rank,
-//     handPlayerNumber.card3.rank,
-//     handPlayerNumber.card4.rank,
-//     handPlayerNumber.card5.rank,
-//     handPlayerNumber.card6.rank,
-//     handPlayerNumber.card7.rank
-//   ]
+  // take entire hand, chop into 3 slices
+  // check for straight
+  // check for 5 card flush
+  // if both then straight flush
 
 
-//   //check for 5+ of same suit
-//   let tempSpadesRanks = [];
-//   let tempDiamondsRanks = [];
-//   let tempClubsRanks = [];
-//   let tempHeartsRanks = [];
-//   let countSpades = 0;
-//   let countDiamonds = 0;
-//   let countClubs = 0;
-//   let countHearts = 0;
+  // check suits of all cards in hand
+  let tempSuits = [ 
+    handPlayerNumber.card1.suit,
+    handPlayerNumber.card2.suit,
+    handPlayerNumber.card3.suit,
+    handPlayerNumber.card4.suit,
+    handPlayerNumber.card5.suit,
+    handPlayerNumber.card6.suit,
+    handPlayerNumber.card7.suit
+  ]
+
+  let tempRanks = [ 
+    handPlayerNumber.card1.rank,
+    handPlayerNumber.card2.rank,
+    handPlayerNumber.card3.rank,
+    handPlayerNumber.card4.rank,
+    handPlayerNumber.card5.rank,
+    handPlayerNumber.card6.rank,
+    handPlayerNumber.card7.rank
+  ]
+
+
+  //check for 5+ of same suit
+  let tempSpadesRanks = [];
+  let tempDiamondsRanks = [];
+  let tempClubsRanks = [];
+  let tempHeartsRanks = [];
+  let countSpades = 0;
+  let countDiamonds = 0;
+  let countClubs = 0;
+  let countHearts = 0;
 
 
 
-//   for(let i = 0; i <= tempSuits.length; i++){
+  for(let i = 0; i <= tempSuits.length; i++){
 
-//     // console.log(tempSuits);
-//     // console.log(tempRanks);
+    // console.log(tempSuits);
+    // console.log(tempRanks);
 
-//     if (tempSuits[i] === 'S' ){
-//       tempSpadesRanks.push(tempRanks[i])
-//       countSpades++
-//     }
-//     if (tempSuits[i] === 'D' ){
-//       tempDiamondsRanks.push(tempRanks[i])
-//       countDiamonds++
-//     }
-//     if (tempSuits[i] === 'C' ){
-//       tempClubsRanks.push(tempRanks[i])
-//       countClubs++
-//     }
-//     if (tempSuits[i] === 'H' ){
-//       tempHeartsRanks.push(tempRanks[i])
-//       countHearts++
-//     }
+    if (tempSuits[i] === 'S' ){
+      tempSpadesRanks.push(tempRanks[i])
+      countSpades++
+    }
+    if (tempSuits[i] === 'D' ){
+      tempDiamondsRanks.push(tempRanks[i])
+      countDiamonds++
+    }
+    if (tempSuits[i] === 'C' ){
+      tempClubsRanks.push(tempRanks[i])
+      countClubs++
+    }
+    if (tempSuits[i] === 'H' ){
+      tempHeartsRanks.push(tempRanks[i])
+      countHearts++
+    }
 
 
-//   }
-//   if (countSpades > 4){return Math.max(...tempSpadesRanks)}
-//   if (countDiamonds > 4){return Math.max(...tempDiamondsRanks)}
-//   if (countClubs > 4){return Math.max(...tempClubsRanks)}
-//   if (countHearts > 4){return Math.max(...tempHeartsRanks)}
+  }
+  if (countSpades > 4){return Math.max(...tempSpadesRanks)}
+  if (countDiamonds > 4){return Math.max(...tempDiamondsRanks)}
+  if (countClubs > 4){return Math.max(...tempClubsRanks)}
+  if (countHearts > 4){return Math.max(...tempHeartsRanks)}
 
-// //   if true, return true and highest card rank with that suit
-// //   if false return false
-//     return false
-// }
+//   if true, return true and highest card rank with that suit
+//   if false return false
+    return false
+}
 
 
 console.log(`-=-=-=-passFlushCheck-=-=-=`);
-// console.log(passFlushCheck(handPlayer1));
+console.log(passFlushCheck(handPlayer1));
 // console.log(passFlushCheck(handPlayer2));
 // console.log(passFlushCheck(practiceHand));
 
 
 
 
+let practiceHand6 =  {
+  card1: { rank: '9', suit: 'S'},
+  card2: { rank: '10', suit: 'S'},
+  card3: {rank: '11', suit: 'S'},
+  card4: {rank: '12', suit: 'S'},
+  card5: {rank: '13', suit: 'S'},
+  card6: {rank: '14', suit: 'S'},
+  card7: {rank: '5', suit: 'S'}
+};
 
 
+
+// takes in player hand hash
+function passRoyalFlushCheck (handPlayerNumber){
+  let hearts = [];
+  let diamonds = [];
+  let spades = [];
+  let clubs = [];
+
+  for(let i = 1; i < 8; i++){
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'H'){hearts.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'D'){diamonds.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'S'){spades.push(handPlayerNumber[`card${[i]}`]['rank'])}
+    if (handPlayerNumber[`card${[i]}`]['suit'] === 'C'){clubs.push(handPlayerNumber[`card${[i]}`]['rank'])}
+//     let orderedSpades = orderedHand(spades)
+//     console.log(orderedSpades);
+// console.log(passStraightCheck(orderedSpades));
+  } // sort array then passStraightCheck
+  // if (hearts.length>4 && ((passStraightCheck(orderedHand(hearts))===14))) {return (passStraightCheck(orderedHand(hearts)))}
+  // else if (diamonds.length>4 && (passStraightCheck(orderedHand(diamonds)))) {return (passStraightCheck(orderedHand(diamonds)))}
+  // else if (spades.length>4 && (passStraightCheck(orderedHand(spades)))) {return (passStraightCheck(orderedHand(spades)))}
+  // else if (clubs.length>4 && (passStraightCheck(orderedHand(clubs)))) {return (passStraightCheck(orderedHand(clubs)))}
+  if (hearts.length>4 && ((passStraightCheck(orderedHand(hearts))===14))) {return (passStraightCheck(orderedHand(hearts)))}
+  if (diamonds.length>4 && ((passStraightCheck(orderedHand(diamonds))===14))) {return (passStraightCheck(orderedHand(diamonds)))}
+  if (spades.length>4 && ((passStraightCheck(orderedHand(spades))===14))) {return (passStraightCheck(orderedHand(spades)))}
+  if (clubs.length>4 && ((passStraightCheck(orderedHand(clubs))===14))) {return (passStraightCheck(orderedHand(clubs)))}
+
+
+  return false
+}
+
+
+console.log(`=-=-=-=-passRoyalFlushCheck-=-=-=-`);
+
+// console.log(reducedHandPlayer1);
+console.log(passRoyalFlushCheck(handPlayer1));
+console.log(passRoyalFlushCheck(practiceHand6));
 
 
 
@@ -1430,7 +1595,7 @@ console.log(`-=-=-=-passFlushCheck-=-=-=`);
 
 
 
-console.log('^^^^^');
+console.log('-------------------------------');
 
 
 
@@ -1452,3 +1617,380 @@ console.log('^^^^^');
 
 
 
+
+
+
+
+
+
+
+
+// compare hands
+
+
+// initialize cards
+// - deck
+// - shuffledeck
+// - straightarr
+// - straightHash
+
+// initialize hands
+// - handPlayer#       - cards in form of a Hash - function cardsForTwoPLayersHash(deck) -assigns cards for two player hand
+// 
+// handPlayer#Ranks   - just ranks of cards
+// - orderedHandPLayer# (orderedHandPlayer#Ranks = orderedHand(handPlayer#Ranks))
+// - reducedHandPLayer# - reducedHandPlayer1 = shrinkBoardAndHand(orderedHandPlayer1Ranks)
+//  
+
+
+
+
+
+
+
+
+
+let practiceHand5 =  {
+  card1: { rank: '10', suit: 'S'},
+  card2: { rank: '10', suit: 'S'},
+  card3: {rank: '2', suit: 'S'},
+  card4: {rank: '6', suit: 'S'},
+  card5: {rank: '6', suit: 'S'},
+  card6: {rank: '6', suit: 'S'},
+  card7: {rank: '5', suit: 'S'}
+};
+
+// let practiceHand6 =  {
+//   card1: { rank: '9', suit: 'S'},
+//   card2: { rank: '10', suit: 'S'},
+//   card3: {rank: '11', suit: 'S'},
+//   card4: {rank: '12', suit: 'S'},
+//   card5: {rank: '13', suit: 'S'},
+//   card6: {rank: '14', suit: 'S'},
+//   card7: {rank: '5', suit: 'S'}
+// };
+
+
+let practiceHand7 =  {
+  card1: { rank: '2', suit: 'D'},
+  card2: { rank: '3', suit: 'D'},
+  card3: {rank: '4', suit: 'D'},
+  card4: {rank: '4', suit: 'D'},
+  card5: {rank: '10', suit: 'D'},
+  card6: {rank: '5', suit: 'D'},
+  card7: {rank: '5', suit: 'S'}
+};
+
+
+
+
+// check each players hand for pass or fail at each level
+// if one pass and one fail, then passer wins
+// if both pass compare numbers, high number wins
+
+
+
+// royal flush
+// straight flush
+// 4 of a kind
+// flush
+// straight
+// trips
+// two pair
+// pair
+
+
+// compares 2 hash hands
+// returns hand of winner
+function royalFlushCompare (handPlayer1, handPlayer2){
+
+let player1 = passRoyalFlushCheck(handPlayer1)
+let player2 = passRoyalFlushCheck(handPlayer2)
+
+if (player1>0 === true && player2>0 === true){
+  if(player1>player2){return handPlayer1}
+  if(player2>player1){return handPlayer2}
+  if(player2==player1){return 'PUSH'}
+}
+if (player1>0 === true && player2<0 === false){return handPlayer1}
+if (player1<0 === false && player2>0 === true){return handPlayer2}
+if (player1>0 === false && player2>0 === false){return false}
+false
+
+}
+
+
+// console.log(royalFlushCompare(practiceHand5, practiceHand6));
+// console.log(royalFlushCompare(practiceHand6, practiceHand5));
+// console.log(royalFlushCompare(practiceHand6, practiceHand6));
+// console.log(royalFlushCompare(practiceHand6, practiceHand7));
+
+
+
+
+
+
+// compares 2 hash hands
+// returns hand of winner
+function straightFlushCompare (handPlayer1, handPlayer2){
+
+  let player1 = passStraightFlushCheck(handPlayer1)
+  let player2 = passStraightFlushCheck(handPlayer2)
+  
+  if (player1>0 === true && player2>0 === true){
+    if(player1>player2){return handPlayer1}
+    if(player2>player1){return handPlayer2}
+    if(player2==player1){return 'PUSH'}
+  }
+  if (player1>0 === true && player2<0 === false){return handPlayer1}
+  if (player1<0 === false && player2>0 === true){return handPlayer2}
+  if (player1>0 === false && player2>0 === false){return false}
+  false
+  
+  }
+
+  // console.log(royalFlushCompare(practiceHand5, practiceHand6));
+  // console.log(royalFlushCompare(practiceHand6, practiceHand5));
+
+  // console.log(straightFlushCompare(practiceHand7, practiceHand5));
+  // console.log(straightFlushCompare(practiceHand5, practiceHand7));
+
+
+
+
+
+
+  // compares 2 hash hands
+// returns hand of winner
+function straight5highFlushCompare (handPlayer1, handPlayer2){
+
+  let player1 = pass5HighStraightFlushCheck(handPlayer1)
+  let player2 = pass5HighStraightFlushCheck(handPlayer2)
+  
+  if (player1>0 === true && player2>0 === true){
+    if(player1>player2){return handPlayer1}
+    if(player2>player1){return handPlayer2}
+    if(player2==player1){return 'PUSH'}
+  }
+  if (player1>0 === true && player2<0 === false){return handPlayer1}
+  if (player1<0 === false && player2>0 === true){return handPlayer2}
+  if (player1>0 === false && player2>0 === false){return false}
+  false
+  
+  }
+
+  // console.log(royalFlushCompare(practiceHand5, practiceHand6));
+  // console.log(royalFlushCompare(practiceHand6, practiceHand5));
+
+  // console.log(straight5highFlushCompare(practiceHand7, practiceHand5));
+  // console.log(straight5highFlushCompare(practiceHand5, practiceHand7));
+
+
+
+
+
+
+
+// 
+// compares 2 hands - handPlayer#Ranks, handPlayer#Ranks
+// returns hand of winner
+function fourOfAKindCompare (handPlayer1, handPlayer2){
+
+  let player1 = passQuadCheck(handPlayer1)
+  let player2 = passQuadCheck(handPlayer2)
+  
+  if (player1>0 === true && player2>0 === true){
+    if(player1>player2){return handPlayer1}
+    if(player2>player1){return handPlayer2}
+    if(player2==player1){return 'PUSH'}
+  }
+  if (player1>0 === true && player2<0 === false){return handPlayer1}
+  if (player1<0 === false && player2>0 === true){return handPlayer2}
+  if (player1>0 === false && player2>0 === false){return false}
+  false
+  
+  }
+
+
+
+let ranks7 = playerCardRanks(practiceHand7)
+let ranks5 = playerCardRanks(practiceHand5)
+
+// console.log(ranks5);
+// console.log(ranks7);
+
+let orderedHandRank5 = orderedHand(ranks5)
+let orderedHandRank7 = orderedHand(ranks7)
+
+let reducedBoardRank5 = shrinkBoardAndHand(ranks5)
+let reducedBoardRank7 = shrinkBoardAndHand(ranks7)
+
+// console.log(reducedBoardRank5);
+// console.log(reducedBoardRank7);
+
+
+
+
+
+  // console.log(fourOfAKindCompare(ranks7, ranks5));
+  // console.log(fourOfAKindCompare(ranks5, ranks7));
+  
+
+
+
+// 
+// compares 2 hands - handPlayer#, handPlayer#
+// returns hand of winner
+function flushCompare (handPlayer1, handPlayer2){
+
+  let player1 = passFlushCheck(handPlayer1)
+  let player2 = passFlushCheck(handPlayer2)
+  
+  if (player1>0 === true && player2>0 === true){
+    if(player1>player2){return handPlayer1}
+    if(player2>player1){return handPlayer2}
+    if(player2==player1){return 'PUSH'}
+  }
+  if (player1>0 === true && player2<0 === false){return handPlayer1}
+  if (player1<0 === false && player2>0 === true){return handPlayer2}
+  if (player1>0 === false && player2>0 === false){return false}
+  false
+  
+  }
+
+
+  // console.log(flushCompare(practiceHand7, practiceHand5));
+  // console.log(flushCompare(practiceHand5, practiceHand7));
+
+  // 
+// compares 2 hands - reducedhandPlayer#ranks, reducedhandPlayer#ranks
+// returns hand of winner
+function straightCompare (handPlayer1, handPlayer2){
+
+  let player1 = passStraightCheck(handPlayer1)
+  let player2 = passStraightCheck(handPlayer2)
+  
+  if (player1>0 === true && player2>0 === true){
+    if(player1>player2){return handPlayer1}
+    if(player2>player1){return handPlayer2}
+    if(player2==player1){return 'PUSH'}
+  }
+  if (player1>0 === true && player2<0 === false){return handPlayer1}
+  if (player1<0 === false && player2>0 === true){return handPlayer2}
+  if (player1>0 === false && player2>0 === false){return false}
+  false
+  
+  }
+
+
+
+
+console.log(straightCompare(reducedBoardRank5, reducedBoardRank7));
+
+
+  // 
+// compares 2 hands - reducedhandPlayer#ranks, reducedhandPlayer#ranks
+// returns hand of winner
+function fiveHighStraightCompare (handPlayer1, handPlayer2){
+
+  let player1 = pass5HighStraightCheck(handPlayer1)
+  let player2 = pass5HighStraightCheck(handPlayer2)
+  
+  if (player1>0 === true && player2>0 === true){
+    if(player1>player2){return handPlayer1}
+    if(player2>player1){return handPlayer2}
+    if(player2==player1){return 'PUSH'}
+  }
+  if (player1>0 === true && player2<0 === false){return handPlayer1}
+  if (player1<0 === false && player2>0 === true){return handPlayer2}
+  if (player1>0 === false && player2>0 === false){return false}
+  false
+  
+  }
+
+
+
+
+console.log(fiveHighStraightCompare(reducedBoardRank5, reducedBoardRank7));
+
+
+
+console.log(straightCompare(reducedBoardRank5, reducedBoardRank7));
+
+
+  // 
+// compares 2 hands - handPlayer#ranks, handPlayer#ranks
+// returns hand of winner
+function tripCompare (handPlayer1, handPlayer2){
+
+  let player1 = passTripCheck(handPlayer1)
+  let player2 = passTripCheck(handPlayer2)
+  
+  if (player1>0 === true && player2>0 === true){
+    if(player1>player2){return handPlayer1}
+    if(player2>player1){return handPlayer2}
+    if(player2==player1){return 'PUSH'}
+  }
+  if (player1>0 === true && player2<0 === false){return handPlayer1}
+  if (player1<0 === false && player2>0 === true){return handPlayer2}
+  if (player1>0 === false && player2>0 === false){return false}
+  false
+  
+  }
+
+
+
+
+console.log(tripCompare(ranks5, ranks7));
+
+
+  // 
+// compares 2 hands - handPlayer#ranks, handPlayer#ranks
+// returns hand of winner
+function twoPairCompare (handPlayer1, handPlayer2){
+
+  let player1 = passTwoPairCheck(handPlayer1)
+  let player2 = passTwoPairCheck(handPlayer2)
+  
+  if (player1>0 === true && player2>0 === true){
+    if(player1>player2){return handPlayer1}
+    if(player2>player1){return handPlayer2}
+    if(player2==player1){return 'PUSH'}
+  }
+  if (player1>0 === true && player2<0 === false){return handPlayer1}
+  if (player1<0 === false && player2>0 === true){return handPlayer2}
+  if (player1>0 === false && player2>0 === false){return false}
+  false
+  
+  }
+
+
+
+
+console.log(twoPairCompare(ranks5, ranks7));
+
+
+// 
+// compares 2 hands - handPlayer#ranks, handPlayer#ranks
+// returns hand of winner
+function pairCompare (handPlayer1, handPlayer2){
+
+  let player1 = passPairCheck(handPlayer1)
+  let player2 = passPairCheck(handPlayer2)
+  
+  if (player1>0 === true && player2>0 === true){
+    if(player1>player2){return handPlayer1}
+    if(player2>player1){return handPlayer2}
+    if(player2==player1){return 'PUSH'}
+  }
+  if (player1>0 === true && player2<0 === false){return handPlayer1}
+  if (player1<0 === false && player2>0 === true){return handPlayer2}
+  if (player1>0 === false && player2>0 === false){return false}
+  false
+  
+  }
+
+
+
+
+console.log(pairCompare(ranks5, ranks7));
