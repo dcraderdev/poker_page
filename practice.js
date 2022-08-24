@@ -288,3 +288,7 @@ function removeEWords(sentence) {
 
 console.log(removeEWords('What time is it at everyone?')); // 'What is it'
 // console.log(removeEWords('Enter the building')); // 'building'
+
+
+
+
