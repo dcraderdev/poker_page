@@ -2,6 +2,18 @@
 'use strict'
 // Poker Page!!! All things poker coding and algos
 
+
+
+
+// let handPlayer1Ranks = playerCardRanks(handPlayer1);
+
+// let orderedHandPlayer1Ranks = orderedHand(handPlayer1Ranks);
+// console.log(`=-=-=-=-shrinkBoardAndHand-=-=-=-`);
+// let reducedHandPlayer1 = shrinkBoardAndHand(orderedHandPlayer1Ranks)
+
+
+
+
 //New create unshuffled deck function below (function createDeck())
 let hashDeck = {};
 let deck = [];
@@ -255,6 +267,101 @@ console.log(`hand player two`);
 console.log(handPlayer2);
 
 
+// array of object values from board and player1 hand
+function playerCardRanks(handPlayerNumber) {
+  let playerCardRanks = [
+     handPlayerNumber.card1.rank,
+     handPlayerNumber.card2.rank,
+     handPlayerNumber.card3.rank,
+     handPlayerNumber.card4.rank,
+     handPlayerNumber.card5.rank,
+     handPlayerNumber.card6.rank,
+     handPlayerNumber.card7.rank,
+    
+ 
+   ];
+   return playerCardRanks;
+ }
+
+// sort array by number
+function compareNumbers(a, b) {
+  return a - b;
+}
+
+// sort array of ranks by number
+// moves aces to back
+function orderedHand(hand) {
+
+  let orderedHand = hand.sort(compareNumbers);
+
+  if (orderedHand[orderedHand.length - 1] === '14') {
+    orderedHand[orderedHand.length - 1].unshift;
+    orderedHand[orderedHand.length - 1].pop;
+  }
+  if (orderedHand[orderedHand.length - 1] === '14') {
+    orderedHand[orderedHand.length - 1].unshift;
+    orderedHand[orderedHand.length - 1].pop;
+  }
+  if (orderedHand[orderedHand.length - 1] === '14') {
+    orderedHand[orderedHand.length - 1].unshift;
+    orderedHand[orderedHand.length - 1].pop;
+  }
+  if (orderedHand[orderedHand.length - 1] === '14') {
+    orderedHand[orderedHand.length - 1].unshift;
+    orderedHand[orderedHand.length - 1].pop;
+  }
+  return orderedHand;
+}
+
+// creates new boardandHand (reducedBoardAndHand) that does not contain duplicates
+function shrinkBoardAndHand (boardAndHand) {
+  let reducedBoardAndHand = [];
+  for(let i = 0; i < boardAndHand.length; i++) {
+    if (i === 0) {
+      reducedBoardAndHand.push(boardAndHand[i]);
+      // console.log(boardAndHand[i]);
+      } else if (!(reducedBoardAndHand.includes(boardAndHand[i]))) {
+      reducedBoardAndHand.push(boardAndHand[i]);
+    } 
+    }
+  return reducedBoardAndHand
+}
+
+
+
+
+
+
+
+ 
+console.log(`=-=--=-playerCardRanks(handPlayerNumber)-=-==-`);
+
+console.log(`=-=--=-shrink(handPlayerNumber)-=-==-`);
+
+function shrink(handPlayerNumber){
+  return shrinkBoardAndHand(orderedHand(playerCardRanks(handPlayerNumber) ) )
+}
+
+
+let handPlayer1Ranks = playerCardRanks(handPlayer1);
+let reducedHandPlayer1 = shrink(handPlayer1);
+
+
+let handPlayer2Ranks = playerCardRanks(handPlayer2);
+let reducedHandPlayer2 = shrink(handPlayer2);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // var p = {
 //   0: "value1",
@@ -394,161 +501,154 @@ console.log(handPlayer2);
 
 
 
-// array of object values from board and player1 hand
-function playerCardRanks(handPlayerNumber) {
- let playerCardRanks = [
-    handPlayerNumber.card1.rank,
-    handPlayerNumber.card2.rank,
-    handPlayerNumber.card3.rank,
-    handPlayerNumber.card4.rank,
-    handPlayerNumber.card5.rank,
-    handPlayerNumber.card6.rank,
-    handPlayerNumber.card7.rank,
+// // array of object values from board and player1 hand
+// function playerCardRanks(handPlayerNumber) {
+//  let playerCardRanks = [
+//     handPlayerNumber.card1.rank,
+//     handPlayerNumber.card2.rank,
+//     handPlayerNumber.card3.rank,
+//     handPlayerNumber.card4.rank,
+//     handPlayerNumber.card5.rank,
+//     handPlayerNumber.card6.rank,
+//     handPlayerNumber.card7.rank,
    
 
-  ];
-  return playerCardRanks;
-}
+//   ];
+//   return playerCardRanks;
+// }
 
-// console.log(board);
-// console.log(`=-=-=--=-=- boardHandFlopTurnRiver -=-=-=-`);
+// // console.log(board);
+// // console.log(`=-=-=--=-=- boardHandFlopTurnRiver -=-=-=-`);
 
-let handPlayer1Ranks = playerCardRanks(handPlayer1);
-let handPlayer2Ranks = playerCardRanks(handPlayer2);
-
-
-
-console.log(playerCardRanks(handPlayer1));
+// let handPlayer1Ranks = playerCardRanks(handPlayer1);
+// let handPlayer2Ranks = playerCardRanks(handPlayer2);
 
 
 
-
-let pairCombinations = [];
-let tripCombinations = [];
-let quadCombinations = [];
-let pairArray = [];
-let tripArray = [];
-let quadArray = [];
-
-
-// sort array by number
-function compareNumbers(a, b) {
-  return a - b;
-}
-
-
-let practiceHand =  {
-  card1: { rank: '9', suit: 'S'},
-  card2: { rank: '10', suit: 'S'},
-  card3: {rank: '2', suit: 'S'},
-  card4: {rank: '3', suit: 'S'},
-  card5: {rank: '6', suit: 'S'},
-  card6: {rank: '4', suit: 'S'},
-  card7: {rank: '5', suit: 'S'}
-};
+// console.log(playerCardRanks(handPlayer1));
 
 
 
 
 
-// // cards in playerhand1
-// function sortHand(handPlayerNumber) {
 
-//   let sortable = [];
-// for(let card=1;card<=7;i++){
-// {for (let card in handPlayerNumber) {
-//     sortable.push([card, handPlayerNumber[card[i]]]);
-//     console.log(card);
-// }}
+// // // sort array by number
+// // function compareNumbers(a, b) {
+// //   return a - b;
+// // }
 
-// sortable.sort(function(a, b) {
-//     return a[1] - b[1];
-// })}
-// return sortable
+
+// let practiceHand =  {
+//   card1: { rank: '9', suit: 'S'},
+//   card2: { rank: '10', suit: 'S'},
+//   card3: {rank: '2', suit: 'S'},
+//   card4: {rank: '3', suit: 'S'},
+//   card5: {rank: '6', suit: 'S'},
+//   card6: {rank: '4', suit: 'S'},
+//   card7: {rank: '5', suit: 'S'}
 // };
 
 
-// console.log(sortHand(handPlayer1));
+
+
+
+// // // cards in playerhand1
+// // function sortHand(handPlayerNumber) {
+
+// //   let sortable = [];
+// // for(let card=1;card<=7;i++){
+// // {for (let card in handPlayerNumber) {
+// //     sortable.push([card, handPlayerNumber[card[i]]]);
+// //     console.log(card);
+// // }}
+
+// // sortable.sort(function(a, b) {
+// //     return a[1] - b[1];
+// // })}
+// // return sortable
+// // };
+
+
+// // console.log(sortHand(handPlayer1));
 
 
 
 
-// [['str', {object}]['str', {object}]]
+// // [['str', {object}]['str', {object}]]
 
 
 
-// let sortable = [];
-// for (var vehicle in maxSpeed) {
-//     sortable.push([vehicle, maxSpeed[vehicle]]);
+// // let sortable = [];
+// // for (var vehicle in maxSpeed) {
+// //     sortable.push([vehicle, maxSpeed[vehicle]]);
+// // }
+
+// // sortable.sort(function(a, b) {
+// //     return a[1] - b[1];
+// // });
+
+
+
+
+
+// // sort array of ranks by number
+// // moves aces to back
+// function orderedHand(hand) {
+
+//   let orderedHand = hand.sort(compareNumbers);
+
+//   if (orderedHand[orderedHand.length - 1] === '14') {
+//     orderedHand[orderedHand.length - 1].unshift;
+//     orderedHand[orderedHand.length - 1].pop;
+//   }
+//   if (orderedHand[orderedHand.length - 1] === '14') {
+//     orderedHand[orderedHand.length - 1].unshift;
+//     orderedHand[orderedHand.length - 1].pop;
+//   }
+//   if (orderedHand[orderedHand.length - 1] === '14') {
+//     orderedHand[orderedHand.length - 1].unshift;
+//     orderedHand[orderedHand.length - 1].pop;
+//   }
+//   if (orderedHand[orderedHand.length - 1] === '14') {
+//     orderedHand[orderedHand.length - 1].unshift;
+//     orderedHand[orderedHand.length - 1].pop;
+//   }
+//   return orderedHand;
 // }
 
-// sortable.sort(function(a, b) {
-//     return a[1] - b[1];
-// });
+// // console.log(orderedHand(playerCardRanks(practiceHand)));
+
+
+// console.log(handPlayer1Ranks);
+
+// console.log(`=-=-=-orderedHand(handPlayerNumber)-=-=-`);+
+
+// console.log(handPlayer1);
+// console.log(handPlayer2);
 
 
 
+// let orderedHandPlayer1Ranks = orderedHand(handPlayer1Ranks);
+// console.log(handPlayer1Ranks);
+// let orderedHandPlayer2Ranks = orderedHand(handPlayer2Ranks);
+// console.log(handPlayer2Ranks);
 
-
-// sort array of ranks by number
-// moves aces to back
-function orderedHand(hand) {
-
-  let orderedHand = hand.sort(compareNumbers);
-
-  if (orderedHand[orderedHand.length - 1] === '14') {
-    orderedHand[orderedHand.length - 1].unshift;
-    orderedHand[orderedHand.length - 1].pop;
-  }
-  if (orderedHand[orderedHand.length - 1] === '14') {
-    orderedHand[orderedHand.length - 1].unshift;
-    orderedHand[orderedHand.length - 1].pop;
-  }
-  if (orderedHand[orderedHand.length - 1] === '14') {
-    orderedHand[orderedHand.length - 1].unshift;
-    orderedHand[orderedHand.length - 1].pop;
-  }
-  if (orderedHand[orderedHand.length - 1] === '14') {
-    orderedHand[orderedHand.length - 1].unshift;
-    orderedHand[orderedHand.length - 1].pop;
-  }
-  return orderedHand;
-}
-
-// console.log(orderedHand(playerCardRanks(practiceHand)));
-
-
-console.log(handPlayer1Ranks);
-
-console.log(`=-=-=-orderedHand(handPlayerNumber)-=-=-`);+
-
-console.log(handPlayer1);
-console.log(handPlayer2);
-
-
-
-let orderedHandPlayer1Ranks = orderedHand(handPlayer1Ranks);
-console.log(handPlayer1Ranks);
-let orderedHandPlayer2Ranks = orderedHand(handPlayer2Ranks);
-console.log(handPlayer2Ranks);
-
-// creates new boardandHand (reducedBoardAndHand) that does not contain duplicates
-function shrinkBoardAndHand (boardAndHand) {
-  let reducedBoardAndHand = [];
-  for(let i = 0; i < boardAndHand.length; i++) {
-    if (i === 0) {
-      reducedBoardAndHand.push(boardAndHand[i]);
-      // console.log(boardAndHand[i]);
-      } else if (!(reducedBoardAndHand.includes(boardAndHand[i]))) {
-      reducedBoardAndHand.push(boardAndHand[i]);
-    } 
-    }
-  return reducedBoardAndHand
-}
-
-console.log(`=-=-=-=-shrinkBoardAndHand-=-=-=-`);
-let reducedHandPlayer1 = shrinkBoardAndHand(orderedHandPlayer1Ranks)
-let reducedHandPlayer2 = shrinkBoardAndHand(orderedHandPlayer2Ranks)
+// // creates new boardandHand (reducedBoardAndHand) that does not contain duplicates
+// function shrinkBoardAndHand (boardAndHand) {
+//   let reducedBoardAndHand = [];
+//   for(let i = 0; i < boardAndHand.length; i++) {
+//     if (i === 0) {
+//       reducedBoardAndHand.push(boardAndHand[i]);
+//       // console.log(boardAndHand[i]);
+//       } else if (!(reducedBoardAndHand.includes(boardAndHand[i]))) {
+//       reducedBoardAndHand.push(boardAndHand[i]);
+//     } 
+//     }
+//   return reducedBoardAndHand
+// }
+// console.log(`=-=-=-=-shrinkBoardAndHand-=-=-=-`);
+// let reducedHandPlayer1 = shrinkBoardAndHand(orderedHandPlayer1Ranks)
+// let reducedHandPlayer2 = shrinkBoardAndHand(orderedHandPlayer2Ranks)
 
 
 
@@ -620,6 +720,9 @@ console.log(passTwoPairCheck(handPlayer1Ranks));
 
 
 
+
+
+
 // check for triple of same card
 function tripCheck(list, what) {
   let count = 0;
@@ -644,7 +747,6 @@ function passTripCheck(list) {
   for (let i = x; i <= 14; i++) {
     if (tripCheck(list, x)) {
       tempTripCombinations.push(x);
-      tripArray.push(x);
       counter++;
     }
     x++;
@@ -1838,6 +1940,28 @@ let reducedBoardRank7 = shrinkBoardAndHand(ranks7)
 
 
 
+
+// compares 2 hash hands
+// returns hand of winner
+function fullHouseCompare (handPlayer1, handPlayer2){
+
+  let player1 = passFullHouseCheck(handPlayer1)
+  let player2 = passFullHouseCheck(handPlayer2)
+  
+  if (player1>0 === true && player2>0 === true){
+    if(player1>player2){return handPlayer1}
+    if(player2>player1){return handPlayer2}
+    if(player2==player1){return 'PUSH'}
+  }
+  if (player1>0 === true && player2<0 === false){return handPlayer1}
+  if (player1<0 === false && player2>0 === true){return handPlayer2}
+  if (player1>0 === false && player2>0 === false){return false}
+  false
+  
+  }
+
+
+
 // 
 // compares 2 hands - handPlayer#, handPlayer#
 // returns hand of winner
@@ -1941,7 +2065,7 @@ function tripCompare (handPlayer1, handPlayer2){
 
 
 
-console.log(tripCompare(ranks5, ranks7));
+// console.log(tripCompare(ranks5, ranks7));
 
 
   // 
@@ -1967,7 +2091,7 @@ function twoPairCompare (handPlayer1, handPlayer2){
 
 
 
-console.log(twoPairCompare(ranks5, ranks7));
+// console.log(twoPairCompare(ranks5, ranks7));
 
 
 // 
@@ -1991,6 +2115,124 @@ function pairCompare (handPlayer1, handPlayer2){
   }
 
 
+// console.log(pairCompare(ranks5, ranks7));
 
 
-console.log(pairCompare(ranks5, ranks7));
+
+
+
+
+
+
+
+
+
+
+
+// 
+// compares 2 hands - handPlayer#ranks, handPlayer#ranks
+// returns hand of winner
+function highCardCompare (handPlayer1, handPlayer2){
+
+  let topFive1 = orderedHand(handPlayer1).slice(-5).reverse()
+  let topFive2 = orderedHand(handPlayer2).slice(-5).reverse()
+
+  
+  for(let i = 0; i < 5; i++) {
+      if (
+        topFive1[i] > topFive1[i] &&
+        topFive1[i+1] > topFive1[+1] &&
+        topFive1[i+2] > topFive1[+2] &&
+        topFive1[i+3] > topFive1[+3] &&
+        topFive1[i+4] > topFive1[+4]
+      ) 
+      {
+        return handPlayer1
+      }
+    }
+return handPlayer2
+ // sort ranks, take out first 5
+ // compare one against the other, first one to have bigger card wins
+}
+
+
+
+
+// console.log(highCardCompare(ranks5, ranks7));
+console.log(highCardCompare(handPlayer1Ranks, handPlayer2Ranks));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+console.log(
+reducedHandPlayer1,
+reducedHandPlayer2,
+handPlayer1Ranks,
+handPlayer2Ranks
+);
+
+function whoWins (handPlayer1, handPlayer2) {
+  let tempReduce1 = shrink(handPlayer1);
+  let tempReduce2 = shrink(handPlayer2);
+  let tempRanks1 = playerCardRanks(handPlayer1);
+  let tempRanks2 = playerCardRanks(handPlayer2);
+
+
+  if (royalFlushCompare(handPlayer1, handPlayer2) === handPlayer1){return handPlayer1}
+  if (royalFlushCompare(handPlayer1, handPlayer2) === handPlayer2){return handPlayer2}
+
+  if (straightFlushCompare(handPlayer1, handPlayer2) === handPlayer1){return handPlayer1}
+  if (straightFlushCompare(handPlayer1, handPlayer2) === handPlayer2){return handPlayer2}
+
+  if (straight5highFlushCompare(handPlayer1, handPlayer2) === handPlayer1){return handPlayer1}
+  if (straight5highFlushCompare(handPlayer1, handPlayer2) === handPlayer2){return handPlayer2}
+  
+  if (fourOfAKindCompare(tempRanks1, tempRanks2) === tempRanks1){return handPlayer1}
+  if (fourOfAKindCompare(tempRanks1, tempRanks2) === tempRanks2){return handPlayer2}
+
+  if (fullHouseCompare(handPlayer1, handPlayer2) === handPlayer1){return handPlayer1}
+  if (fullHouseCompare(handPlayer1, handPlayer2) === handPlayer2){return handPlayer2}
+
+  if (flushCompare(handPlayer1, handPlayer2) === handPlayer1){return handPlayer1}
+  if (flushCompare(handPlayer1, handPlayer2) === handPlayer2){return handPlayer2}
+
+  if (straightCompare(tempReduce1, tempReduce2) === tempReduce1){return handPlayer1}
+  if (straightCompare(tempReduce1, tempReduce2) === tempReduce2){return handPlayer2}
+
+  if (fiveHighStraightCompare(tempReduce1, tempReduce2) === tempReduce1){return handPlayer1}
+  if (fiveHighStraightCompare(tempReduce1, tempReduce2) === tempReduce2){return handPlayer2}
+
+  if (tripCompare(tempRanks1, tempRanks2) === tempRanks1){return handPlayer1}
+  if (tripCompare(tempRanks1, tempRanks2) === tempRanks2){return handPlayer2}
+
+  if (twoPairCompare(tempRanks1, tempRanks2) === tempRanks1){return handPlayer1}
+  if (twoPairCompare(tempRanks1, tempRanks2) === tempRanks2){return handPlayer2}
+
+  if (pairCompare(tempRanks1, tempRanks2) === tempRanks1){return handPlayer1}
+  if (pairCompare(tempRanks1, tempRanks2) === tempRanks2){return handPlayer2}
+
+  if (highCardCompare(tempRanks1, tempRanks2) === tempRanks1){return handPlayer1}
+  if (highCardCompare(tempRanks1, tempRanks2) === tempRanks2){return handPlayer2}
+}
+
+console.log(whoWins(handPlayer1, handPlayer2));
+
+function flipCard (handPlayer1, handPlayer2) {
+  if (whoWins(handPlayer1, handPlayer2) === handPlayer1) {
+    return "Dont flip!"
+  } else {
+    return "Flip over player 2's cards!"
+  }
+}
+
+console.log( flipCard (handPlayer1, handPlayer2 ));
