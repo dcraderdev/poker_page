@@ -1,36 +1,35 @@
-// 'use strict'
+'use strict';
 
 // // // Write a function sumArray(arr) that accepts an array as an arg. The function should return the total sum of all values in the array.
 
-// // function sumArray(arr) {
-// //   let sum = 0;
-// //   let sum2 = [];
-// //   for(let i = 0; i < arr.length; i++) {
-// //     sum += arr[i];
-// //     sum2.push(arr[i]);
-// //   }
-// //   return sum
-// // }
+function sumArray(arr) {
+  let sum = 0;
+  let sum2 = [];
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+    sum2.push(arr[i]);
+  }
+  return sum;
+}
 
 // // console.log(sumArray([4, 3, -1, 10])); // 16
 // // console.log(sumArray([6, 7, 2])); // 15
 // // console.log(sumArray([])); // 0
 
-// // function rotateRight(array, num) {
-// //   let newArray = array.slice()
-// //   console.log(newArray);
-// //   if (num > 0) {
-// //     // if num 0, we dont need to rotate
-// //     for(let j = 1; j <= num; j++){
-// //       // add last element to front
-// //       newArray.unshift(newArray[newArray.length-1])
-// //       // remove last element
-// //       newArray.pop(newArray[newArray.length-1]);
-
-// // }
-// // }
-// // return newArray
-// // }
+function rotateRight(array, num) {
+  let newArray = array.slice();
+  console.log(newArray);
+  if (num > 0) {
+    // if num 0, we dont need to rotate
+    for (let j = 1; j <= num; j++) {
+      // add last element to front
+      newArray.unshift(newArray[newArray.length - 1]);
+      // remove last element
+      newArray.pop(newArray[newArray.length - 1]);
+    }
+  }
+  return newArray;
+}
 
 // // let arr = ['a', 'b', 'c', 'd', 'e'];
 // // console.log(rotateRight(arr, 2)); // [ 'd', 'e', 'a', 'b', 'c' ]
@@ -409,41 +408,43 @@
 // console.log(popper(arr2, 1)); // [ 'cabbage' ]
 // console.log(arr2); // [ 'kale', 'spinach', 'collard greens' ]
 
-// function isPrime(num) {
-//   for(let i = 2; i < num; i++) {
-//     if(num % i === 0) {return false}
-//   }
-//   return true
-// }
+function isPrime(num) {
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
 
-// function choosePrimes(nums) {
-//   let primes = [];
-//   for (let i = 0; i < nums.length; i++)
-//     if(isPrime(nums[i])){
-//       primes.push(nums[i])
-//     }
-//     return primes
-// }
-
+function choosePrimes(nums) {
+  let primes = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (isPrime(nums[i])) {
+      primes.push(nums[i]);
+    }
+  }
+  return primes
+}
 // console.log(choosePrimes([36, 48, 9, 13, 19])); // [ 13, 19 ]
 // console.log(choosePrimes([5, 6, 4, 11, 2017])); // [ 5, 11, 2017 ]
 
 // console.log(howLong('word'));
 
-// function longestWord(sentence) {
-// let words = sentence.split(' ');
-// let biggest = ''
+function longestWord(sentence) {
+  let words = sentence.split(' ');
+  let biggest = '';
 
-// console.log(words);
-// for(let i = 0; i < words.length; i++) {
-//  let word = words[i];
-//   if (word.length > biggest.length) {
-//     biggest = words[i]
-//   }
-// }
+  // console.log(words);
+  for (let i = 0; i < words.length; i++) {
+    let word = words[i];
+    if (word.length > biggest.length) {
+      biggest = words[i];
+    }
+  }
 
-// return biggest
-// }
+  return biggest;
+}
 
 // console.log(longestWord('where did everyone go')); // 'everyone'
 // console.log(longestWord('prefer simplicity over complexity')); // 'simplicity'
@@ -1183,24 +1184,24 @@
 // should return the difference between the first and last elements
 // of the array.
 
-// function firstAndLast (arr) {
-//   // takes in arr
-//   // find first ele
-//   let firstEle = arr[0];
-//   // find last ele
-//   let lastEle = arr[arr.length-1];
+function firstAndLast(arr) {
+  // takes in arr
+  // find first ele
+  let firstEle = arr[0];
+  // find last ele
+  let lastEle = arr[arr.length - 1];
 
-//   // if arr.length % 2 === 0
-//   //returns last ele + first ele
-//    if (arr.length % 2 === 0) {
-//     return firstEle + lastEle
-//    }
-//    // if arr.length % 2 === 1
-//    //returns first ele - last ele
-//   if (arr.length % 2 === 1) {
-//     return firstEle - lastEle
-//   }
-// }
+  // if arr.length % 2 === 0
+  //returns last ele + first ele
+  if (arr.length % 2 === 0) {
+    return firstEle + lastEle;
+  }
+  // if arr.length % 2 === 1
+  //returns first ele - last ele
+  if (arr.length % 2 === 1) {
+    return firstEle - lastEle;
+  }
+}
 
 // console.log(firstAndLast([1, 2, 3, 4]));    // 5
 // console.log(firstAndLast([1, 2, 3, 4, 5])); // -4
@@ -1214,34 +1215,33 @@
 // array containing the sum of each pair of elements
 // in the input array.
 
-// function adjacentSums (arr) {
-//   // returns arr
-//   let newArr = []
-//   // find unique pairs
-//   for(let i = 0; i < arr.length-1; i++) {
-//     //  if(arr[i+1] !== undefined)
-//     //  tempNum = (arr[i] + arr[i+1]);
-//     //  newArr.push(tempNum);
+function adjacentSums(arr) {
+  // returns arr
+  let newArr = [];
+  // find unique pairs
+  for (let i = 0; i < arr.length - 1; i++) {
+    //  if(arr[i+1] !== undefined)
+    //  tempNum = (arr[i] + arr[i+1]);
+    //  newArr.push(tempNum);
 
-//      newArr.push(arr[i] + arr[i+1]);
-//     }
+    newArr.push(arr[i] + arr[i + 1]);
+  }
 
-//   return newArr
+  return newArr;
+}
 
-// }
+let adjacentSums2 = function (array) {
+  if (!Array.isArray(array)) {
+    throw 'Not an array!';
+  }
 
-// let adjacentSums2 = function(array) {
-//   if (!Array.isArray(array)) {
-//     throw 'Not an array!';
-//   }
-
-//   let sums = [];
-//   for (let i = 0; i < array.length - 1; i++) {
-//     let sum = array[i] + array[i + 1];
-//     sums.push(sum);
-//   }
-//   return sums;
-// };
+  let sums = [];
+  for (let i = 0; i < array.length - 1; i++) {
+    let sum = array[i] + array[i + 1];
+    sums.push(sum);
+  }
+  return sums;
+};
 
 // console.log(adjacentSums([3, 8, 7, 1]));        // [ 11, 15, 8 ]
 // console.log(adjacentSums([10, 5, 4, 3, 9]));    // [ 15, 9, 7, 12 ]
@@ -1275,56 +1275,59 @@
 // console.log(choosePrimes([36, 48, 9, 13, 19])); // [ 13, 19 ]
 // console.log(choosePrimes([5, 6, 4, 11, 2017])); // [ 5, 11, 2017 ]
 
-// // Spiral Matrix (*)
-// // Write a function spiralOrder(matrix) that takes in a 2-dimensional array (matrix)
-// // and returns an array containing the elements in spiral order.
+// Spiral Matrix (*)
+// Write a function spiralOrder(matrix) that takes in a 2-dimensional array (matrix)
+// and returns an array containing the elements in spiral order.
 
-// matrix = [    [ 1, 2, 3], [ 4, 5, 6], [ 7, 8, 9]    ]
+let matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
 
-// function spiralOrder(matrix) {
-// // return new array
-// let newArr = [];
+function spiralOrder(matrix) {
+  // return new array
+  let newArr = [];
 
-// //iterate from even indices front to back
-// //iterate from odd indices back to front
+  //iterate from even indices front to back
+  //iterate from odd indices back to front
 
-// for(let i = 0; i < matrix.length; i++) {
-//   console.log(matrix[i]);
-//   if(i === 0) {
-//     for(let j = 0; j < matrix[i].length; j++) {
-//       newArr.push(matrix[i][j])
-//     }
-//   }
-//   if(i === matrix.length - 1) {
-//     console.log('hi');
-//     for(let k = matrix[i].length-1; k >= 0; k--) {
-//       console.log('hi');
-//       newArr.push(matrix[i][k])
-//     }
-//   }
-//   if(i === 1) {
-//     console.log('hi');
-//     for(let g = 0; g < matrix[i].length; g++) {
-//       console.log('hi');
-//       newArr.push(matrix[i][g])
-//     }
-//   }
+  for (let i = 0; i < matrix.length; i++) {
+    // console.log(matrix[i]);
+    if (i === 0) {
+      for (let j = 0; j < matrix[i].length; j++) {
+        newArr.push(matrix[i][j]);
+      }
+    }
+    if (i === matrix.length - 1) {
+      for (let k = matrix[i].length - 1; k >= 0; k--) {
+        newArr.push(matrix[i][k]);
+      }
+    }
+    if (i === 1) {
+      for (let g = 0; g < matrix[i].length; g++) {
+        newArr.push(matrix[i][g]);
+      }
+    }
+  }
+  return newArr;
+}
 
-// }
-// return newArr
-// }
-
-// matrix = [[ 1, 2, 3],
-//           [ 4, 5, 6],
-//           [ 7, 8, 9]]
+matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
 
 // console.log(spiralOrder(matrix)); // [1,2,3,6,9,8,7,4,5]
 
-// // matrix = [[1, 2, 3, 4],
-// //           [5, 6, 7, 8],
-// //           [9,10,11,12]]
+matrix = [
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9, 10, 11, 12],
+];
 
-// // console.log(spiralOrder(matrix)); // [1,2,3,4,8,12,11,10,9,5,6,7]
+// console.log(spiralOrder(matrix)); // [1,2,3,4,8,12,11,10,9,5,6,7]
 
 /* <script>
   
@@ -1435,7 +1438,25 @@
 //   }
 // }
 
-// console.log(spiralPrint2(matrix)); // [1,2,3,6,9,8,7,4,5]
+// function spiralOrder22(matrix) {
+//   const arr = [];
+
+//    while (matrix.length) {
+//      arr.push(
+//        ...matrix.shift(),
+//        ...matrix.map(a => a.pop()),
+//        ...(matrix.pop() || []).reverse(),
+//        ...matrix.map(a => a.shift()).reverse()
+//      );
+//    }
+//    return arr
+//  }
+
+//    matrix = [[ 1, 2, 3],
+//              [ 4, 5, 6],
+//              [ 7, 8, 9]]
+
+// console.log(spiralOrder22(matrix)); // [1,2,3,6,9,8,7,4,5]
 
 // function spiral2 (matrix) {
 //   // variables
@@ -1962,35 +1983,41 @@ function zanyZip(arr1, arr2) {
 //   //takes in arr of gorceries
 //   //returns total cost
 function costOfGroceries(groceries) {
-
   let totalCost = 0;
 
-  for(let i = 0; i < groceries.length; i++) {
-    if(groceries[i] === 'butter'){totalCost += 1}
-    if(groceries[i] === 'eggs'){totalCost += 2}
-    if(groceries[i] === 'milk'){totalCost += 3}
-    if(groceries[i] === 'bread'){totalCost += 4}
-    if(groceries[i] === 'cheese'){totalCost += 5}
+  for (let i = 0; i < groceries.length; i++) {
+    if (groceries[i] === 'butter') {
+      totalCost += 1;
+    }
+    if (groceries[i] === 'eggs') {
+      totalCost += 2;
+    }
+    if (groceries[i] === 'milk') {
+      totalCost += 3;
+    }
+    if (groceries[i] === 'bread') {
+      totalCost += 4;
+    }
+    if (groceries[i] === 'cheese') {
+      totalCost += 5;
+    }
   }
   return totalCost;
 }
 
-
-
-// // Then, write a function mostExpensiveGroceries(groceriesList) that takes in a 2-dimensional array of grocery items 
+// // Then, write a function mostExpensiveGroceries(groceriesList) that takes in a 2-dimensional array of grocery items
 // // and returns the index of the sub-array with the highest cost.
-
 
 function mostExpensiveGroceries(groceriesList) {
   let most = null;
   let index = null;
-  for(let i = 0; i < groceriesList.length; i++) {
+  for (let i = 0; i < groceriesList.length; i++) {
     if (costOfGroceries(groceriesList[i]) > most) {
-      most = costOfGroceries(groceriesList[i])
-      index = i
+      most = costOfGroceries(groceriesList[i]);
+      index = i;
     }
   }
-  return index
+  return index;
 }
 
 // const groceriesA = ['cheese', 'butter', 'eggs'];
@@ -1998,13 +2025,7 @@ function mostExpensiveGroceries(groceriesList) {
 // const groceriesC = ['cheese', 'bread'];
 // const groceriesD = ['eggs', 'butter'];
 
-
 // // console.log(mostExpensiveGroceries([groceriesA, groceriesD, groceriesC])); // 2
-
-
-
-
-
 
 // // TESTS
 // // DO NOT MODIFY ANYTHING BELOW THIS LINE
@@ -2035,10 +2056,9 @@ if (
 if (mostExpensiveGroceries([groceriesA, groceriesD]) === 0) score++;
 if (mostExpensiveGroceries([groceriesA, groceriesD, groceriesC]) === 2) score++;
 
-console.log('You have scored ' + score + '/7 points.');
+// console.log('You have scored ' + score + '/7 points.');
 
-
-// // Your friend is working on a function called isSorted() which checks if an array of numbers is in order, sorted lowest to highest. 
+// // Your friend is working on a function called isSorted() which checks if an array of numbers is in order, sorted lowest to highest.
 // // Unfortunately, the code is not working correctly. Help them fix it!
 
 // function isSorted(nums) {
@@ -2072,16 +2092,25 @@ console.log('You have scored ' + score + '/7 points.');
 // isSorted([2, 2, 4, 4])  // true
 // isSorted([1, 2, 4, 3, 5, 6])  // false
 
-
 // Silly Strings
-// Write a function sillyString that accepts a word as an argument. 
-// The functions should return a new word where every vowel of the original word is followed 
+// Write a function sillyString that accepts a word as an argument.
+// The functions should return a new word where every vowel of the original word is followed
 // by 'b' and that same vowel. For example, 'siren' would turn into 'sibireben'.
 
+function sillyString(word) {
+  // returns new word
+  let newWord = [];
+  let vowels = 'aeiou';
 
-
-
-
+  for (let i = 0; i < word.length; i++) {
+    if (vowels.includes(word[i])) {
+      newWord.push(word[i] + 'b' + word[i]);
+    } else {
+      newWord.push(word[i]);
+    }
+  }
+  return newWord.join('');
+}
 
 // console.log(sillyString('stop'));       // stobop
 // console.log(sillyString('that'));       // thabat
@@ -2089,3 +2118,164 @@ console.log('You have scored ' + score + '/7 points.');
 // console.log(sillyString('cats'));       // cabats
 // console.log(sillyString('italy'));      // ibitabaly
 // console.log(sillyString('scooter'));    // scobooboteber
+
+// More Dot Less Dash
+// Write a function moreDotLessDash that accepts a string as an argument.
+// The function should return a boolean indicating whether or not the string
+// contains more dots (.) than dashes (-).
+
+function moreDotLessDash(string) {
+  //return boolean
+  //iterate over string and increment separate counter for . and -
+  counterDash = 0;
+  counterDot = 0;
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === '.') {
+      counterDot++;
+    }
+    if (string[i] === '-') {
+      counterDash++;
+    }
+  }
+
+  if (counterDot > counterDash) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// console.log(moreDotLessDash('2-D arrays are fun. I think.'));           // true
+// console.log(moreDotLessDash('Morse code is great.'));                   // true
+// console.log(moreDotLessDash('.... . -.--'));                            // true
+// console.log(moreDotLessDash('.--. .-. --- --. .-. .- -- -- . .-.'));    // false
+// console.log(moreDotLessDash('high-flying acrobat.'));                   // false
+
+// Next Prime
+// Write a function nextPrime that accepts a number as an argument.
+// The function should return the nearest prime number that is greater than the given number.
+
+function isPrime(num) {
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function nextPrime(num) {
+  for (let i = num + 1; i < Infinity; i++) {
+    if (isPrime(i)) {
+      return i;
+    }
+  }
+}
+
+// console.log(nextPrime(2)); // 3
+// console.log(nextPrime(3)); // 5
+// console.log(nextPrime(7)); // 11
+// console.log(nextPrime(8)); // 11
+// console.log(nextPrime(20)); // 23
+// console.log(nextPrime(97)); // 101
+
+// Matrix Addition
+// A 2-dimensional array is also known as a "matrix".
+// Write a function matrixAddition that accepts two matrices as arguments.
+// The two matrices are guaranteed to have the same "height" and "width".
+// The function should return a new matrix representing the sum of the two arguments.
+// To add matrices, we add the values at the same positions.
+
+function matrixAddition(mtrx1, mtrx2) {
+  let newArr = [];
+  // console.log(mtrx1[0][0]);
+  for (let i = 0; i < mtrx1.length; i++) {
+    let tempArr = [];
+    for (let j = 0; j < mtrx1[0].length; j++) {
+
+     tempArr.push(mtrx1[i][j] + mtrx2[i][j])
+    }
+    newArr.push(tempArr)
+  }
+  return newArr
+}
+
+let matrixA = [
+  [2, 5],
+  [4, 7],
+];
+let matrixB = [
+  [9, 1],
+  [3, 0],
+];
+let matrixC = [
+  [-1, 0],
+  [0, -1],
+];
+let matrixD = [
+  [2, -5],
+  [7, 10],
+  [0, 1],
+];
+let matrixE = [
+  [0, 0],
+  [12, 4],
+  [6, 3],
+];
+
+// console.log(matrixAddition(matrixA, matrixB)); // [[11, 6], [7, 7]]
+// console.log(matrixAddition(matrixA, matrixC)); // [[1, 5], [4, 6]]
+// console.log(matrixAddition(matrixB, matrixC)); // [[8, 1], [3, -1]]
+// console.log(matrixAddition(matrixD, matrixE)); // [[2, -5], [19, 14], [6, 4]]
+
+
+
+// Is Perfect Square
+// Write a function isPerfectSquare that accepts a number as an argument. 
+// The method should return a boolean indicating whether or not the argument is a perfect square. 
+// A perfect square is a number that is the product of some number multiplied by itself. 
+// For example, since 64 = 8 * 8 and 144 = 12 * 12, 64 and 144 are perfect squares; 35 is not a perfect square.
+
+function isPerfectSquare(num) {
+for(let i = 0; i <= num; i++) {
+  if( i*i === num) {return true}
+}
+  return false
+
+}
+
+
+
+// console.log(isPerfectSquare(1))     // true
+// console.log(isPerfectSquare(4))     // true
+// console.log(isPerfectSquare(64))    // true
+// console.log(isPerfectSquare(100))   // true
+// console.log(isPerfectSquare(169))   // true
+// console.log(isPerfectSquare(2))     // false
+// console.log(isPerfectSquare(40))    // false
+// console.log(isPerfectSquare(32))    // false
+// console.log(isPerfectSquare(50))    // false
+
+
+
+// Prime Factors
+// Write a function primeFactors that accepts a number as an argument. 
+// The function should return an array containing all of the prime numbers that can divide the given number.
+
+
+function primeFactors (num) {
+  let newArr = [];
+  for(let i = 0; i < num.length; i++){
+    if()
+  }
+}
+
+
+
+console.log(primeFactors(12));  // [2, 3]
+console.log(primeFactors(7));   // [7]
+console.log(primeFactors(16));  // [2]
+console.log(primeFactors(30));  // [2, 3, 5]
+console.log(primeFactors(35));  // [5, 7]
+console.log(primeFactors(49));  // [7]
+console.log(primeFactors(128)); // [2]
