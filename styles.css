@@ -1,3 +1,16 @@
+
+
+.menuBar {
+  border: solid 5px black
+  display: flex;
+  align-items: ;
+  flex-direction: column;
+
+}
+
+
+
+
 .menuBox {
   height: 100px;
   width: 200px;
@@ -5,22 +18,27 @@
   flex-direction: row;
   border: 2px solid black;
   display: flex;
-  justify-content: ;
+  justify-content: space-between;
   align-content: flex-end;
+  flex-direction: table-column;
+  ;
+
 }
 
 .box {
 }
 
 .box {
-  padding: px;
+  padding: 10px;
   border-style: solid;
   border-width: px;
-  display: block;
+  /* display: block; */
   width: 33.3333%;
   height: ;
   background-color: green;
   transition: width 0.5s, height 0.5s, background-color 0.5s, transform 0.5s;
+  display: flex;
+  flex-direction: table-row;
 }
 
 .box:hover {
