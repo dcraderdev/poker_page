@@ -29,7 +29,53 @@ const restaurant = {
   order: function (starterIndex, mainIndex) {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicous pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
 };
+
+
+// rest pattern and parameters
+// the rest pattern uses similar syntax as the spread operator but instead the rest operator
+// collects elements into an array
+
+//spread operator
+const arr5 = [1, 2, ...[3, 4]];
+
+//rest operator
+const [ab, bc, ...others] = [1, 2, 3, 4, 5]
+
+console.log(ab, bc, others);
+console.log(ab);
+console.log(bc);
+console.log(others);
+
+const [pizza, ,risotto ,focaccia,  ...otherFood] =[...restaurant.mainMenu, ...restaurant.starterMenu]
+
+console.log(pizza ,risotto ,focaccia ,otherFood);
+console.log(otherFood);
+console.log(pizza);
+
+
+// spread operator on objects
+
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
+
+
+// spread operator on functions
+const add = function (...numbers) {
+  console.log(numbers);
+}
+
+add(2, 3);
+add(2, 3, 4, 5, 6);
+
+const xx = [23, 7, 5];
+add(...xx)
+
+
 
 // destructuring objects
 
@@ -43,30 +89,22 @@ const {
   categories: tags,
 } = restaurant;
 
+const { menu2 = [], starterMenu: starters = [] } = restaurant;
 
-const { menu = [], starterMenu: starters = [] } = restaurant;
-
-console.log(menu, restaurant);
+console.log(menu2, restaurant);
 
 console.log(restaurant);
-
-
-
 
 // mutating variables
 let aa = 111;
 let bb = 999;
-const obj = {aa: 23, bb: 27, cc: 14};
+const obj = { aa: 23, bb: 27, cc: 14 };
 
 // in order ot mutate a variable we have to wrap our destructuring assignment into parentheses
 // so {a, b} = obj ; gets wrapped in ()
-({aa, bb} = obj);
+({ aa, bb } = obj);
 
 console.log(aa, bb);
-
-
-
-
 
 // console.log(restaurantName, hours, tags);
 // console.log(restaurant);
@@ -111,3 +149,30 @@ console.log(i, j, k);
 //default values
 const [p = 1, q = 1, r = 1] = [8, 9];
 console.log(p, q, r);
+
+// spread operator (...)
+
+const arr2 = [7, 8, 9];
+const badNewArr = [1, 2, arr2[0], arr2[1], arr2[2]];
+console.log(badNewArr);
+//^^ this is slow and tedious to write out
+
+const newArr2 = [1, 2, ...arr2];
+console.log(newArr2);
+
+console.log(restaurant.mainMenu);
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+console.log(menu);
+
+// const ingredients = [prompt("Let's make pasta! Ingredient 1?"), prompt("Ingredient 2?"), prompt("Ingredient 3?")];
+
+
+// restaurant.orderPasta(...ingredients)
+
+const newRestaurant = {foundedIn: 1998, ...restaurant, founder: 'Guiseppe'}
+console.log(newRestaurant);
+
+
+
+

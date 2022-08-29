@@ -2156,6 +2156,7 @@ function moreDotLessDash(string) {
 // The function should return the nearest prime number that is greater than the given number.
 
 function isPrime(num) {
+  if(num === 1 ){return false}
   for (let i = 2; i < num; i++) {
     if (num % i === 0) {
       return false;
@@ -2265,17 +2266,221 @@ for(let i = 0; i <= num; i++) {
 
 function primeFactors (num) {
   let newArr = [];
-  for(let i = 0; i < num.length; i++){
-    if()
+  for(let i = 0; i <= num; i++){
+    if(num % i === 0 && isPrime(i)) {
+      newArr.push(i)
+    }
   }
+  return newArr
 }
 
 
 
-console.log(primeFactors(12));  // [2, 3]
-console.log(primeFactors(7));   // [7]
-console.log(primeFactors(16));  // [2]
-console.log(primeFactors(30));  // [2, 3, 5]
-console.log(primeFactors(35));  // [5, 7]
-console.log(primeFactors(49));  // [7]
-console.log(primeFactors(128)); // [2]
+// console.log(primeFactors(12));  // [2, 3]
+// console.log(primeFactors(7));   // [7]
+// console.log(primeFactors(16));  // [2]
+// console.log(primeFactors(30));  // [2, 3, 5]
+// console.log(primeFactors(35));  // [5, 7]
+// console.log(primeFactors(49));  // [7]
+// console.log(primeFactors(128)); // [2]
+
+// Prev Prime
+// Write a function prevPrime that accepts a number as an argument. 
+// The function should return the nearest prime number that is smaller than the given argument. 
+// Since 2 is the smallest prime number, return null if no number can be returned.
+
+function prevPrime (num) {
+  for(let i = num-1; i >= 2; i--){
+    if(isPrime(i)) {return i}
+  }
+  return null
+}
+
+
+
+// console.log(prevPrime(32)); // 31
+// console.log(prevPrime(33)); // 31
+// console.log(prevPrime(14)); // 13
+// console.log(prevPrime(7));  // 5
+// console.log(prevPrime(4));  // 3
+// console.log(prevPrime(2));  // null
+// console.log(prevPrime(1));  // null
+
+
+// Has Three Vowels (*)
+// Write a function hasThreeVowels that accepts a string as an argument. 
+// The function should return a boolean indicating whether or not the string contains at least three different vowels.
+
+
+
+function hasThreeVowels(string) {
+  let counter = []
+  let vowels ='aeiou'
+  for(let i = 0; i < string.length; i++){
+    if(vowels.includes(string[i])){
+      if(!counter.includes(string[i])){
+        counter.push(string[i])
+      }
+    }
+  }
+  if(counter.length > 2) {return true}
+  else{return false}
+}
+
+
+// console.log(hasThreeVowels('delicious'));       //  true
+// console.log(hasThreeVowels('bootcamp prep'));   //  true
+// console.log(hasThreeVowels('bootcamp'));        //  false
+// console.log(hasThreeVowels('dog'));             //  false
+// console.log(hasThreeVowels('go home'));         //  false
+
+
+// Fibonacci Sequence
+// Write a function fibonacciSequence that accepts a number as an argument. 
+// The function should return an array representing the fibonacci sequence up to the given length. 
+// The first and second numbers of the sequence are 1 and 1. To generate subsequent numbers of the sequence, 
+// we take the sum of the previous two numbers of the sequence.
+
+
+function fibonacciSequence (num) {
+  let fib = []
+  if(num === 1) {return [1]}
+  for(let i = 1; i < num; i++){
+    if(i === 1) { fib.push(i, i) }
+
+    else {fib.push( fib[fib.length-1] + fib[fib.length-2] )}
+
+    }
+    return fib
+  }
+
+
+
+
+// console.log(fibonacciSequence(4));  // [ 1, 1, 2, 3 ]
+// console.log(fibonacciSequence(5));  // [ 1, 1, 2, 3, 5 ]
+// console.log(fibonacciSequence(8));  // [ 1, 1, 2, 3, 5, 8, 13, 21 ]
+// console.log(fibonacciSequence(0));  // [ ]
+// console.log(fibonacciSequence(1));  // [ 1 ]
+// console.log(fibonacciSequence(2));  // [ 1, 1 ]
+
+
+
+
+// Is Anti Prime
+// Write a function isAntiPrime that accepts a number as an argument. 
+// The method should return true if the given number has more divisors 
+// than all positive numbers less than the given number. For example, 24 
+// is an anti-prime because it has more divisors than any positive number less than 24.
+
+function numDivisors(num) {
+  let divs = [];
+  for(let i = 1; i <= num; i++){
+    if(num % i === 0) {divs.push(i)}
+  }
+  return divs.length
+}
+
+
+
+function isAntiPrime (num) {
+  let numToBeat = numDivisors(num)
+// return boolean
+// check divisors for num
+// iterate num thru 1
+// check # of divisors for each num
+// if i has more divisors than num return false 
+
+for(let i = num-1; i >1; i--){
+  if(numDivisors(i) > numToBeat) {return false}
+}
+  return true
+}
+
+
+
+// console.log(isAntiPrime(24))   // true
+// console.log(isAntiPrime(36))   // true
+// console.log(isAntiPrime(48))   // true
+// console.log(isAntiPrime(360))  // true
+// console.log(isAntiPrime(1260)) // true
+// console.log(isAntiPrime(27))   // false
+// console.log(isAntiPrime(5))    // false
+// console.log(isAntiPrime(100))  // false
+// console.log(isAntiPrime(136))  // false
+// console.log(isAntiPrime(1024)) // false
+
+
+
+
+// Pyramid Array
+// Write a function pyramidArray(base) that takes in an array of numbers representing 
+// the base of a pyramid. The function should return a two-dimensional array representing 
+// the completed pyramid. To generate an element of the next level of the pyramid, we sum 
+// the elements below and to the left and below and to the right.
+
+
+// For example, given 2, 3, 7, 5, 9 as the base, we should construct this pyramid:
+//
+//           85
+//         37  48
+//       15  22  26
+//    5   10   12   14
+//  2   3    7    5    9
+//
+//
+
+
+
+function pyramidArray(base) {
+  let newArr = [base]
+  while(newArr.length < newArr.length){
+  for(let i = 0; i < base.length-1; i++){
+    let tempArr = [];
+
+    console.log(base[i] + base[i+1]);
+    
+    tempArr.unshift(base[i] + base[i+1])
+  }}
+  return newArr
+}
+
+
+
+let p1 = pyramidArray([2, 3, 7, 5, 9]);
+// console.log(p1);
+// [
+//   [ 85 ],
+//   [ 37, 48 ],
+//   [ 15, 22, 26 ],
+//   [ 5, 10, 12, 14 ],
+//   [ 2, 3, 7, 5, 9 ]
+// ]
+
+let p2 = pyramidArray([2, 2, 2, 2]);
+// console.log(p2);
+// [
+//   [ 16 ],
+//   [ 8, 8 ],
+//   [ 4, 4, 4 ],
+//   [ 2, 2, 2, 2 ]
+// ]
+
+
+
+let maxValue = function(arr) {
+  let topDog = null;
+
+  for (let i = 0; i < arr.length; i++) {
+      let num = arr[i];
+      if (topDog === null || num > topDog) {
+          topDog = num;
+      }
+  }
+
+  return topDog;
+};
+
+console.log(maxValue([4, 6, 3, 5, 42, 4])); // 42
+console.log(maxValue([-2, -3, -7, 3 ])); // 3
+console.log(maxValue([])); // null
