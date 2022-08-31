@@ -380,6 +380,10 @@ const game = {
   }, };
 
 
+
+
+console.log(game['score']);
+
   // 1.
 const [players1, players2] = game.players
 // console.log(players1);
@@ -507,36 +511,39 @@ for (const [i, player] of game.scored.entries()){
 
 // const odds = game.odds
 
+
+
+
+// function sum(...odds){
+//   let sum = 0
+//   for(let i = 0; i < odds.length; i++){
+//     console.log(odds[i]);
+//    sum += odds[i]
+//   }
+//   return sum
+// }
+
+// console.log(sum([odds]));
+
+// // const odds = [numbers1, numbers2, numbers3]
+// console.log(sum(odds)/odds.length);
+
 const odds = Object.values(game.odds)
 const teamz = Object.entries(game.odds)
 
 console.log(odds);
 console.log(teamz);
 
+let sum = 0;
+for (const odd of odds) sum += odd;
+  // console.log(`sum is ${sum}`);
+  // console.log(`add ${odd}`);
+  // console.log(`divide by ${odds.length}`);
+   
 
-function sum(...odds){
-  let sum = 0
-  for(let i = 0; i < odds.length; i++){
-    console.log(odds[i]);
-   sum += odds[i]
-  }
-  return sum
-}
-
-console.log(sum([odds]));
-
-// const odds = [numbers1, numbers2, numbers3]
-console.log(sum(odds)/odds.length);
-
-
-let average = 0;
-for (const odd of odds){
-  average += odd
-   average /= odds.length
-  console.log(average);
-}
-
-
+  sum /= odds.length
+  
+  console.log(sum);
 
 
 
@@ -549,9 +556,11 @@ for (const odd of odds){
 // }
 
 
-// for(const [team, game.odds] of odds) {
-//   console.log(`team ${team} has odds ${odds}`);
-// }
+// for(const [team, game['odds'] of odds) {
+  for(const [team, odd] of Object.entries(game.odds)) {
+  const teamStr = team === 'x' ? 'Draw' : `Victory ${game[team]}`
+  console.log(`${teamStr}: ${odd}`);
+}
 // function oddsEachTeam()
 
 
