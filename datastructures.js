@@ -13,7 +13,7 @@ const restaurant = {
 
   openingHours: {
     thu: {
-      open: 12,
+      open: 12, 
       close: 22,
     },
     fri: {
@@ -39,6 +39,21 @@ const restaurant = {
     console.log(otherIngredients);
   }
 };
+
+
+
+
+
+// optional chaining
+
+// WITH optional chaining (?)
+
+console.log(restaurant.openingHours.mon?.open);
+// will return undefined because it doesnt exist
+ 
+
+
+
 
 
 // rest pattern and parameters
@@ -184,6 +199,22 @@ console.log(newRestaurant);
 
 
 
+
+// LOOPING ARRAYS - THE FOR - OF LOOP
+
+for (const item of menu) {console.log(item)};
+
+// ES6 Enhanced Object literals
+openingHours, 
+
+
+
+
+
+
+
+
+
 // SHORT CIRCUITING LECTURE
 
 // Use ANY data type, return ANY data type,
@@ -213,11 +244,11 @@ console.log(undefined && null);
 
 restaurant.numGuests = 0;
 const guests = restaurant.numGuests || 10;
-console.log(guests);
+// console.log(guests);
 
 
 const guestsCorrect = restaurant.numGuests ?? 10;
-console.log(guestsCorrect);
+// console.log(guestsCorrect);
 // treats 0 and '' (empty string) as if they were truthy values
 
 
@@ -242,15 +273,15 @@ rest2.numGuests = rest2.numGuests || 10
 //OR assignment operator
 rest1.numGuests ||= 10
 
-console.log(rest1);
-console.log(rest2);
+// console.log(rest1);
+// console.log(rest2);
 
 
 //AND assignment operator
 rest1.owner &&= '<ANONYMOUS>'
 rest1.owner &&= '<ANONYMOUS>'
-console.log(rest1);
-console.log(rest2);
+// console.log(rest1);
+// console.log(rest2);
 
 
 
@@ -313,30 +344,31 @@ const game = {
 
   // 1.
 const [players1, players2] = game.players
-console.log(players1);
-console.log(players2);
+// console.log(players1);
+// console.log(players2);
 
 // 2.
 const [gk, ...fieldPlayers] = players1
-console.log(gk);
-console.log(fieldPlayers);
+// console.log(gk);
+// console.log(fieldPlayers);
 
 // 3.
 const allPLayers = [...players1, ...players2]
-console.log(allPLayers);
+// console.log(allPLayers);
 
 // 4. 
 const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic']
-console.log(players1Final);
+// console.log(players1Final);
 
 
  // 5. Based on the game.odds object, create one variable for each odd(called 'team1', 'draw' and 'team2')
 
  const {odds: {team1, x: draw, team2}} = game
 
- console.log(team1);
- console.log(draw);
- console.log(team2);
+//  console.log(team1);
+//  console.log(draw);
+//  console.log(team2);
+
 
  // 6. Write a function('printGoals')that receives an arbitrary number of player names (not an array) and prints each of them to the console, along with the number of goals that were scored in total (number of player names passed in)
 
@@ -345,7 +377,7 @@ console.log(players1Final);
   console.log(...names);
  }
 
-printGoals('joey','chris','issac','henry','rich');
+// printGoals('joey','chris','issac','henry','rich');
 
  // 7. The team with the lower odd is more likely to win.Printtotheconsolewhich team is more likely to win, without using an if/else statement or the ternary operator.
 

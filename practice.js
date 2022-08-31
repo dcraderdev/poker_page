@@ -2488,3 +2488,80 @@ console.log(maxValue([])); // null
 
 
 
+// OBJECTS
+
+// We can use special syntax to iterate through each key of an object (in arbitrary order). This is super useful for looping through both the keys and values of an object.
+
+// The general syntax looks like this:
+
+// The current key is assigned to *variable* on each iteration.
+// for (let variable in object) {
+//   statement;
+// }
+// // This syntax is best shown by example:
+
+// let obj = { name: "Rose", cats: 2 };
+
+// // The key we are accessing is assigned to the `currentKey`
+// // *variable* on each iteration.
+// for (let currentKey in obj) {
+//   console.log(currentKey);
+// }
+
+// prints out:
+// name
+// cats
+
+
+// We can also use Object.keys('object name')
+
+let dog = {name: "Fido", age: "2"}
+// undefined
+
+Object.keys(dog)
+// ['name', 'age']
+
+
+
+
+
+// If we want to access values in an object, we can use bracket notation like so:
+
+let obj4 = { name: "Rose", cats: 2 };
+
+for (let key in obj4) {
+  let value = obj4[key];
+  console.log(value);
+}
+
+// prints out:
+// Rose
+// 2
+
+// check for thing in keys
+for (let key in obj4) {
+  let thing = 'Rose'
+  let value = obj4[key];
+  if(thing.includes(value)){
+    console.log(value);
+  }
+}
+
+
+// Or we can use - Object.values('object name')
+
+let dog2 = {name: "Fido", age: "2"}
+// undefined
+
+Object.values(dog2)
+// ['Fido', '2']
+
+console.log(Object.values(dog2));
+
+
+
+let bear = { growl: "RAWR" };
+
+console.log(bear["age"]);
+
+console.log(bear["growl"]);
