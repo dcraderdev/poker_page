@@ -275,41 +275,69 @@ return newObj
 // and the sum of the total points for the game as their value.
 
 
-function countScores(people) {
-  let newObj = {}
-  let tempName;
-  let tempScore;
-  for(let i = 0; i < people.length; i++){
+// function countScores(people) {
+//   let newObj = {}
+//   let tempName;
+//   let tempScore;
+//   for(let i = 0; i < people.length; i++){
 
 
-  for (const keys in people[i]) {
+//   for (const keys in people[i]) {
 
 
+// if(newObj[keys]===undefined){
+
+// // if(newObj[people[i]]===undefined){
+//   console.log(newObj[people[i]]);
+// }
 
 
+//     if (keys === 'name') {
 
-
-    if (keys === 'name' && newObj[keys] === undefined) {
-
-      tempName = people[i][keys]
-    } 
+//       tempName = people[i][keys]
+//     } 
     
 
-    else if (keys === 'score' && newObj[keys] === undefined) {
-      tempScore = people[i][keys]
+//     else if (keys === 'score') {
+//       tempScore = people[i][keys]
+//     }
+
+
+//     newObj[tempName] = tempScore
+//   }
+
+
+
+// }
+
+
+//   return newObj
+// }
+
+
+
+
+function countScores(people) {
+let newObj = {};
+  for(let i = 0; i < people.length; i++){
+    let personObj = people[i]
+    // console.log(people[i]);
+    let nameVar = personObj.name
+    let scoreVar = personObj.score
+
+    // console.log(nameVar);
+    // console.log(scoreVar);
+
+    if(newObj[nameVar]){
+      newObj[nameVar] += scoreVar;
+    } else {
+      newObj[nameVar] = scoreVar;
     }
 
 
-    newObj[tempName] = tempScore
   }
-
-
-
-}
   return newObj
 }
-
-
 
 
 
@@ -319,7 +347,7 @@ let ppl = [{name: "Anthony", score: 10},
             {name: "Anthony", score: -8},
             {name: "Winnie", score: 12}];
 
-// console.log(countScores(ppl)); //=> { Anthony: 2, Fred: 10, Winnie: 12 }
+console.log(countScores(ppl)); //=> { Anthony: 2, Fred: 10, Winnie: 12 }
 
 // // Example 2:
 // let peeps = [
@@ -416,12 +444,12 @@ function duplicateCharMinCount(string, minCount) {
 
 
 // Examples:
-console.log(countCharacters("apple"));
+// console.log(countCharacters("apple"));
 
 
-console.log(duplicateCharMinCount("apple", 2));  // ["p"]
-console.log(duplicateCharMinCount("banana", 2));  // ["a", "n"]
-console.log(duplicateCharMinCount("What about a longer string?", 3));  // ["a", "t", " "]
+// console.log(duplicateCharMinCount("apple", 2));  // ["p"]
+// console.log(duplicateCharMinCount("banana", 2));  // ["a", "n"]
+// console.log(duplicateCharMinCount("What about a longer string?", 3));  // ["a", "t", " "]
 
 
 
