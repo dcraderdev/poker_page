@@ -1,61 +1,54 @@
 'use strict';
 
 
-// OBJECTS AND DATASTRUCTURES
 
+// OBJECTS AND DATASTRUCTURES
 
 // OBJECTS PRACTICE
 
-
 // Write a function called `keysInObject(obj)` that takes in an object and returns an array of all the keys within that Object.
 function keysInObject(obj) {
-  return Object.keys(obj)
+  return Object.keys(obj);
 }
 
-// Write a function called `valuesInObject(obj)` that takes in an object and returns an array of all the values within that Object. 
+// Write a function called `valuesInObject(obj)` that takes in an object and returns an array of all the values within that Object.
 function valuesInObject(obj) {
-  return Object.values(obj)
+  return Object.values(obj);
 }
 
 // Write a function `setKeyInObject(obj, string, value)` that takes in three parameters. The first parameter is an object, the second parameter will be a string and the third parameter will be a value. Your job is to return the object adding the second parameter as a key using the third parameter as its value.
 
 function setKeyInObject(obj, string, value) {
-  obj[string] = value
-  return obj
+  obj[string] = value;
+  return obj;
 }
 
 // Write a function `getFullName(person)` that takes in an person object
 // and returns a string containing their full name.
 function getFullName(person) {
-  return person.firstName + ' ' + person.lastName
+  return person.firstName + ' ' + person.lastName;
 }
-
 
 // Write a function `doesKeyExist(obj, key)` that takes in an object and a
 // key and returns true if the key is inside the object and false if the
 // key is not inside the object.
 
-
-let obj1 = {bootcamp: 'App Academy', course: 'Bootcamp Prep'}
+let obj1 = { bootcamp: 'App Academy', course: 'Bootcamp Prep' };
 
 function doesKeyExist(obj, key) {
-  return !(obj[key] === undefined)
+  return !(obj[key] === undefined);
   //return boolean
 }
 // console.log(doesKeyExist(obj1, 'course'));
 // console.log(doesKeyExist(obj1, 'name'));
 
-
-
 // Write a function `keyInObjectArray(objArray, keyString)` that takes in an array of objects as the first parameter and a string as the second. The `keyInObjectArray` function will return `true` if any of the objects contains the `keyString` as a key within them, and `false` if not.
 
-
 let objArray = [
-  { name: "Rupert" },
+  { name: 'Rupert' },
   { age: 42 },
-  { planet: "Earth", system: "Milky Way" }
+  { planet: 'Earth', system: 'Milky Way' },
 ];
-
 
 function keyInObjectArray(objArray, keyString) {
   for (const obj of objArray) {
@@ -63,22 +56,15 @@ function keyInObjectArray(objArray, keyString) {
       return true;
     }
   }
-  return false
+  return false;
 }
-
-
 
 // console.log(keyInObjectArray(objArray, 'planet'));// => true
 // console.log(keyInObjectArray(objArray, 'age'));// => true
 // console.log(keyInObjectArray(objArray, 'food'));// => false
 // console.log(keyInObjectArray(objArray, 'animal'));// => false
 
-
-
-
-
 // Write a function `breakDownObj(obj)` that takes in an object as a parameter and returns an array containing:  all the keys from the object **and** all the values of the object.
-
 
 // *** works ***
 // function breakDownObj(obj) {
@@ -92,181 +78,142 @@ function keyInObjectArray(objArray, keyString) {
 //   console.log(arr.flat());
 // }
 
-
-
 function breakDownObj(obj) {
   let arr = [];
   for (const key in obj) {
-    arr.push(key)
+    arr.push(key);
   }
   for (const key in obj) {
-    arr.push(obj[key])
+    arr.push(obj[key]);
+  }
+  return arr;
 }
-return arr
-}
-
-
 
 // let object1 = {name: 'Rupert', age: 5, speak: 'Meow'};
 // console.log(breakDownObj(object1));; // => [ 'name', 'age', 'speak', 'Rupert', 5, 'Meow' ]
 // // console.log(breakValues(object1));; // => [ 'name', 'age', 'speak', 'Rupert', 5, 'Meow' ]
 
-
 // let object2 = {location: 'NY', borough: 'Brooklyn'};
 // console.log(breakDownObj(object2));; // => [ 'location', 'borough', 'NY', 'Brooklyn' ]
 
-
-
-
-
 // Write a function `valuePair(obj1, obj2, key)` that takes in two objects and a key (string). The function should return an array containing the corresponding values of the objects for the given key.
-
-
-
-
 
 function valuePair(obj1, obj2, key) {
   let arr = [];
-  let check = key
+  let check = key;
 
   for (const key in obj1) {
-    if(key === check) {
-      arr.push(obj1[key])
+    if (key === check) {
+      arr.push(obj1[key]);
     }
   }
 
   for (const key2 in obj2) {
-    if(key2 === check) {
-      arr.push(obj2[key2])
+    if (key2 === check) {
+      arr.push(obj2[key2]);
     }
   }
 
-  return arr
+  return arr;
 }
 
-let object1 = {name: 'One', location: 'NY', age: 3};
-let object2 = {name: 'Two', location: 'SF'};
+let object1 = { name: 'One', location: 'NY', age: 3 };
+let object2 = { name: 'Two', location: 'SF' };
 // console.log(valuePair(object1, object2, 'location')); ; // => [ 'NY', 'SF' ]
 // console.log(valuePair(object1, object2, 'name'));  ; // => [ 'One', 'Two' ]
 
-
-
-
 // Write a function `appleCounter(appleObj)` that takes in an object containing a number of keys that have the word 'apple' contained within them. The `appleCounter` function will be in charge of returning the number of keys that contain the word "apple".
 
-function appleCheck (key) {
-  let appleSlice = key.slice(-5).toLowerCase()
-  if (appleSlice === 'apple'){return true}
-  return false
+function appleCheck(key) {
+  let appleSlice = key.slice(-5).toLowerCase();
+  if (appleSlice === 'apple') {
+    return true;
+  }
+  return false;
 }
-
 
 function appleCounter(appleObj) {
-  let counter = 0
-  for(const key in appleObj){
-    if (appleCheck(key)) {counter++}
+  let counter = 0;
+  for (const key in appleObj) {
+    if (appleCheck(key)) {
+      counter++;
+    }
   }
-  return counter
+  return counter;
 }
 
-
-
 let obj3 = {
-  crabApple: "yum!",
-  honeyApple: "super yum",
-  banana: "yay",
-  bigapple: "NYC"
+  crabApple: 'yum!',
+  honeyApple: 'super yum',
+  banana: 'yay',
+  bigapple: 'NYC',
 };
 // console.log(appleCounter(obj3)); ; // => 3
-
-
-
 
 // Write a function named `restSum` that accepts all incoming parameters and sums them.
 function restSum(...arr) {
   let sum = 0;
-  for(let i = 0; i < arr.length; i++){
-    sum += arr[i]
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
   }
-  return sum
+  return sum;
 }
 
 // console.log(restSum(3,5,6)); ; // => 14
 // console.log(restSum(1, 2, 3, 4, 5, 6, 7, 8, 9)); ; // => 14
 // console.log(restSum(0)); ; // => 0
 
-
-
-
-
-// Write a function named `spreadItOut(array1, array2)` that accepts two arrays and uses *spread operator* syntax to return a single array. 
+// Write a function named `spreadItOut(array1, array2)` that accepts two arrays and uses *spread operator* syntax to return a single array.
 function spreadItOut(array1, array2) {
-  return [...array1, ...array2]
+  return [...array1, ...array2];
 }
-
 
 // Examples:
 // console.log(spreadItOut([3,5,6], [1,2,3])); ; // => [3,5,6,1,2,3];
-spreadItOut([], [1,2,3]); // => 14;
-spreadItOut(["apple", "banana"], [1,2,3]); // => ["apple", "banana", 1, 2, 3];
-
-
-
-
-
-
+spreadItOut([], [1, 2, 3]); // => 14;
+spreadItOut(['apple', 'banana'], [1, 2, 3]); // => ["apple", "banana", 1, 2, 3];
 
 // Write a function `arrayConverter(array)` that will intake an
 // array as an argument and returns an object representing the count of each
 // value in the array. **Hint:** don't forget you can check if a key is present
 // in an object by using `obj[key] === undefined`.
 function arrayConverter(arr) {
-  let newObj = {}
-  for(let i = 0; i < arr.length; i++){
-    if(newObj[arr[i]] === undefined) {
-      newObj[arr[i]] = 1
-    }
-    else if(newObj[arr[i]] !== undefined) {
-      newObj[arr[i]] += 1
+  let newObj = {};
+  for (let i = 0; i < arr.length; i++) {
+    if (newObj[arr[i]] === undefined) {
+      newObj[arr[i]] = 1;
+    } else if (newObj[arr[i]] !== undefined) {
+      newObj[arr[i]] += 1;
     }
   }
-  return newObj
+  return newObj;
 }
 // // Examples:
 // console.log(arrayConverter(["apple", "apple"])); // => {apple: 2}
 // console.log(arrayConverter(["mango", "pineapple"])); // => {mango: 1, pineapple: 1}
 // console.log(arrayConverter(["apple", "banana", "potato", "banana"])); // => {apple: 1, banana: 2, potato: 1}
 
-
-
-
-
 // Write a function `stringConverter(string)` that will intake a
 // string as an argument and returns an object representing the count of each
 // character in the string. **Hint:** don't forget you can check if a key is present
 // in an object by using `obj[key] === undefined`.
 
-
 function stringConverter(string) {
   let wordArr = string.split('');
   let newObj = {};
-  for(let i = 0; i < wordArr.length; i++){
-    if(newObj[wordArr[i]] === undefined) {
-      newObj[wordArr[i]] = 1
-    }
-    else if(newObj[wordArr[i]] !== undefined) {
-      newObj[wordArr[i]] += 1
+  for (let i = 0; i < wordArr.length; i++) {
+    if (newObj[wordArr[i]] === undefined) {
+      newObj[wordArr[i]] = 1;
+    } else if (newObj[wordArr[i]] !== undefined) {
+      newObj[wordArr[i]] += 1;
     }
   }
-return newObj
+  return newObj;
 }
 // // Examples:
 // console.log(stringConverter("apple")); // => {a: 1, p: 2, l: 1, e: 1}
 // console.log(stringConverter("banana")); // => {b: 1, a: 3, n: 2}
 // console.log(stringConverter("raccoon")); // => {r: 1, a: 1, c: 2, o: 2, n: 1}
-
-
-
 
 // Write a function `countScores(people)` that takes in an array of score
 // objects (people) as its input. A score object has two key-value pairs:
@@ -274,16 +221,13 @@ return newObj
 // return an object that has key-value pairs listing each person who scored as a key
 // and the sum of the total points for the game as their value.
 
-
 // function countScores(people) {
 //   let newObj = {}
 //   let tempName;
 //   let tempScore;
 //   for(let i = 0; i < people.length; i++){
 
-
 //   for (const keys in people[i]) {
-
 
 // if(newObj[keys]===undefined){
 
@@ -291,63 +235,52 @@ return newObj
 //   console.log(newObj[people[i]]);
 // }
 
-
 //     if (keys === 'name') {
 
 //       tempName = people[i][keys]
-//     } 
-    
+//     }
 
 //     else if (keys === 'score') {
 //       tempScore = people[i][keys]
 //     }
 
-
 //     newObj[tempName] = tempScore
 //   }
 
-
-
 // }
-
 
 //   return newObj
 // }
 
-
-
-
 function countScores(people) {
-let newObj = {};
-  for(let i = 0; i < people.length; i++){
-    let personObj = people[i]
+  let newObj = {};
+  for (let i = 0; i < people.length; i++) {
+    let personObj = people[i];
     // console.log(people[i]);
-    let nameVar = personObj.name
-    let scoreVar = personObj.score
+    let nameVar = personObj.name;
+    let scoreVar = personObj.score;
 
     // console.log(nameVar);
     // console.log(scoreVar);
 
-    if(newObj[nameVar]){
+    if (newObj[nameVar]) {
       newObj[nameVar] += scoreVar;
     } else {
       newObj[nameVar] = scoreVar;
     }
-
-
   }
-  return newObj
+  return newObj;
 }
 
-
-
 // Example 1:
-let ppl = [{name: "Anthony", score: 10},
-            {name: "Fred", score : 10},
-            {name: "Anthony", score: -8},
-            {name: "Winnie", score: 12}];
+let ppl = [
+  { name: 'Anthony', score: 10 },
+  { name: 'Fred', score: 10 },
+  { name: 'Anthony', score: -8 },
+  { name: 'Winnie', score: 12 },
+];
 
-console.log(countScores(ppl)); //=> { Anthony: 2, Fred: 10, Winnie: 12 }
+// console.log(countScores(ppl)); //=> { Anthony: 2, Fred: 10, Winnie: 12 }
 
 // // Example 2:
 // let peeps = [
@@ -361,18 +294,6 @@ console.log(countScores(ppl)); //=> { Anthony: 2, Fred: 10, Winnie: 12 }
 // ];
 // console.log(countScores(peeps)); //=> { Anthony: 4, Fred: 4, Winnie: 6 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 // PRACTICE TEST
 
 // Write a function `keyAdderUniqueVal(object, key, value)` that accepts an
@@ -381,79 +302,70 @@ console.log(countScores(ppl)); //=> { Anthony: 2, Fred: 10, Winnie: 12 }
 // the object argument ONLY IF the value is not already a value for a different
 // key in the object. Return the mutated object.
 
-
-
+// function keyAdderUniqueVal(object, key, value) {
+//   for(const key in object) {
+//     if(object[key].includes(value)){return object}
+//   }
+//   object[key] = value
+// return object
+// }
 
 function keyAdderUniqueVal(object, key, value) {
-  for(const key in object) {
-    if(object[key].includes(value)){return object}
-  }  
-  object[key] = value
-return object
+  for (const key in object) {
+    if (value === object[key]) {
+      return object;
+    }
+  }
+  object[key] = value;
+  return object;
 }
 
 // See below for examples
 
 let cat = { name: 'Willie', color: 'orange' };
 
-// console.log(keyAdderUniqueVal(cat, "toy", "yarn")); ; // => {name: "Willie", color: "orange", toy: "yarn"}
+console.log(keyAdderUniqueVal(cat, 'toy', 'yarn')); // => {name: "Willie", color: "orange", toy: "yarn"}
 
+console.log(keyAdderUniqueVal(cat, 'fruit', 'orange')); // => {name: "Willie", color: "orange", toy: "yarn"}
 
-// console.log(keyAdderUniqueVal(cat, "fruit", "orange")); ; // => {name: "Willie", color: "orange", toy: "yarn"}
-
-
-
-// console.log(cat); // { name: "Willie", color: "orange", toy: "yarn" }
-
+console.log(cat); // { name: "Willie", color: "orange", toy: "yarn" }
 
 // Write a function `duplicateCharMinCount(string, minCount)` that will takes
 // a string as an argument and returns an array of characters that show up
 // at least `minCount` number of times. The string will have at least one
 // character.
 
-
-
-
-
-
-
 function countCharacters(string) {
-  let count = {}
-  for(let i = 0; i < string.length; i++){
-    if(count[string[i]]===undefined) {
-      count[string[i]] = 1
-    }else {
-      count[string[i]] += 1
+  let count = {};
+  for (let i = 0; i < string.length; i++) {
+    if (count[string[i]] === undefined) {
+      count[string[i]] = 1;
+    } else {
+      count[string[i]] += 1;
     }
   }
-  return count
+  return count;
 }
 
 function duplicateCharMinCount(string, minCount) {
-	let count = countCharacters(string);
+  let count = countCharacters(string);
   let newArr = [];
 
-  for(const key in count){
-    if(count[key] >= minCount){
-      newArr.push(key)
+  for (const key in count) {
+    if (count[key] >= minCount) {
+      newArr.push(key);
     }
   }
 
-  return newArr
+  return newArr;
 }
-
 
 // Examples:
 // console.log(countCharacters("apple"));
 
-
 // console.log(duplicateCharMinCount("apple", 2));  // ["p"]
 // console.log(duplicateCharMinCount("banana", 2));  // ["a", "n"]
 // console.log(duplicateCharMinCount("What about a longer string?", 3));  // ["a", "t", " "]
-
-
-
-
 
 console.log('-=-=-=-=-=-=-=-=-=-=-=-=-');
 // DATASTRUCTURES
@@ -670,11 +582,7 @@ for (const day of properties) {
 
 // console.log(openStr);
 
-
-
-
 //Looping thru Property VALUES
-
 
 const values = Object.values(openingHours);
 console.log(values);
@@ -989,15 +897,10 @@ for (const [key, { open, close }] of entries) {
 //   animal: obj.animal,
 // };
 
-
 // console.log(name, species);
 // console.log(person, animal);
 
-
 // person = 'Pat';
-
-
-
 
 // let students = ['james', 'dani', 'pierre'];
 
@@ -1007,15 +910,9 @@ for (const [key, { open, close }] of entries) {
 // // console.log(stud3);
 // // console.log(stud4);
 
-
-
 // // console.log([stud1, stud2] = [stud2, stud1]);
 
-
-
-
 // // REST PARAMETER
-
 
 // let yell = function(...strings){
 //   let res = [];
@@ -1028,14 +925,12 @@ for (const [key, { open, close }] of entries) {
 
 // console.log(yell('james', 'dani', 'pierre'));
 
-
 // //SPREAD PARAMETER
 
 // let arr111 = [1,2,3]
 // let arr222 = [4, 5, 6]
 // let arr3 = [...arr111, ,...arr222]
 // // console.log(arr3);
-
 
 // let obj10 = { name: "don"}
 // let obj11 = { name: "jon"}
@@ -1044,9 +939,132 @@ for (const [key, { open, close }] of entries) {
 
 // // console.log(newArr3);
 
-
 // let newObj3 = {...arr111}
 
 // // console.log(newObj3);
 
+// SETS
 
+// a set is a collection of unique values
+// a set can never have any duplicates
+// iterates over our array or string
+
+//we can check all the unique values in an arr
+const orderSet = new Set([
+  'Pasta',
+  'Pizza',
+  'Pizza',
+  'Risotto',
+  'Pasta',
+  'Pizza',
+]);
+console.log(orderSet);
+
+//we can check all the unique values in a str
+console.log(new Set('Donovan'));
+
+//to a get a set's size/length we use .size
+console.log(orderSet.size);
+
+// we can check if a set contains an element with .has
+console.log(orderSet.has('Pasta')); // true
+console.log(orderSet.has('Bologna')); // false
+
+// we can add elements to a set with .add
+// but we still cant have the same element more than once
+orderSet.add('Garlic Bread');
+orderSet.add('Garlic Bread');
+console.log(orderSet); // {'Pasta', 'Pizza', 'Risotto', 'Garlic Bread'}
+
+// we can add elements to a set with .delete
+orderSet.delete('Garlic Bread');
+console.log(orderSet); // {'Pasta', 'Pizza', 'Risotto'}
+
+// we cannot access elements within the set
+// it only holds information BUT
+// they are iterable so we can loop over them
+
+// for (const order of orderSet) console.log(order);
+
+// Example
+
+const staff = ['Waiter', 'Chef', 'Waiter', 'Manager', 'Chef', 'Waiter'];
+
+const staffUnique = new Set(staff);
+console.log(staffUnique);
+//{'Waiter', 'Chef', 'Manager'}
+
+// if we want the set to be in an array we just
+// add the spread/rest operator along with [] around it all
+const staffUniqueArr = [...new Set(staff)];
+console.log(staffUniqueArr);
+// ['Waiter', 'Chef', 'Manager']
+
+// MAPS
+
+// a map is a structure we can use to map values to keys
+// data is stored somewhat like an object BUT
+// in maps, the keys can have any type of data, it doesnt just have to be keys
+
+const rest = new Map();
+rest.set('name', 'Classico Italiano');
+rest.set(1, 'Italy');
+rest.set(2, 'France');
+console.log(rest);
+
+rest
+  .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+  .set('open', 11)
+  .set('close', 23)
+  .set(true, 'We are open')
+  .set(false, 'We are closed')
+  .set([1,2], 'Test')
+
+
+  // rest.set(document.querySelector('h1'), 'Heading');
+  rest.set(document.querySelector('h2'), 'stuff');
+  console.log(rest);
+
+
+// to retrieve information from the map we just use the .get keyword 
+console.log(rest.get('name')); // 'Classico Italiano'
+console.log(rest.get(1)); // 'Italy'
+
+const time = 21;
+console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
+
+
+
+// we can also delete all the elements from the map with .clear 😮
+// rest.clear()
+// console.log(rest); 
+
+
+
+// MAPS ITERATION
+
+const question = new Map([
+  ['question', 'What is the best programming language?'],
+  [1, 'C'],
+  [2, 'JavaScript'],
+  [3, 'Python'],
+  ['Correct', 3],
+  [true, 'Correct!'],
+  [false, 'Sorry, try again.']
+])
+
+console.log(question);
+console.log(question.get(`question`));
+// for(const item of question) {
+//      deconstruct to ->
+for(const [key, value] of question) {
+  if(typeof ley === 'number') console.log(`Answer ${key}: ${value}`);
+}
+
+// const answer = Number (prompt('Your answer?'))
+// console.log(answer);
+// console.log(question.get(question.get('Correct') === answer));
+
+
+// CONVERT MAP TO ARRAY - same notation as with sets
+console.log([...question]);
