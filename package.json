@@ -1,0 +1,25 @@
+{
+  "name": "poker_page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scraper.js",
+  "scripts": {
+    "start": "nodemon scraper.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dcraderdev/poker_page.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dcraderdev/poker_page/issues"
+  },
+  "homepage": "https://github.com/dcraderdev/poker_page#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.1",
+    "puppeteer": "^17.1.0"
+  }
+}

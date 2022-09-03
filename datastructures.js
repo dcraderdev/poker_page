@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 // OBJECTS AND DATASTRUCTURES
 
 // OBJECTS PRACTICE
@@ -1018,28 +1016,22 @@ rest
   .set('close', 23)
   .set(true, 'We are open')
   .set(false, 'We are closed')
-  .set([1,2], 'Test')
+  .set([1, 2], 'Test');
 
+// rest.set(document.querySelector('h1'), 'Heading');
+rest.set(document.querySelector('h2'), 'stuff');
+console.log(rest);
 
-  // rest.set(document.querySelector('h1'), 'Heading');
-  rest.set(document.querySelector('h2'), 'stuff');
-  console.log(rest);
-
-
-// to retrieve information from the map we just use the .get keyword 
+// to retrieve information from the map we just use the .get keyword
 console.log(rest.get('name')); // 'Classico Italiano'
 console.log(rest.get(1)); // 'Italy'
 
 const time = 21;
 console.log(rest.get(time > rest.get('open') && time < rest.get('close')));
 
-
-
 // we can also delete all the elements from the map with .clear 😮
 // rest.clear()
-// console.log(rest); 
-
-
+// console.log(rest);
 
 // MAPS ITERATION
 
@@ -1050,21 +1042,20 @@ const question = new Map([
   [3, 'Python'],
   ['Correct', 3],
   [true, 'Correct!'],
-  [false, 'Sorry, try again.']
-])
+  [false, 'Sorry, try again.'],
+]);
 
 console.log(question);
 console.log(question.get(`question`));
 // for(const item of question) {
 //      deconstruct to ->
-for(const [key, value] of question) {
-  if(typeof ley === 'number') console.log(`Answer ${key}: ${value}`);
+for (const [key, value] of question) {
+  if (typeof ley === 'number') console.log(`Answer ${key}: ${value}`);
 }
 
 // const answer = Number (prompt('Your answer?'))
 // console.log(answer);
 // console.log(question.get(question.get('Correct') === answer));
-
 
 // CONVERT MAP TO ARRAY - same notation as with sets
 console.log([...question]);
