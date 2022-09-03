@@ -1,32 +1,43 @@
-const puppeteer = require('puppeteer')
-const fs = require('fs/promises')
+
+
+
+
+
+
+
+const puppeteer = require('puppeteer');
+const fs = require('fs/promises');
+
+
 
 async function start() {
-  const browser = await puppeteer.launch()
-  const page = await browser.newPage()
-  await page.goto("https://www.bovada.lv/static/poker-game/?lobby=%2Fpoker-lobby%2Fhome")
+  const browser = await puppeteer.launch({headless: false});
+  const page = await browser.newPage();
+  await page.goto("https://www.bovada.lv/static/poker-game/?lobby=%2Fpoker-lobby%2Fhome");
   // await page.screenshot({path: "poker.png", fullPage: true})
 
-  // const balance = await page.evaluate(() => {
-  //   return Array.from(document.querySelectorAll("span.f1n1diy1.balanceLargeSize")).map(x => x.textContent)
-  // })
-
+  const balance = await page.evaluate(() => {
+    return Array.from(document.querySelectorAll("span.f1n1diy1.balanceLargeSize")).map(x => x)
+  })
 
   // const balance = await page.evaluate(() => {
   //   return Array.from(document.querySelectorAll("span.f1n1diy1.balanceLargeSize").map(x => x.textContent))
   // })
 
 
-  const balance = await page.$eval("span.f1n1diy1.balanceLargeSize", el => el.textContent)
+  // const balance = await page.$eval("f1n1diy1.balanceLargeSize", el => el.textContent);
 
 
-await fs.writeFile('balance.txt', balance)
+await fs.writeFile('balance.txt', balance);
 
-await browser.close()
+await browser.close();
 }
 
 start()
 
+//https://www.bovada.lv/static/poker-game/?lobby=%2Fpoker-lobby%2Fhome
+//https://www.bovada.lv/static/poker-game/?lobby=%2Fpoker-lobby%2Fhome
+//
 
 
 // #root > div > div.frlfvhr > div.f1l5nl24 > div.fmyv4dc > div.f1qy5s7k > div.f17p9mxt.Desktop.f1u9jrie > div.f1so0fyt > div:nth-child(3) > div > div:nth-child(2) > div:nth-child(2) > div.fbefu8h.leftPlayer.notZone.fimvvv > div > span
@@ -150,24 +161,3 @@ start()
 
 
 
-const puppeteer = require('puppeteer')
-const fs = require('fs/promises')
-
-async function start() {
-  const browser = await puppeteer.launch()
-  const page = await browser.newPage()
-
-  await page.goto("https://www.bovada.lv/static/poker-game/?lobby=%2Fpoker-lobby%2Fhome")
-
-  const balance = await page.$eval("span.f1n1diy1.balanceLargeSize", el => el.textContent)
-
-await fs.writeFile('balance.txt', balance)
-await browser.close()
-}
-
-start()
-
-
-
-
-<span class="f1n1diy1 balanceLargeSize" data-qa="playerBalance" style="transition: padding-right 280ms ease 0s;">$3.89</span>

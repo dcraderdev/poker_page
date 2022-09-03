@@ -1,4 +1,153 @@
+/* 
+    width: 549px;
+    position: relative;
+    left: 25%;
+    height: 500px;  
+    transform: rotate(-90deg);
+    top:100px; */
 
+
+
+
+
+.topMenuBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.topMenu {
+  border: 5px solid black;
+  width: 75px;
+  height: 75px;
+}
+
+
+
+.playingField {
+  border: 5px solid black;
+  width: 1000px;
+  height: 500px;
+  position:absolute;
+}
+
+
+
+.boardArea {
+  border: 5px solid black;
+  background-color: green;
+  position: relative;
+  margin-top: 20px;
+  margin-left: 250px;
+  height: 300px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  flex-direction: ;
+}
+
+.pot {
+  border: dotted black 3px;
+  width: 30px;
+  height: 30px;
+  margin-left: 100px;
+}
+
+.table {
+  padding: 50px;
+  border: 5px solid black;
+  width: 45%;
+  height: 45%;
+  top: ;
+  right: 100px;
+}
+
+.topSeat {
+  border: 5px solid black;
+  width: 40px;
+  height: 40px;
+}
+
+
+.bottomSeatArea {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+
+button.bottomSeat {
+  border: 5px solid black;
+  width: 70px;
+  height: 70px;
+  margin-top: 10px;
+}
+
+.topSeatArea {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+button.topSeat {
+  width: 70px;
+  height: 70px;
+  bottom: 10px;
+  margin-top: 10px;
+}
+
+.seat3 {
+  margin-top: 400px;
+  bottom: 100px;
+}
+
+
+
+
+
+
+
+
+.container {
+  background-color: blue;
+  width: 700px;
+  height: auto;
+}
+
+.small {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  background-color: red;
+}
+
+.big {
+  height: 400px;
+  width: 400px;
+  display: inline-block;
+  background-color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 
 .menuBar {
   border: solid 5px black
@@ -32,7 +181,7 @@
   padding: 10px;
   border-style: solid;
   border-width: px;
-  /* display: block; */
+  display: block;
   width: 33.3333%;
   height: ;
   background-color: green;
@@ -42,7 +191,7 @@
 }
 
 .box:hover {
-  /* background-color: #ffcccc; */
+  background-color: #ffcccc;
   width: ;
   height: ;
   transform: scale3d();
@@ -50,16 +199,16 @@
   border: 2px rgb(0, 0, 0) solid;
   box-shadow: 10px 5px 5px rgb(108, 108, 108);
 }
+ */
 
-
-
+/* 
 h1 {
   border: dotted black 5px;
 }
 h2 {
   border: dotted black 5px;
-}
-
+} */
+/* 
 
 h1 {
   {background-color:red; left:0px; top:0px;}
@@ -67,45 +216,44 @@ h1 {
   {background-color:blue; left:200px; top:200px;}
   {background-color:green; left:0px; top:200px;}
   {background-color:red; left:0px; top:0px;}
-}
-
+} */
+/* 
 h1 {
   width: 100%;
   height: 50px;
   display: flex;
   /* flex-direction: center; */
-  justify-content: center;
+  /* justify-content: center;
   align-items: center;
   background-color: red;
   animation-name: example;
   animation-duration: .5s;
   animation-iteration-count: 1;
-  animation-name: spin2;
+  animation-name: spin2; */
 
-}
-
+/* 
 h2 {
   width: 100%;
   height: 50px;
   display: flex;
   /* flex-direction: center; */
-  align-items: center;
+  /* align-items: center;
   justify-content: center;
   background-color: green;
   animation-name: example;
   animation-duration: .5s;
   animation-iteration-count: 1;
   animation-name: spin;
-}
+}  */
 
 
 
-.classname:active {
+/* .classname:active {
   transform: rotate(360deg);
-}
+} */
 
 
-
+/* 
 @keyframes spin {
   from {
     margin-left: 100%;
@@ -137,9 +285,9 @@ h2 {
     width: 100%;
   }
 }
+ */
 
-
-
+/* 
 .button {
   padding: 15px 25px;
   font-size: 24px;
@@ -151,7 +299,7 @@ h2 {
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
-}
+} */
 
 /* .button:active { */
   /* background-color: #3e8e41;
@@ -160,7 +308,7 @@ h2 {
   /* transform: rotate(180deg); */
 /* } */
 
-.button:hover {
+/* .button:hover {
   background-color: green;
   transition: transform 3s ease-in-out;
   transform: rotate(18000deg);
@@ -169,9 +317,9 @@ h2 {
 .grow:hover{
   animation: pulse 2s linear infinite;
   cursor: pointer;
-}
+} */
 
-div:hover{
+/* div:hover{
   animation: pulse 2s linear infinite;
   cursor: pointer;
 }
@@ -190,5 +338,5 @@ div:hover{
   100%{
     box-shadow: 0 0 0 rgba(0,206,209,0)
   }
-}
+} */
 
