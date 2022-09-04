@@ -14,7 +14,7 @@ const fs = require('fs/promises');
 
 
 async function start() {
-  const browser = await puppeteer.launch({headless: true});
+  const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage();
   // const page = await browser.targets()[browser.targets().length-1].page()
   await page.goto("https://www.bovada.lv/static/poker-game/?lobby=%2Fpoker-lobby%2Fhome");
@@ -33,9 +33,9 @@ async function start() {
 
 
 
-  // const balance = await page.evaluate(() => {
-  //   return Array.from(document.querySelectorAll("span.f1n1diy1.balanceLargeSize").map(x => x.textContent))
-  // })
+  const balance = await page.evaluate(() => {
+    return Array.from(document.querySelectorAll("span.f1n1diy1.balanceLargeSize").map(x => x.innerText))
+  })
 
 
   // const balance = await page.$eval("f1n1diy1.balanceLargeSize", el => el.textContent);
@@ -43,7 +43,6 @@ async function start() {
 
 await fs.writeFile('balance.txt', balance);
 
-await browser.close();
 }
 
 start()
