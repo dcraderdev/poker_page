@@ -1,7 +1,10 @@
 
 
 
+//await page.type('#username', 'username');
+// await page.type('#password', 'password');
 
+// await page.click('#submit');
 
 
 
@@ -11,14 +14,24 @@ const fs = require('fs/promises');
 
 
 async function start() {
-  const browser = await puppeteer.launch({headless: false});
+  const browser = await puppeteer.launch({headless: true});
   const page = await browser.newPage();
+  // const page = await browser.targets()[browser.targets().length-1].page()
   await page.goto("https://www.bovada.lv/static/poker-game/?lobby=%2Fpoker-lobby%2Fhome");
   // await page.screenshot({path: "poker.png", fullPage: true})
 
-  const balance = await page.evaluate(() => {
-    return Array.from(document.querySelectorAll("span.f1n1diy1.balanceLargeSize")).map(x => x)
-  })
+  
+  const userCred = `craderdonovan@gmail.com`;
+  const passCred = `Freshstart4me$`;
+  await page.type('#email', userCred);
+  await page.type('#login-password', passCred);
+  await page.click('#login-submit');
+  await page.waitForNavigation({waitUntil: 'networkidle2'})
+  await page.goto("https://www.bovada.lv/static/poker-game/?lobby=%2Fpoker-lobby%2Fhome");
+  
+  await page.screenshot({path: 'example.png'});
+
+
 
   // const balance = await page.evaluate(() => {
   //   return Array.from(document.querySelectorAll("span.f1n1diy1.balanceLargeSize").map(x => x.textContent))
