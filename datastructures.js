@@ -4,6 +4,19 @@
 
 // OBJECTS PRACTICE
 
+
+
+
+
+
+
+
+
+
+
+//POJO #1
+
+
 // Write a function called `keysInObject(obj)` that takes in an object and returns an array of all the keys within that Object.
 function keysInObject(obj) {
   return Object.keys(obj);
@@ -31,10 +44,20 @@ function getFullName(person) {
 // key and returns true if the key is inside the object and false if the
 // key is not inside the object.
 
-let obj1 = { bootcamp: 'App Academy', course: 'Bootcamp Prep' };
+// let obj1 = { bootcamp: 'App Academy', course: 'Bootcamp Prep' };
 
 function doesKeyExist(obj, key) {
-  return !(obj[key] === undefined);
+  return obj[key] !== undefined
+ }
+
+
+
+function doesKeyExist(obj, key) {
+  if (obj[key] === undefined){
+    return false
+  } else {
+    return true
+  }
   //return boolean
 }
 // console.log(doesKeyExist(obj1, 'course'));
@@ -1059,3 +1082,252 @@ for (const [key, value] of question) {
 
 // CONVERT MAP TO ARRAY - same notation as with sets
 console.log([...question]);
+
+
+
+
+
+
+
+
+
+
+// function keyInObjectArray(objArray, keyString) {
+//   for(const obj of objArray) {
+//     if(keyString in obj){
+    
+//     return true
+//   }
+// }
+// return false
+// }
+
+function keyInObjectArray(objArray, keyString) {
+  for(const obj of objArray) {
+    if (obj[keyString] !== undefined) {
+      return true
+    }
+  }
+  return false
+}
+
+
+let objArray3 = [
+  { name: "Rupert" },
+  { age: 42 },
+  { planet: "Earth", system: "Milky Way" }
+];
+
+// console.log(keyInObjectArray(objArray3, 'planet')); ; // => true
+// console.log(keyInObjectArray(objArray3, 'age')); ; // => true
+// console.log(keyInObjectArray(objArray3, 'food')); ; // => false
+// console.log(keyInObjectArray(objArray, 'animal')); ; // => false
+
+
+
+
+
+let obj1 = { bootcamp: 'App Academy', course: 'Bootcamp Prep' };
+
+
+// function doesKeyExist(obj, key) {
+//   return obj[key] === undefined
+ 
+//  }
+function doesKeyExist(obj, key) {
+  return !(key in obj)
+ 
+ }
+// console.log(doesKeyExist(obj1, 'course'));
+// console.log(doesKeyExist(obj1, 'name'));
+
+
+
+// Write a function `breakDownObj(obj)` that takes in an object as a parameter 
+// and returns an array containing:  all the keys from the object **and** all the 
+// values of the object.
+
+function breakDownObj(obj) {
+  let newArr = []
+for (let key in obj) {
+  newArr.push(key);
+}
+for (let key in obj) {
+  newArr.push(obj[key]);
+}
+  return newArr
+
+}
+
+
+let object11 = {name: 'Rupert', age: 5, speak: 'Meow'};
+// console.log(breakDownObj(object11));; // => [ 'name', 'age', 'speak', 'Rupert', 5, 'Meow' ]
+
+
+// let object22 = {location: 'NY', borough: 'Brooklyn'};
+// console.log(breakDownObj(object22));; // => [ 'location', 'borough', 'NY', 'Brooklyn' ]
+
+
+
+// function valuePair(obj1, obj2, key) {
+// let arr = [];
+// arr.push(obj1[key], obj2[key])
+// return arr;
+// }
+
+function valuePair(obj1, obj2, key) {
+  return new Array(obj1[key], obj2[key])
+}
+
+// let object1 = { name: 'One', location: 'NY', age: 3 };
+// let object2 = { name: 'Two', location: 'SF' };
+// console.log(valuePair(object1, object2, 'location')); ; // => [ 'NY', 'SF' ]
+// console.log(valuePair(object1, object2, 'name'));  ; // => [ 'One', 'Two' ]
+
+
+
+
+function appleCounter(appleObj) {
+  let counter = 0;
+
+  for(const key in appleObj){
+    if(key.slice(-5).toLowerCase() === 'apple') {
+      counter++
+    }
+  }
+
+  return counter;
+}
+
+
+let obj33 = {
+  crabApple: 'yum!',
+  honeyApple: 'super yum',
+  banana: 'yay',
+  bigapple: 'NYC',
+};
+
+// console.log(appleCounter(obj33)); ; // => 3
+
+// console.log(obj33['crabApple']);
+
+
+
+function restSum1(...num) {
+  let sum = 0 
+  for(let i = 0; i < num.length; i++){
+    sum += num[i]
+  }
+  return sum
+}
+
+
+
+function restSum2(...num) {
+  return num.reduce(function(previousValue, sum) { return previousValue += sum},
+ 0)
+}
+
+
+const restSum3 = (...num) => {
+  return num.reduce(function(previousValue, sum) { return previousValue += sum},
+ 0)
+}
+
+
+
+console.log(`-=-=-`);
+console.log(restSum2(3,5,6)); ; // => 14
+// console.log(restSum2(1, 2, 3, 4, 5, 6, 7, 8, 9)); ; // => 45
+// console.log(restSum2(0)); ; // => 0
+console.log(`-=-=-`);
+
+
+
+
+let num = [3, 5, 6]
+
+let sum = num.reduce(function (accumulator, curValue) {
+
+  return accumulator + curValue
+
+}, 0)
+
+console.log(sum)
+
+
+
+// // console.log(spreadItOut([3,5,6], [1,2,3])); ; // => [3,5,6,1,2,3];
+// spreadItOut([], [1, 2, 3]); // => 14;
+// spreadItOut(['apple', 'banana'], [1, 2, 3]); // => ["apple", "banana", 1, 2, 3];
+
+
+
+
+function arrayConverter(array) {
+  let newObj = {};
+  for(let i in array){
+    if(newObj[array[i]]){newObj[array[i]] += 1}
+    else {newObj[array[i]] = 1}  
+  }
+  return newObj
+}
+
+
+// Examples:
+// console.log(arrayConverter(["apple", "apple"])); // => {apple: 2}
+// console.log(arrayConverter(["mango", "pineapple"])); // => {mango: 1, pineapple: 1}
+// console.log(arrayConverter(["apple", "banana", "potato", "banana"])); // => {apple: 1, banana: 2, potato: 1}
+
+
+function stringConverter(string) {
+  let newObj = {}
+  for(let i in string) {
+    if(newObj[string[i]]){newObj[string[i]] += 1}
+    else{newObj[string[i]] = 1}
+  }
+  return newObj
+}
+
+
+// Examples:
+// console.log(stringConverter("apple")); // => {a: 1, p: 2, l: 1, e: 1}
+// console.log(stringConverter("banana")); // => {b: 1, a: 3, n: 2}
+// console.log(stringConverter("raccoon")); // => {r: 1, a: 1, c: 2, o: 2, n: 1}
+
+
+
+// Write a function `countScores(people)` that takes in an array of score
+// objects (people) as its input. A score object has two key-value pairs:
+// the scorer (string) and a point value (number). `countScores(people)` should
+// return an object that has key-value pairs listing each person who scored as 
+// a key and the sum of the total points for the game as their value.
+
+
+function countScores(people) {
+  let newObj = {};
+
+  for(let i in people){
+    let person = people[i]['name']
+    let score = people[i]['score']
+
+    if(newObj[person]){newObj[person] += score}
+    else{newObj[person] = score}
+
+  }
+  return newObj
+}
+
+
+
+// Example 2:
+let peeps = [
+  {name: "Anthony", score: 2},
+  {name: "Winnie", score: 2},
+  {name: "Fred", score: 2},
+  {name: "Winnie", score: 2},
+  {name: "Fred", score: 2},
+  {name: "Anthony", score: 2},
+  {name: "Winnie", score: 2}
+];
+console.log(countScores(peeps)); //=> { Anthony: 4, Fred: 4, Winnie: 6 }
