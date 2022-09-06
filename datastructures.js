@@ -1195,7 +1195,6 @@ function appleCounter(appleObj) {
       counter++
     }
   }
-
   return counter;
 }
 
