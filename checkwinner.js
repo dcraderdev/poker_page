@@ -65,9 +65,27 @@ function multipleCheck (handPlayerNumber) {
     return cardCount
 }
 
+
+
+function checkHighCard(straightPrep){
+  return straightPrep.reverse()
+}
+
+console.log(checkHighCard(['3', '5', '7', '9', '12']));
+
 // takes in arr of unique numbers, iterate thru top 5 cards and checks for highest card
 // returns player1 or player2
 function passHighCard(straightPrep1, straightPrep2){
+let firstNum1 = straightPrep1[0]
+let secondNum1 = straightPrep1[1]
+let thirdNum1 = straightPrep1[2]
+let fourthNum1 = straightPrep1[3]
+let fifthNum1 = straightPrep1[4]
+let sixthNum1 = straightPrep1[5]
+let seventhNum1 = straightPrep1[6]
+
+console.log(firstNum1, secondNum1, thirdNum1);
+
   //1st biggest
   if(parseInt(straightPrep1[straightPrep1.length-1]) > parseInt(straightPrep2[straightPrep2.length-1])){return 'player1'}
   if(parseInt(straightPrep1[straightPrep1.length-1]) < parseInt(straightPrep2[straightPrep2.length-1])){return 'player2'}
@@ -96,6 +114,25 @@ function passHighCard(straightPrep1, straightPrep2){
   }
 }
 
+let handOne = ['14', '13', '11', '5', '3', '2'].reverse()
+let handTwo = ['14', '13', '12', '4', '3', '2'].reverse()
+
+
+console.log(passHighCard(handOne, handTwo));
+
+
+
+// (6) ['14', '13', '11', '5', '3', '2']
+// checkwinner.js:432 -------
+// checkwinner.js:434 hand2
+// checkwinner.js:435 pair check = 14
+// checkwinner.js:436 trip check = 
+// checkwinner.js:437 quad check = 
+// checkwinner.js:438 straight check = false
+// checkwinner.js:439 flush check = false
+// checkwinner.js:440 (6) ['14', '13', '12', '4', '3', '2']
+
+
 // takes in sorted arr of unique numbers, separates them into 5 card chunks, checks for straight
 // returns number of highest card in straight, or false
 function straightCheck(straightPrep) {
@@ -104,7 +141,6 @@ function straightCheck(straightPrep) {
   let secondFive = [];
   let thirdFive = [];
 
-  console.log(straightPrep);
 
   // if 7 long, make 3 slices
   if (straightPrep.length === 7) {
@@ -229,11 +265,11 @@ function passFlushCheck(handPlayerNumber1, handPlayerNumber2){
 
 // takes in 2 sorted arrays - assume array contains cards that qualify as pairs
 // returns winner as string
-function pairStrength (pairCheck1, pairCheck2) {
+function passPairCheck (pairCheck1, pairCheck2) {
   if(pairCheck1.length === 0 && pairCheck2.length === 0){return false}
-  if(Math.max(...pairCheck1) > Math.max(...pairCheck2)){return 'player1'}
-  if(Math.max(...pairCheck1) < Math.max(...pairCheck2)){return 'player2'}
-  if(Math.max(...pairCheck1) === Math.max(...pairCheck2)){return 'tie'}
+  if(parseInt(Math.max(...pairCheck1)) > parseInt(Math.max(...pairCheck2))){return 'player1'}
+  if(parseInt(Math.max(...pairCheck1)) < parseInt(Math.max(...pairCheck2))){return 'player2'}
+  if(parseInt(Math.max(...pairCheck1)) === parseInt(Math.max(...pairCheck2))){return 'tie'}
 }
 
 // takes in 2 arrays - arrays are cards that qualify as pairs, checks if theres 2 pairs of pairs
@@ -246,9 +282,9 @@ function passTwoPairCheck (pairCheck1, pairCheck2) {
   if(pairCheck2.length > 1 &! pairCheck1.length > 1){return "player2"}
   // if both have 2 pair check highest paired card
   if(pairCheck2.length > 1 && pairCheck1.length > 1){
-    if(Math.max(...pairCheck1) > Math.max(...pairCheck2)){return "player1"}
-    if(Math.max(...pairCheck1) < Math.max(...pairCheck2)){return "player2"}
-    if(Math.max(...pairCheck1) === Math.max(...pairCheck2)){
+    if(parseInt(Math.max(...pairCheck1)) > parseInt(Math.max(...pairCheck2))){return "player1"}
+    if(parseInt(Math.max(...pairCheck1)) < parseInt(Math.max(...pairCheck2))){return "player2"}
+    if(parseInt(Math.max(...pairCheck1)) === parseInt(Math.max(...pairCheck2))){
   // if high pair matches, check second highest pair, only top 2 pair counts so go to high card if tie 
       if(pairCheck1[pairCheck1.length-2] > pairCheck2[pairCheck2.length-2]){return "player1"}
       if(pairCheck1[pairCheck1.length-2] < pairCheck2[pairCheck2.length-2]){return "player2"}
@@ -262,16 +298,17 @@ function passTwoPairCheck (pairCheck1, pairCheck2) {
 // returns winner as string
 function passTripCheck (tripCheck1, tripCheck2) {
   if(tripCheck1.length === 0 && tripCheck2.length === 0){return false}
-  if(Math.max(...tripCheck1) > Math.max(...tripCheck2)){return "player1"}
-  if(Math.max(...tripCheck1) < Math.max(...tripCheck2)){return "player2"}
+  if(parseInt(Math.max(...tripCheck1)) > parseInt(Math.max(...tripCheck2))){return "player1"}
+  if(parseInt(Math.max(...tripCheck1)) < parseInt(Math.max(...tripCheck2))){return "player2"}
 }
 
 // takes in 2 arrays - arrays are cards that qualify as quads
 // returns winner as string
 function passQuadCheck (quadCheck1, quadCheck2) {
   if(quadCheck1.length === 0 && quadCheck2.length === 0){return false}
-  if(Math.max(...quadCheck1) > Math.max(...quadCheck2)){return "player1"}
-  if(Math.max(...quadCheck1) < Math.max(...quadCheck2)){return "player2"}
+  if(parseInt(Math.max(...quadCheck1)) > parseInt(Math.max(...quadCheck2))){return "player1"}
+  if(parseInt(Math.max(...quadCheck1)) < parseInt(Math.max(...quadCheck2))){return "player2"}
+  if(parseInt(Math.max(...quadCheck1)) === parseInt(Math.max(...quadCheck2))){return 'tie'}
 }
 
 // takes in pairCheck and tripCheck
@@ -282,9 +319,9 @@ function fullHouseCheck(pairCheck, tripCheck){
   // if no trips
   if(tripCheck.length === 0){return false}
   // if 2 sets of trips
-  if(tripCheck.length >= 2){return Math.max(...tripCheck)}
+  if(tripCheck.length >= 2){return parseInt(Math.max(...tripCheck))}
   // if has trips and pairs
-  if(tripCheck.length >= 1 && pairCheck.length >= 1){return Math.max(...tripCheck)}
+  if(tripCheck.length >= 1 && pairCheck.length >= 1){return parseInt(Math.max(...tripCheck))}
 }
 
 // takes in fullHouseCheck(pairCheck, tripCheck)
@@ -306,22 +343,37 @@ function passFullHouseCheck(pairCheck1, tripCheck1, pairCheck2, tripCheck2){
 return 'full house issue'
 }
 
-function royaleFlushCheck(flushCheck,straightCheck){
-  if(Math.max(...flushCheck) === 14 && straightCheck === 14){
-  return true
-}
+// take in sorted flushCheck array
+// take in highest num from straightCheck array
+function royaleFlushCheck(flushCheck, straightCheck){
+  let flushNum = parseInt(flushCheck[flushCheck.length-1])
+  let straightNum = parseInt(straightCheck)
+
+  if(flushNum === 14 && straightNum === 14){return true}
+
 return false
 }
 
 function passRoyaleFlushCheck(flushCheck1,straightCheck1,flushCheck2,straightCheck2){
-  let hand1 = royaleFlushCheck(flushCheck1,straightCheck1)
-  let hand2 = royaleFlushCheck(flushCheck2,straightCheck2)
+  let hand1 = parseInt(royaleFlushCheck(flushCheck1,straightCheck1))
+  let hand2 = parseInt(royaleFlushCheck(flushCheck2,straightCheck2))
 
   if(hand1 === false && hand2 === false){return false}
   if(hand1 === true && hand2 === false){return 'player1'}
   if(hand1 === false && hand2 === true){return 'player2'}
 
 return 'royale flush issue'
+}
+
+// take in sorted flushCheck array
+// take in highest num from straightCheck array
+function straightFlushCheck(flushCheck, straightCheck){
+
+  let flushNum = parseInt(flushCheck[flushCheck.length-1])
+  let straightNum = parseInt(straightCheck)
+
+  if (flushNum === straightNum){return true}
+  return false
 }
 
 
@@ -331,12 +383,18 @@ return 'royale flush issue'
 function handStrength (handPlayerNumber1, handPlayerNumber2) {
 
   // player1 temp info
-  // returns card1 obj
   let cards1 = multipleCheck(handPlayerNumber1)
-  let straightPrep1 = [];
   let pairCheck1 = [];
   let tripCheck1 = [];
   let quadCheck1 = [];
+  let straightPrep1 = [];
+
+  // player2 temp info
+  let cards2 = multipleCheck(handPlayerNumber2)
+  let pairCheck2 = [];
+  let tripCheck2 = [];
+  let quadCheck2 = [];
+  let straightPrep2 = [];
   
   
   
@@ -347,51 +405,137 @@ function handStrength (handPlayerNumber1, handPlayerNumber2) {
     if(cards1[each] === 3){tripCheck1.push(each)}
     if(cards1[each] === 4){quadCheck1.push(each)}
   }
-  
-  
-  // returns arr if flush
-  let flushCheck1 = flushCheck(handPlayerNumber1);
-  let straightCheck1 = parseInt(straightCheck(straightPrep1))
-
-
-console.log(Math.max(...flushCheck1));  
-console.log(straightCheck1);
-
-
-
-  
-  // player2 temp info
-  let cards2 = multipleCheck(handPlayerNumber2)
-  let flushCheck2 = flushCheck(handPlayerNumber2);
-  let straightPrep2 = [];
-  let straightCheck2 = straightCheck(straightPrep2)
-  let pairCheck2 = [];
-  let tripCheck2 = [];
-  let quadCheck2 = [];
-  
-  //check for duplicate cards and push uniques into straightCheck2
+    //check for duplicate cards and push uniques into straightCheck2
   for(const each in cards2){
     straightPrep2.push(each);
     if(cards2[each] === 2){pairCheck2.push(each)}
     if(cards2[each] === 3){tripCheck2.push(each)}
     if(cards2[each] === 4){quadCheck2.push(each)}
   }
+  
+  // player1 temp info
+  let flushCheck1 = flushCheck(handPlayerNumber1);
+  let straightCheck1 = (straightCheck(straightPrep1))
 
 
-  console.log(pairCheck1);
-  // compare hands
-
-// Royal flush
-if(Math.max(...flushCheck1) === 14 && straightCheck1 === 14){console.log('good to go');}
-else{console.log('nope');}
+  // player2 temp info
+  let flushCheck2 = flushCheck(handPlayerNumber2);
+  let straightCheck2 = straightCheck(straightPrep2)
 
 
+  console.log(straightPrep1);
+
+  let player1Cards = checkHighCard(straightPrep1)
+  let player2Cards = checkHighCard(straightPrep2)
+
+
+
+console.log('-------');
+  // TESTS
+
+  console.log('hand1');
+  console.log(`pair check = ${pairCheck1}`);
+  console.log(`trip check = ${tripCheck1}`);
+  console.log(`quad check = ${quadCheck1}`);
+  console.log(`straight check = ${straightCheck1}`);
+  console.log(`flush check = ${flushCheck1}`);
+  console.log(player1Cards);
+
+
+
+console.log('-------');
+
+  console.log('hand2');
+  console.log(`pair check = ${pairCheck2}`);
+  console.log(`trip check = ${tripCheck2}`);
+  console.log(`quad check = ${quadCheck2}`);
+  console.log(`straight check = ${straightCheck2}`);
+  console.log(`flush check = ${flushCheck2}`);
+  console.log(player2Cards);
+
+
+  console.log('-------');
 
 
 
 
 
-  // flush check
+
+  // known issues
+  // two pair not working correctly
+  // high card not working correctly
+
+
+
+
+
+
+
+
+  // COMPARE HANDS
+  
+  // Royal flush
+  let royaleFlushCheck1 = royaleFlushCheck(flushCheck1,straightCheck1)
+  let royaleFlushCheck2 = royaleFlushCheck(flushCheck2,straightCheck2)
+  if(royaleFlushCheck1 === true && royaleFlushCheck2 === true){return 'Royal flush tie'}
+  if(royaleFlushCheck1 === true){return 'Royal flush player1'}
+  if(royaleFlushCheck2 === true){return 'Royal flush player2'}
+
+  // Straight flush 
+  let straightFlushCheck1 = straightFlushCheck(flushCheck1, straightCheck1)
+  let straightFlushCheck2 = straightFlushCheck(flushCheck2, straightCheck2)
+  if(straightFlushCheck1 === true && straightFlushCheck2 === true){return 'Straight flush tie'}
+  if(straightFlushCheck1 === true){return 'Straight flush player1'}
+  if(straightFlushCheck2 === true){return 'Straight flush player2'}
+
+  // four of a kind 
+  if (passQuadCheck (quadCheck1, quadCheck2) === 'player1'){return 'four of a kind player1'}
+  if (passQuadCheck (quadCheck1, quadCheck2) === 'player2'){return 'four of a kind player2'}
+  if (passQuadCheck (quadCheck1, quadCheck2) === 'tie'){
+    return passHighCard(straightPrep1, straightPrep2)
+  }
+
+  // Full House 
+  if(passFullHouseCheck(pairCheck1, tripCheck1, pairCheck2, tripCheck2) === 'player1'){return 'Full House player1'}
+  if(passFullHouseCheck(pairCheck1, tripCheck1, pairCheck2, tripCheck2) === 'player2'){return 'Full House player2'}
+
+  // Flush 
+  if(passFlushCheck(handPlayerNumber1, handPlayerNumber2) === 'player1'){return 'Flush player1'}
+  if(passFlushCheck(handPlayerNumber1, handPlayerNumber2) === 'player2'){return 'Flush player2'}
+
+  // Straight 
+  if(passStraightCheck(straightPrep1, straightPrep2) === 'player1'){return 'Straight player1'}
+  if(passStraightCheck(straightPrep1, straightPrep2) === 'player2'){return 'Straight player2'}
+
+  // Three of a kind 
+  if(passTripCheck (tripCheck1, tripCheck2) === 'player1'){return 'Three of a kind player1'}
+  if(passTripCheck (tripCheck1, tripCheck2) === 'player2'){return 'Three of a kind player2'}
+  if (passTripCheck (quadCheck1, quadCheck2) === 'tie'){
+    return passHighCard(straightPrep1, straightPrep2)
+  }
+
+  // Two pairs 
+  if(passTwoPairCheck (pairCheck1, pairCheck2) === 'player1'){return 'Two pairs player1'}
+  if(passTwoPairCheck (pairCheck1, pairCheck2) === 'player2'){return 'Two pairs player2'}
+  if (passTwoPairCheck (quadCheck1, quadCheck2) === 'tie'){
+    return passHighCard(straightPrep1, straightPrep2)
+  }
+
+  // pair 
+  if(passPairCheck (pairCheck1, pairCheck2) === 'player1'){return 'pair player1'}
+  if(passPairCheck (pairCheck1, pairCheck2) === 'player2'){return 'pair player2'}
+  if (passPairCheck (quadCheck1, quadCheck2) === 'tie'){
+    return passHighCard(straightPrep1, straightPrep2)
+  }
+  
+  // high card 
+  if(passHighCard(straightPrep1, straightPrep2) === 'player1'){return 'high card player1'}
+  if(passHighCard(straightPrep1, straightPrep2) === 'player2'){return 'high card player2'}
+  if(passHighCard(straightPrep1, straightPrep2) === 'tie'){return 'high card tie'}
+  
+
+
+
   
   // straight check
 
@@ -419,5 +563,18 @@ else{console.log('nope');}
 
 
  
+console.log('hand1');
+for (const i in handPlayer1) {console.log(handPlayer1[i]);}
 
-  console.log(handStrength(practiceHand7, handPlayer2));
+
+
+
+
+
+
+
+console.log('hand2');
+for (const i in handPlayer2) {console.log(handPlayer2[i]);}
+
+
+  console.log(handStrength(handPlayer1, handPlayer2));
