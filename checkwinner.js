@@ -6,7 +6,6 @@ console.log('check winner');
 
 
 
-  card7: { rank: '5', suit: 'D' },
 
 // let hand3 = {
 //   card1:{rank: '9', suit: 'S'},
