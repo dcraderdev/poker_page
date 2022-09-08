@@ -1,6 +1,6 @@
 console.log('deal cards');
 //
-//Creates deck, shuffles, deals cards to 2 players
+//  Creates deck, shuffles, and deals cards to 2 players
 
 
 // function fn1() {
@@ -90,7 +90,8 @@ function shuffleDeck(deck) {
     deck[randomIndex] = tempCard;
   }
 }
-//shuffles deck
+
+// SHUFFLE ZE DECK!
 shuffleDeck(deck)
 shuffleDeck(deck)
 shuffleDeck(deck)
@@ -133,7 +134,7 @@ function createHashDeck(deck) {
 
  
 createHashDeck(deck);
-console.log(hashDeck);
+// console.log(hashDeck);
 
 
 // cards in form of a Hash
@@ -160,5 +161,5 @@ function cardsForTwoPLayersHash(hashDeck) {
 
 cardsForTwoPLayersHash(hashDeck);
 
-console.log(handPlayer1);
-console.log(handPlayer2);
+// console.log(handPlayer1);
+// console.log(handPlayer2);

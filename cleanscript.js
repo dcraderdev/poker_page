@@ -2040,3 +2040,163 @@ function flipCard(handPlayer1, handPlayer2) {
 }
 
 console.log(flipCard(handPlayer1, handPlayer2));
+
+
+
+
+
+
+
+
+
+
+// ======= testing stuff
+
+
+
+
+// let hand4= {
+// card1: {rank: '3', suit: 'C'},
+// card2: {rank: '11', suit: 'H'},
+// card3: {rank: '5', suit: 'H'},
+// card4: {rank: '4', suit: 'C'},
+// card:{rank: '9', suit: 'C'},
+// card:{rank: '12', suit: 'H'},
+// card7: {rank: '7', suit: 'C'},
+// }
+
+// let hand3= {
+// card1:{rank: '11', suit: 'C'},
+// card2:{rank: '4', suit: 'H'},
+// card3:{rank: '5', suit: 'H'},
+// card4: {rank: '4', suit: 'C'},
+// card5: {rank: '9', suit: 'C'},
+// card6: {rank: '12', suit: 'H'},
+// card7: {rank: '7', suit: 'C'},
+// }
+
+
+
+
+
+
+let hand3= {
+  'card1':{rank: '2', suit: 'D'},
+  'card2':{rank: '12', suit: 'H'},
+  'card3':{rank: '12', suit: 'C'},
+  'card4':{rank: '12', suit: 'H'},
+  'card5':{rank: '6', suit: 'S'},
+  'card6':{rank: '7', suit: 'S'},
+  'card7':{rank: '12', suit: 'C'},
+  }
+  
+  let hand4= {
+  'card1':{rank: '12', suit: 'C'},
+  'card2':{rank: '12', suit: 'S'},
+  'card3':{rank: '12', suit: 'C'},
+  'card4':{rank: '12', suit: 'H'},
+  'card5':{rank: '6', suit: 'S'},
+  'card6':{rank: '7', suit: 'S'},
+  'card7':{rank: '10', suit: 'C'}
+  }
+  
+  let pairChecker3 = [];
+  let tripChecker3 = [];
+  let quadChecker3 = [];
+  let straightPrep3 = [];
+  let pairChecker4 = [];
+  let tripChecker4 = [];
+  let quadChecker4 = [];
+  let straightPrep4 = [];
+  
+  let cards3 = multipleCheck(hand3)
+  let cards4 = multipleCheck(hand4)
+  for(const each in cards3){
+    straightPrep3.push(each);
+    if(cards3[each] === 2){pairChecker3.push(each)}
+    if(cards3[each] === 3){tripChecker3.push(each)}
+    if(cards3[each] === 4){quadChecker3.push(each)}
+  }
+  for(const each in cards4){
+    straightPrep4.push(each);
+    if(cards4[each] === 2){pairChecker4.push(each)}
+    if(cards4[each] === 3){tripChecker4.push(each)}
+    if(cards4[each] === 4){quadChecker4.push(each)}
+  }
+  
+  
+  console.log(pairChecker3, tripChecker3, quadChecker3);
+  console.log(pairChecker4, tripChecker4, quadChecker4);
+  
+
+
+
+  let handOne = ['2', '3', '4', '12', '13', '14']
+let handTwo = ['2', '3', '4', '12', '13', '14']
+
+// console.log(passHighCard(handOne, handTwo));
+
+
+
+
+// let handOne = ['14', '13', '11', '5', '3', '2']
+// let handTwo = ['14', '13', '12', '4', '3', '2']
+
+
+// console.log(handOne, handTwo);
+
+
+
+
+
+let testArr1 = ['2', '6'];
+let testArr2 = ['2', '6',];
+let testArr8 = ['2', '2', '2', '3', '4', '5', '8'];
+let testArr9 = ['3', '4', '5', '6', '7', '8', '9'];
+let testArr10 = ['4', '5', '6', '7', '8', '9', '10'];
+let testArr11 = ['14', '2', '3', '4', '5', '9', '10'];
+
+
+let practiceHand7 = {
+  card1: { rank: '11', suit: 'H' },
+  card2: { rank: '9', suit: 'D' },
+  card3: { rank: '4', suit: 'D' },
+  card4: { rank: '6', suit: 'D' },
+  card5: { rank: '8', suit: 'D' },
+  card6: { rank: '7', suit: 'D' },
+  card7: { rank: '5', suit: 'D' },
+};
+let practiceHand9 = {
+  card1: { rank: '11', suit: 'H' },
+  card2: { rank: '12', suit: 'H' },
+  card3: { rank: '4', suit: 'H' },
+  card4: { rank: '4', suit: 'H' },
+  card5: { rank: '8', suit: 'H' },
+  card6: { rank: '5', suit: 'H' },
+  card7: { rank: '5', suit: 'H' },
+};
+let practiceHand8 = {
+  card1: { rank: '10', suit: 'l' },
+  card2: { rank: '11', suit: 'l' },
+  card3: { rank: '4', suit: 'l' },
+  card4: { rank: '4', suit: 'l' },
+  card5: { rank: '8', suit: 'l' },
+  card6: { rank: '5', suit: 'l' },
+  card7: { rank: '5', suit: 'S' },
+};
+
+
+
+
+// hand score system
+
+// Royal flush
+// Straight flush
+// Four of a kind
+// Full house
+// Flush
+// Straight
+// Three of a kind
+// Two pairs
+// pair 
+// high card
