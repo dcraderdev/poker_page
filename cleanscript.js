@@ -2200,3 +2200,66 @@ let practiceHand8 = {
 // Two pairs
 // pair 
 // high card
+
+
+
+
+
+
+
+
+
+// let hand3 = {
+//   card1:{rank: '9', suit: 'S'},
+//   card2:{rank: '6', suit: 'C'},
+//   card3:{rank: '2', suit: 'C'},
+//   card4:{rank: '12', suit: 'D'},
+//   card5:{rank: '10', suit: 'C'},
+//   card6:{rank: '14', suit: 'D'},
+//   card7:{rank: '3', suit: 'H'},}
+ 
+//  let hand4 = {
+//   card1:{rank: '5', suit: 'S'},
+//   card2:{rank: '8', suit: 'H'},
+//   card3:{rank: '2', suit: 'C'},
+//   card4:{rank: '12', suit: 'D'},
+//   card5:{rank: '10', suit: 'C'},
+//   card6:{rank: '14', suit: 'D'},
+//   card7:{rank: '3', suit: 'H'},}
+
+
+
+// console.log(hand4.card1.rank);
+
+//   // let pairChecker3 = [];
+//   // let tripChecker3 = [];
+//   // let quadChecker3 = [];
+//   // let straightPrep3 = [];
+//   // let pairChecker4 = [];
+//   // let tripChecker4 = [];
+//   // let quadChecker4 = [];
+//   // let straightPrep4 = [];
+  
+//   // let cards3 = multipleCheck(hand3)
+//   // let cards4 = multipleCheck(hand4)
+//   // for(const each in cards3){
+//   //   straightPrep3.push(each);
+//   //   if(cards3[each] === 2){pairChecker3.push(each)}
+//   //   if(cards3[each] === 3){tripChecker3.push(each)}
+//   //   if(cards3[each] === 4){quadChecker3.push(each)}
+//   // }
+//   // for(const each in cards4){
+//   //   straightPrep4.push(each);
+//   //   if(cards4[each] === 2){pairChecker4.push(each)}
+//   //   if(cards4[each] === 3){tripChecker4.push(each)}
+//   //   if(cards4[each] === 4){quadChecker4.push(each)}
+//   // }
+
+
+
+
+
+
+
+
+

@@ -9,141 +9,265 @@
 
 
 
+.screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 
 .topMenuBox {
   display: flex;
   align-items: center;
   justify-content: space-around;
-
+  text-align: center;
+  border: solid black;
+  
 }
-
 .topMenu {
-  border: 5px solid black;
-  width: 75px;
-  height: 75px;
+  border: solid black;
+  width:  100%;
+  height: 10%;
 }
 
 
 
 .playingField {
-  border: 5px solid black;
-  width: 1000px;
-  height: 500px;
-  position:absolute;
+  /* border: 5px solid black; */
+  width: 100%;
+  height: 80%;
+  position:relative;
 }
 
 
 
-.boardArea {
-  border: 5px solid black;
+.table {
   background-color: green;
   position: relative;
-  margin-top: 20px;
-  margin-left: 250px;
-  height: 300px;
-  width: 50%;
+  height: 100%;
+  width: 100%;
+}
+
+
+.potArea {
+  position: absolute;
+  border: dotted black;
+  width: 20%;
+  height: 8%;
+  margin-left: 30%;
+  margin-top: 1%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content:center;
-  flex-direction: ;
 }
 
 .pot {
-  border: dotted black 3px;
-  width: 30px;
-  height: 30px;
-  margin-left: 100px;
+  position: absolute;
+  border: dotted black;
+  width: 50%;
+  height: 100%;
+  margin-left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.table {
-  padding: 50px;
-  border: 5px solid black;
-  width: 45%;
+.mainPot {
+  position: absolute;
+  border: dotted black;
+  width: 50%;
+  height: 100%;
+  margin-right: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.boardArea{
+  position: absolute;
+  width: 70%;
   height: 45%;
-  top: ;
-  right: 100px;
+  margin-top: 15%;
+  margin-left: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self:baseline ;
+  text-align: center;
 }
 
-.topSeat {
-  border: 5px solid black;
-  width: 40px;
-  height: 40px;
+.boardPot1 {
+  position: relative;
+  border: dotted black;
+  width: 19%;
+  height: 75%;
+}
+.boardPot2 {
+  position: relative;
+  border: dotted black;
+  width: 19%;
+  height: 75%;
+}
+.boardPot3 {
+  position: relative;
+  border: dotted black;
+  width: 19%;
+  height: 75%;
+}
+.boardPot4 {
+  position: relative;
+  border: dotted black;
+  width: 19%;
+  height: 75%;
+}
+.boardPot5 {
+  position: relative;
+  border: dotted black;
+  width: 19%;
+  height: 75%;
 }
 
 
-.bottomSeatArea {
+.cardArea {
+  background-color: cornflowerblue;
+  border: dotted black;
+  width: 100%;
+  height: 10%;
+}
+
+
+.card1 {
+  background-color: cornflowerblue;
+  font-size: 20pt;
+  border: dotted black;
+  width: 30%;
+  height: 95%;
+  margin-top: 1%;
+  margin-left: 1%;
+  position:absolute;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card2 {
+  background-color: cornflowerblue;
+  border: dotted black;
+  position:absolute;
+  font-size: 20pt;
+  width: 30%;
+  height: 95%;
+  margin-top: 1%;
+  margin-left: 31%;
   display: flex;
   justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  flex-direction: row;
-
 }
 
-
-button.bottomSeat {
-  border: 5px solid black;
-  width: 70px;
-  height: 70px;
-  margin-top: 10px;
-}
-
-.topSeatArea {
+.betArea {
+  background-color:cornflowerblue;
+  border: dotted black;
+  position: absolute;
+  width: 100%;
+  height: 20%;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-
-}
-
-button.topSeat {
-  width: 70px;
-  height: 70px;
-  bottom: 10px;
-  margin-top: 10px;
-}
-
-.seat3 {
-  margin-top: 400px;
-  bottom: 100px;
 }
 
 
-
-
-
-
-
-
-.container {
-  background-color: blue;
-  width: 700px;
-  height: auto;
+.halfOne {
+  height: 100%;
+  width: 100%;
 }
 
-.small {
-  width: 200px;
-  height: 200px;
-  display: inline-block;
-  background-color: red;
+.halfTwo {
+  height: 100%;
+  width: 100%;
 }
 
-.big {
-  height: 400px;
-  width: 400px;
-  display: inline-block;
-  background-color: green;
+
+.preFlop {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.postFlop {
+  height: 100%;
+  width: 50%;
+  text-align: center;
+  display: none
 }
 
 
 
+/* preflop only */
+/* 2x BB */
+.bet2 {
+  height: 40%;
+  width: 33%;
+}
+/* preflop only */
+/* 3x BB */
+.bet3 {
+  height: 40%;
+  width: 33%;
+}
+/* preflop only */
+/* 5x BB */
+.bet5 {
+  height: 40%;
+  width: 33%;
+}
 
 
 
+/* hidden til postflop */
+/* 1/3 pot bet */
+.betThird {
+  height: 40%;
+  width: 25%;
+}
+/* hidden til postflop */
+/* 1/2 pot bet */
+.betHalf {
+  height: 40%;
+  width: 25%;
+}
+
+/* hidden til postflop */
+/* 3/4 pot bet */
+.betThreeQuarters {
+  height: 40%;
+  width: 25%;
+}
 
 
 
+/* always visible */
+.betPot {
+  height: 40%;
+  width: 25%;
+}
+.always {
+  height: 40%;
+  width: 25%;
+}
+
+.bet {
+  height: 60%;
+  width: 60%;
+}
+
+.fold {
+  height: 40%;
+  width: 25%;
+}
 
 
+
+  
 
 
 

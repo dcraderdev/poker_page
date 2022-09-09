@@ -3,26 +3,14 @@
   <head>
     <link rel="stylesheet" href="styles.css" />
 
-
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
     <title>Poker Poker</title>
   </head>
   <body>
-
-    <div id="root"></div>
-
-    <!-- <div id="topMenu" class="topMenuBox">
-      <div id="home" class="home topMenu"> Home Button</div>
-      <div id="highscores" class="highscores topMenu">High Scores Button</div>
-      <div id="study" class="study topMenu">Study Button</div>
-      <div id="profile" class="profile topMenu">Profile Button</div>
-    </div> -->
-
-
-
-  <!-- <div class="playingField">
+    <!-- 
+  <div class="playingField">
 
       <div id="table" class="table tab"></div>
 
@@ -36,48 +24,76 @@
       <div id="seat5" class="bottomSeat">Seat 5</div>
       <div id="seat6" class="bottomSeat">Seat 6</div>
 
-  </div> -->
-<!-- 
-  <div class="playingField">
+  </div>
+  -->
+    <div class="screen">
+      <div id="topMenu" class="topMenuBox">
+        <div id="home" class="home topMenu">Home Button</div>
+        <div id="highscores" class="highscores topMenu">High Scores Button</div>
+        <div id="study" class="study topMenu">Study Button</div>
+        <div id="profile" class="profile topMenu">Profile Button</div>
+      </div>
 
-<div class="topSeatArea">
-    <button id="seat1" class="topSeat seat1">Seat 1</button>
-    <button id="seat2" class="topSeat seat2">Seat 2</button>
-    <button id="seat3" class="topSeat seat3">Seat 3</button>
-</div>
-<div class="boardArea">
-    <div id="pot" class="pot">pot</div>
-  
-    <div id="board" class="board">board</div>
-</div>
-<div class="bottomSeatArea">
-    <button id="seat4" class="bottomSeat seat4">Seat 4</button>
-    <button id="seat5" class="bottomSeat seat5">Seat 5</button>
-    <button id="seat6" class="bottomSeat seat6">Seat 6</button>
-</div>
-</div>
+      <div class="playingField">
+        <div class="table">
+          <button id="seat1" class="seat seat1 sitHere">Seat 1</button>
+          <button id="seat2" class="seat seat2 sitHere">Seat 2</button>
+          <button id="seat3" class="seat seat3 sitHere">Seat 3</button>
+          <button id="seat4" class="seat seat4 sitHere">Seat 4</button>
+          <button id="seat5" class="seat seat5 sitHere">Seat 5</button>
+          <button id="seat6" class="seat seat6 sitHere">Seat 6</button>
 
- -->
+          <div class="potArea">
+            <div id="pot" class="pot">pot</div>
+            <div id="pot1" class="mainPot">MainPot</div>
+          </div>
 
+          <div id="board" class="boardArea">
+            <div id="boardCard1" class="boardPot1">boardCard1</div>
+            <div id="boardCard2" class="boardPot2">boardCard2</div>
+            <div id="boardCard3" class="boardPot3">boardCard3</div>
+            <div id="boardCard4" class="boardPot4">boardCard4</div>
+            <div id="boardCard5" class="boardPot5">boardCard5</div>
+          </div>
+        </div>
+      </div>
 
-<!-- <div class=container>
-  <div class=small></div>
-  <div class=big></div>
-</div> -->
+      <div class="betArea">
+        <div class="halfOne">
+          <div class="preFlop">
+            <!-- preflop -->
+            <button class="bet2">2xBET</button>
+            <button class="bet3">3xBET</button>
+            <button class="bet5">5xBET</button>
+          </div>
+        </div>
 
+        <div class="postFlop">
+          <!-- post flop -->
+          <button class="betThird">1/3 POT</button>
+          <button class="betHalf">1/2 POT</button>
+          <button class="betThreeQuarters">3/4 POT</button>
+          <button class="betPot">BET POT</button>
+        </div>
 
+        <div class="halfTwo">
+          <div>
+            <!-- Always -->
+            <form action="bet" class="always">
+              <input type="text" id="customBet" name="customBet"/>
+              <button class="bet">BET</button>
+            </form>
+            <button class="allIn">ALL IN</button>
+            <button class="fold">FOLD</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- <script src="cleanscript.js"></script> -->
-<!-- <script src="practice.js"></script> -->
+    <!-- <script src="cleanscript.js"></script>  -->
 
-
-<script src="dealcards.js"></script>
-<script src="checkwinner.js"></script>
-<!-- <script src="react.js" type="text/babel"></script> -->
-
-
-
-
-
+    <script src="dealcards.js"></script>
+    <script src="checkwinner.js"></script>
+    <!-- <script src="react.js" type="text/babel"></script>  -->
   </body>
 </html>
