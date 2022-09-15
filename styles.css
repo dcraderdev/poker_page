@@ -167,40 +167,91 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  justify-content: center;
   align-self:baseline ;
   text-align: center;
 }
 
-.boardPot1 {
+.boardCard1 {
   position: relative;
   border: dotted black;
   width: 19%;
   height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
 }
-.boardPot2 {
+.boardCard2 {
   position: relative;
   border: dotted black;
   width: 19%;
   height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-.boardPot3 {
+.boardCard3 {
   position: relative;
   border: dotted black;
   width: 19%;
   height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-.boardPot4 {
+.boardCard4 {
   position: relative;
   border: dotted black;
   width: 19%;
   height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
-.boardPot5 {
+.boardCard5 {
   position: relative;
   border: dotted black;
   width: 19%;
   height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
+
+.card.red {
+  color: red
+}
+
+.card.black {
+  color: black;
+}
+
+.card::before,
+.card::after {
+  position: absolute;
+  content: attr(data-value);
+  font-size: 1rem;
+}
+
+.card::before {
+  top: .5rem;
+  left: .5rem
+  }
+
+.card::after {
+bottom: .5rem;
+right: .5rem;
+transform: rotate(180deg);
+}
+
+
+
 
 
 .cardArea {
@@ -326,6 +377,11 @@
   height: 40%;
   width: 25%;
 }
+
+
+
+
+
 
 
 

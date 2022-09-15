@@ -111,16 +111,10 @@ function rankOfCardInDeck(deck, position) {
   }
 }
 
-
 // check suit of card at given index
 function suitOfCardInDeck(deck, position) {
   return deck[position - 1].slice(-1);
 }
-
-
-
-
-
 
 // pulls info from cardIndeck and stores info in  
 // enough cards for 2 people
@@ -132,10 +126,8 @@ function createHashDeck(deck) {
   }
 }
 
- 
 createHashDeck(deck);
-// console.log(hashDeck);
-
+console.log(hashDeck);
 
 // cards in form of a Hash
 // assigns cards for two player hand
